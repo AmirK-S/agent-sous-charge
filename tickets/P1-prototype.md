@@ -23,3 +23,7 @@ Amir s'enregistre 2 minutes : ce qu'on a fait, pourquoi, ce que ça coûte, ce q
 
 ## Journal
 - 18/10 : découpage écrit ; L40S retenue pour P1 (la RTX 4090 ne tient pas Mistral Small 3.2 avec du cache, la mesure de P1.3 serait fausse).
+- 18/10, 19 h 09 UTC : pod `xe77f1xnjb3r8x` lancé (L40S, Secure Cloud, EU-NL-1, 1,09 $/h, image `runpod/pytorch:1.0.2-cu1281-torch280-ubuntu2404`, hôte CUDA 13.0, volume 100 Go sur `/workspace`, SSH seul). Clé SSH dédiée `~/.ssh/runpod_ed25519`, alias `p1pod`. Premier essai refusé (solde trop bas, 402), recrédité par Amir.
+- 18/10 : **P1.1 fini.** vLLM 0.32.0, Mistral Small 3.2 (révision `95a6d26c`) en FP8 à la volée : poids 23,6 Go, cache KV 14,9 Go = **97 712 tokens**, soit 1,49 conversation de 65 536 tokens. `curl` renvoie un appel d'outil propre.
+  - Écueils rencontrés (signal pour la vidéo, « ce qui casse en vrai ») : `pip install` refusé par Ubuntu 24.04 (PEP 668), donc uv par son script officiel ; τ³ et vLLM dans deux environnements séparés (ils ne se parlent que par HTTP) ; `hf download --exclude` ne prend qu'un motif par drapeau ; le volume de 100 Go ne tient pas les poids en double (format HF et format mistral, 45 + 48 Go) ; vLLM 0.32 bascule seul sur le format mistral en voyant `params.json` et télécharge 48 Go en douce, d'où `--config-format hf --load-format safetensors` et `HF_HUB_OFFLINE=1`.
+  - Écarté : le format mistral natif (`consolidated.safetensors`), recommandé par la fiche, mais en double des poids HF déjà là ; le tokenizer mistral (`tekken.json`) est gardé pour les appels d'outils.

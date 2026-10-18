@@ -4,12 +4,16 @@
 set -euo pipefail
 W=/workspace
 export HF_HOME="$W/hf"
+# Les poids sont déjà sur le volume : aucun téléchargement pendant le service.
+export HF_HUB_OFFLINE=1
 source "$W/venv/bin/activate"
 
 vllm serve mistralai/Mistral-Small-3.2-24B-Instruct-2506 \
-  --tokenizer-mode mistral --config-format mistral --load-format mistral \
+  --revision 95a6d26c4bfb886c58daf9d3f7332c857cb27b43 \
+  --tokenizer-mode mistral --config-format hf --load-format safetensors \
   --quantization fp8 \
   --enable-auto-tool-choice --tool-call-parser mistral \
+  --limit-mm-per-prompt '{"image":0}' \
   --max-model-len 65536 \
   --gpu-memory-utilization 0.92 \
   --enable-prefix-caching \
