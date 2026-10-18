@@ -20,10 +20,14 @@
 ## État de l'infrastructure
 - Plugin Runpod 1.7.4 installé pour Claude Code (compétences runpod:*). Commencer par la compétence `runpod:runpod-mcp`.
 - L'OAuth Runpod **échoue depuis l'app de bureau** (adresse de retour refusée). Solution en place : serveur MCP `runpod` en portée utilisateur, avec la clé API d'Amir en en-tête (vérifiée le 18/10 : 50 caractères, préfixe `rpa_`). Si la clé change : `pod/configurer-cle-runpod.sh` ouvre une fenêtre de saisie masquée.
-- Compte Runpod crédité par Amir. **Aucun pod lancé.**
+- Compte Runpod crédité par Amir. **Pod `xe77f1xnjb3r8x` (L40S, EU-NL-1) arrêté le 18/10 à 19 h 45 UTC**, tout installé sur son disque `/workspace` (vLLM 0.32, τ³, poids). Relancer : `pod-action start` ; l'adresse SSH change à chaque démarrage, mettre à jour l'alias `p1pod` dans `~/.ssh/config` (clé `~/.ssh/runpod_ed25519`). Le disque coûte environ 0,65 $/jour tant que le pod n'est pas supprimé.
 - Clé OpenRouter : Amir la garde ; elle n'est écrite dans aucun fichier. Sur le pod, il la saisit lui-même (même méthode : fenêtre ou saisie masquée), jamais dans le chat.
 
-## Prochaine action précise : P1.1 à P1.3 (ticket `tickets/P1-prototype.md`)
+## Prochaine action précise
+
+**Au 18/10, 19 h 45 UTC : P1.1 passe le contrôle technique** (voir le journal du ticket P1). Avant P1.2 : oral de P1.1 par Amir, partage 40/57 des tâches à écrire et valider, clé OpenRouter à saisir. Le plan initial ci-dessous reste la référence.
+
+### Plan initial : P1.1 à P1.3 (ticket `tickets/P1-prototype.md`)
 1. Lire en direct le prix et le stock de la L40S (Secure Cloud ; référence relevée le 18/10 : environ 1,09 $/h), puis proposer à Amir le pod exact : centre de données, image RunPod PyTorch, au moins 100 Go de disque, CUDA 12.8 minimum, coût horaire. **Lancer seulement après son accord écrit.**
 2. Sur le pod : `pod/installer-pod.sh` (τ³ au commit 96a3ef92, vLLM, téléchargement de Mistral Small 3.2), puis `pod/servir-modele.sh`. Vérifier d'abord les drapeaux vLLM du modèle (format mistral, FP8 à la volée) : non testés.
 3. Jouer une tâche banking de bout en bout (agent sur vLLM, client simulé par OpenRouter) ; lire `tau2 run --help` sur le pod pour les bons arguments (LiteLLM, `api_base`, préfixe `openai/`).
