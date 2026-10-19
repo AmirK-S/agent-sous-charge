@@ -21,7 +21,7 @@
 - Plugin Runpod 1.7.4 installé pour Claude Code (compétences runpod:*). Commencer par la compétence `runpod:runpod-mcp`.
 - L'OAuth Runpod **échoue depuis l'app de bureau** (adresse de retour refusée). Solution en place : serveur MCP `runpod` en portée utilisateur, avec la clé API d'Amir en en-tête (vérifiée le 18/10 : 50 caractères, préfixe `rpa_`). Si la clé change : `pod/configurer-cle-runpod.sh` ouvre une fenêtre de saisie masquée.
 - Compte Runpod crédité par Amir. **Pod `xe77f1xnjb3r8x` (L40S, EU-NL-1) arrêté le 18/10 à 19 h 45 UTC**, tout installé sur son disque `/workspace` (vLLM 0.32, τ³, poids). Relancer : `pod-action start` ; l'adresse SSH change à chaque démarrage, mettre à jour l'alias `p1pod` dans `~/.ssh/config` (clé `~/.ssh/runpod_ed25519`). Le disque coûte environ 0,65 $/jour tant que le pod n'est pas supprimé.
-- Clé OpenRouter : Amir la garde ; elle n'est écrite dans aucun fichier. Sur le pod, il la saisit lui-même (même méthode : fenêtre ou saisie masquée), jamais dans le chat.
+- Clé OpenRouter : depuis le 19/10, à la demande d'Amir, rangée dans `~/.config/openrouter/env` (hors dépôt, chmod 600) ; la copier sur le pod dans `/root/.openrouter.env` à chaque démarrage. Sur le pod, il la saisit lui-même (même méthode : fenêtre ou saisie masquée), jamais dans le chat.
 
 ## Prochaine action précise
 
