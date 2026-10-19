@@ -1,0 +1,9 @@
+OpenRouter HTTP 200
+name, memory.total [MiB], power.limit [W], power.max_limit [W], clocks.max.sm [MHz], driver_version, pcie.link.gen.max, pcie.link.width.max
+NVIDIA L40S, 46068 MiB, 350.00 W, 350.00 W, 2520 MHz, 580.173.02, 4, 16
+CPU(s):                               8
+Model name:                           Intel(R) Xeon(R) Gold 6338 CPU @ 2.00GHz
+NUMA node(s):                         1
+               total        used        free      shared  buff/cache   available
+Mem:              31           2           2           0          26          28
+/dev/vda1       145G   74G   71G  52% /
