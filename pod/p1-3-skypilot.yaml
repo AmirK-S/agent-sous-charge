@@ -1,0 +1,53 @@
+# P1.3 : taille des conversations sur 12 tâches de développement, de bout en bout dans un seul job SkyPilot
+# (le job occupe la machine : la suppression automatique ne la coupe pas en pleine mesure).
+# Usage : sky launch -c p13 pod/p1-3-skypilot.yaml -i 60 --down -y
+# Tâches : les 12 premières du lot de développement après task_004 (donnees/partage-taches.json).
+
+resources:
+  accelerators: L40S:1
+  memory: 64+             # leçon du 19/10 : avec 31 Go de mémoire vive, le chargement prenait 600 s
+  disk_size: 150
+  any_of:
+    - infra: nebius
+      use_spot: true
+    - infra: shadeform
+    - infra: runpod
+  # Nebius à la demande (1,75 $/h) retiré : au-dessus du plafond de 1,60 $/h fixé par Amir.
+
+workdir: .
+
+file_mounts:
+  ~/.openrouter.env: ~/.config/openrouter/env
+
+envs:
+  TACHES: task_005 task_007 task_008 task_010 task_014 task_016 task_017 task_022 task_027 task_028 task_033 task_034
+  CONCURRENCE: "4"
+
+setup: |
+  set -euo pipefail
+  export W="$HOME/workspace"
+  mkdir -p "$W"
+  rm -rf "$W/agent-sous-charge" && cp -r ~/sky_workdir "$W/agent-sous-charge"
+  bash "$W/agent-sous-charge/pod/installer-pod.sh" 2>&1 | tee "$W/install.log"
+
+run: |
+  set -uo pipefail
+  export W="$HOME/workspace"
+  cd "$W"
+  chmod 600 ~/.openrouter.env
+  (setsid nohup env W="$W" bash agent-sous-charge/pod/servir-modele.sh > /dev/null 2>&1 < /dev/null &)
+  debut=$(date +%s)
+  until curl -sf localhost:8000/v1/models > /dev/null; do
+    sleep 10
+    [ $(( $(date +%s) - debut )) -lt 1800 ] || { echo "vLLM ne répond pas après 30 min"; tail -30 "$W/vllm.log"; exit 1; }
+  done
+  echo "vLLM prêt en $(( $(date +%s) - debut )) s"
+  # Occupation du cache KV et requêtes en cours, toutes les 5 s.
+  ( while true; do
+      echo "$(date +%s) $(curl -s localhost:8000/metrics | grep -E '^vllm:(kv_cache_usage_perc|gpu_cache_usage_perc|num_requests_running|num_requests_waiting|prefix_cache_hits_total|prefix_cache_queries_total)' | tr '\n' ' ')"
+      sleep 5
+    done > "$W/metriques-p1-3.txt" ) &
+  echo "début des tâches : $(date -u +%H:%M:%S)"
+  env W="$W" CONCURRENCE="$CONCURRENCE" bash agent-sous-charge/pod/jouer-taches.sh p1-3 $TACHES
+  echo "fin des tâches : $(date -u +%H:%M:%S)"
+  grep -E "loading took|KV cache size" "$W/vllm.log" | cut -c1-200

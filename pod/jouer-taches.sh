@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Joue des tâches banking_knowledge : agent = Mistral Small 3.2 servi par vLLM sur le pod,
-# client simulé = GPT-6 Luna par OpenRouter. Une conversation à la fois (P1 : pas de charge).
+# client simulé = GPT-6 Luna par OpenRouter. Une conversation à la fois par défaut ; CONCURRENCE=4 pour P1.3 (on y mesure la taille, pas la vitesse).
 # Usage, sur le pod : bash jouer-taches.sh <nom_du_lot> task_004 [task_005 ...]
 # Ne jouer que des tâches de développement (donnees/partage-taches.json).
 set -euo pipefail
@@ -18,7 +18,7 @@ cd "$W/tau2-bench"
   --user-llm-args '{"temperature": 0.0}' \
   --task-ids "$@" \
   --num-trials 1 \
-  --max-concurrency 1 \
+  --max-concurrency "${CONCURRENCE:-1}" \
   --seed 300 \
   --save-to "$LOT" \
   2>&1 | tee "$W/jouer-$LOT.log"
