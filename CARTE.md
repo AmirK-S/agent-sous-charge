@@ -43,6 +43,7 @@ But derrière la destination : qu'Amir devienne réellement bon en montée en ch
 | G8 | cuisine | Le scénario et le ton de la vidéo | G6, G7 |
 | P0 | prototype | Essai pilote sur GPU loués (section 9 du pré-enregistrement), 40 à 70 $ | P1, T1 |
 | T1 | tâche | Compte de location GPU et page de dépense | G2 |
+| D1 | déploiement | Image Docker à nous (vLLM et τ³ préinstallés, poids téléchargés au démarrage) : plus de réinstallation ni de disque payé entre deux séances, n'importe quelle machine libre fait l'affaire ; et la même image tourne chez d'autres fournisseurs (Scaleway, OVHcloud, Nebius : voir R8), d'où l'argument souverain (la comparaison de prix : une anecdote, pas un segment). Construction par GitHub Actions (Amir a des minutes ; disque des machines standard d'environ 14 Go, à vérifier) ; maintenance faible car versions épinglées puis gelées. À décider après P1, selon le rythme des séances. Né de la panne du 19/10 | P1 |
 | R11 | recherche | Coût du FP8 en qualité : BF16 contre FP8 au repos, sur les 40 tâches de développement, sur une carte de 80 Go | P1, devis |
 
 ## Journal de la carte
