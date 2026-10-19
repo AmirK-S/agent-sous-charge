@@ -47,6 +47,8 @@ But derrière la destination : qu'Amir devienne réellement bon en montée en ch
 
 ## Journal de la carte
 
+- 19/10 : P1.1 fermée (vLLM sert Mistral Small 3.2 en FP8 sur une L40S, 97 712 tokens de cache ; oral d'Amir validé) ; R11 ajouté au brouillard.
+
 - 18/10 : revue d'Astra seul par API (0,21 $), 12 objections retenues, 3 exigences supprimées ; pré-enregistrement v3, simplifié.
 
 - 18/10 : revue d'Astra reçue, 13 objections retenues (une en partie), écart b renversé ; pré-enregistrement v2 ; G10 résolu ; plus de tour adverse avant le pilote.

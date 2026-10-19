@@ -1,0 +1,4555 @@
+{
+ "id": "cab32ba7-9a0f-4e98-837c-c898635da8f2",
+ "language_model": "assemblyai_default",
+ "acoustic_model": "assemblyai_default",
+ "language_code": "fr",
+ "speech_understanding": null,
+ "translated_texts": null,
+ "status": "completed",
+ "audio_url": "https://cdn.assemblyai.com/upload/d85f0d72361b29ba6b9a01e15f6699866fc033833bc0cf3035f3e93b95d7d080/b7b4ac01-7429-4bbc-b946-476baf1c9671",
+ "text": "OK, donc maintenant je suis en train d'enregistrer mes réponses. Le contexte: à quoi sert P1.1 dans l'expérience? Là, l'objectif c'est de pouvoir voir si le modèle rentre en entier sur la carte graphique et savoir si les outils marchent dessus. Si, voilà, déjà le contexte. Ensuite, le choix FP8 plutôt que BF16, c'est une question de mémoire vidéo disponible. En FP8, on va du coup avoir divisé par 2 les besoins en mémoire vidéo, ce qui est sympa. Sauf qu'en BF16, du coup, on arrivera à 48 Go juste pour les poids du modèle, alors qu'en réalité on aura que 45 Go d'utilisables sur la L40S. Donc au final, on va partir en FP8 et on va plus ou moins écarter l'option de FP16 qui, au final, Nous, ah, je sais plus, nous fait perdre la précision, je crois. Mais bon, je sais plus. Le coup nous fait perdre FP8, on va perdre à la fois en précision et en puissance. Mais au final c'est bien parce qu'on peut faire tourner du coup la L40S plutôt que la H100 et ça nous fait diviser par 2 les coûts de, les coûts à l'heure de la carte graphique, ça c'est cool. Cela dit, le FPV 8 réduit drastiquement la précision et du coup il nous faudra aussi garder l'ordre de grandeur des poids à ajuster dans le calcul matriciel. Bon, lequel, je ne sais pas. Chiffre: la place qui reste pour le cache. Alors, la mémoire vidéo qui restera pour le— sur la carte graphique sera utilisée pour le cache et d'autres choses, mais en grande partie, en dehors du modèle, c'est pour le cache. Dans notre cas, ça nous laisse en gros 15 Go. À peu près. Donc ça correspond à 97 712 tokens, comme tu me l'avais expliqué. Et ça, maintenant, on doit savoir combien ça représente de conversation. Mais ça, c'est pour les prochains tests.",
+ "words": [
+  {
+   "text": "OK,",
+   "start": 733,
+   "end": 1007,
+   "confidence": 0.81489867,
+   "speaker": "A"
+  },
+  {
+   "text": "donc",
+   "start": 1039,
+   "end": 1151,
+   "confidence": 0.9856046,
+   "speaker": "A"
+  },
+  {
+   "text": "maintenant",
+   "start": 1151,
+   "end": 1393,
+   "confidence": 0.94541,
+   "speaker": "A"
+  },
+  {
+   "text": "je",
+   "start": 1393,
+   "end": 1473,
+   "confidence": 0.96638376,
+   "speaker": "A"
+  },
+  {
+   "text": "suis",
+   "start": 1473,
+   "end": 1666,
+   "confidence": 0.9999881,
+   "speaker": "A"
+  },
+  {
+   "text": "en",
+   "start": 1666,
+   "end": 1682,
+   "confidence": 0.9999522,
+   "speaker": "A"
+  },
+  {
+   "text": "train",
+   "start": 1682,
+   "end": 1795,
+   "confidence": 0.9999975,
+   "speaker": "A"
+  },
+  {
+   "text": "d'enregistrer",
+   "start": 1795,
+   "end": 2406,
+   "confidence": 0.9994248,
+   "speaker": "A"
+  },
+  {
+   "text": "mes",
+   "start": 2486,
+   "end": 2647,
+   "confidence": 0.81838304,
+   "speaker": "A"
+  },
+  {
+   "text": "réponses.",
+   "start": 2647,
+   "end": 3081,
+   "confidence": 0.99829215,
+   "speaker": "A"
+  },
+  {
+   "text": "Le",
+   "start": 3692,
+   "end": 3773,
+   "confidence": 0.99745923,
+   "speaker": "A"
+  },
+  {
+   "text": "contexte:",
+   "start": 3853,
+   "end": 4368,
+   "confidence": 0.99983895,
+   "speaker": "A"
+  },
+  {
+   "text": "à",
+   "start": 4432,
+   "end": 4496,
+   "confidence": 0.99052936,
+   "speaker": "A"
+  },
+  {
+   "text": "quoi",
+   "start": 4496,
+   "end": 4657,
+   "confidence": 0.99999106,
+   "speaker": "A"
+  },
+  {
+   "text": "sert",
+   "start": 4657,
+   "end": 4882,
+   "confidence": 0.9954059,
+   "speaker": "A"
+  },
+  {
+   "text": "P1.1",
+   "start": 4979,
+   "end": 5300,
+   "confidence": 0.9788431,
+   "speaker": "A"
+  },
+  {
+   "text": "dans",
+   "start": 5300,
+   "end": 5558,
+   "confidence": 0.9743525,
+   "speaker": "A"
+  },
+  {
+   "text": "l'expérience?",
+   "start": 5558,
+   "end": 6314,
+   "confidence": 0.9930656,
+   "speaker": "A"
+  },
+  {
+   "text": "Là,",
+   "start": 6587,
+   "end": 6635,
+   "confidence": 0.9999651,
+   "speaker": "A"
+  },
+  {
+   "text": "l'objectif",
+   "start": 6651,
+   "end": 7407,
+   "confidence": 0.83989555,
+   "speaker": "A"
+  },
+  {
+   "text": "c'est",
+   "start": 8034,
+   "end": 8147,
+   "confidence": 0.9996094,
+   "speaker": "A"
+  },
+  {
+   "text": "de",
+   "start": 8147,
+   "end": 8276,
+   "confidence": 0.99995553,
+   "speaker": "A"
+  },
+  {
+   "text": "pouvoir",
+   "start": 8276,
+   "end": 8810,
+   "confidence": 0.9978556,
+   "speaker": "A"
+  },
+  {
+   "text": "voir",
+   "start": 10056,
+   "end": 10444,
+   "confidence": 0.9942866,
+   "speaker": "A"
+  },
+  {
+   "text": "si",
+   "start": 10493,
+   "end": 10654,
+   "confidence": 0.9953714,
+   "speaker": "A"
+  },
+  {
+   "text": "le",
+   "start": 10654,
+   "end": 10703,
+   "confidence": 0.98293674,
+   "speaker": "A"
+  },
+  {
+   "text": "modèle",
+   "start": 10703,
+   "end": 11205,
+   "confidence": 0.99868083,
+   "speaker": "A"
+  },
+  {
+   "text": "rentre",
+   "start": 11269,
+   "end": 11528,
+   "confidence": 0.99687177,
+   "speaker": "A"
+  },
+  {
+   "text": "en",
+   "start": 11528,
+   "end": 11609,
+   "confidence": 0.9999757,
+   "speaker": "A"
+  },
+  {
+   "text": "entier",
+   "start": 11609,
+   "end": 12030,
+   "confidence": 0.99992275,
+   "speaker": "A"
+  },
+  {
+   "text": "sur",
+   "start": 12564,
+   "end": 12758,
+   "confidence": 0.9999206,
+   "speaker": "A"
+  },
+  {
+   "text": "la",
+   "start": 12758,
+   "end": 12888,
+   "confidence": 0.9998932,
+   "speaker": "A"
+  },
+  {
+   "text": "carte",
+   "start": 12888,
+   "end": 13066,
+   "confidence": 0.999984,
+   "speaker": "A"
+  },
+  {
+   "text": "graphique",
+   "start": 13066,
+   "end": 13632,
+   "confidence": 0.9845473,
+   "speaker": "A"
+  },
+  {
+   "text": "et",
+   "start": 13713,
+   "end": 13779,
+   "confidence": 0.9966306,
+   "speaker": "A"
+  },
+  {
+   "text": "savoir",
+   "start": 16466,
+   "end": 18062,
+   "confidence": 0.99933136,
+   "speaker": "A"
+  },
+  {
+   "text": "si",
+   "start": 18583,
+   "end": 18827,
+   "confidence": 0.99682236,
+   "speaker": "A"
+  },
+  {
+   "text": "les",
+   "start": 18827,
+   "end": 19006,
+   "confidence": 0.9999995,
+   "speaker": "A"
+  },
+  {
+   "text": "outils",
+   "start": 19006,
+   "end": 19316,
+   "confidence": 0.9996511,
+   "speaker": "A"
+  },
+  {
+   "text": "marchent",
+   "start": 20206,
+   "end": 20610,
+   "confidence": 0.9492258,
+   "speaker": "A"
+  },
+  {
+   "text": "dessus.",
+   "start": 20610,
+   "end": 21047,
+   "confidence": 0.64635456,
+   "speaker": "A"
+  },
+  {
+   "text": "Si,",
+   "start": 22310,
+   "end": 22520,
+   "confidence": 0.98135406,
+   "speaker": "A"
+  },
+  {
+   "text": "voilà,",
+   "start": 23443,
+   "end": 25110,
+   "confidence": 0.99962664,
+   "speaker": "A"
+  },
+  {
+   "text": "déjà",
+   "start": 25142,
+   "end": 25336,
+   "confidence": 0.9815823,
+   "speaker": "A"
+  },
+  {
+   "text": "le",
+   "start": 25336,
+   "end": 25627,
+   "confidence": 0.9299099,
+   "speaker": "A"
+  },
+  {
+   "text": "contexte.",
+   "start": 25627,
+   "end": 26081,
+   "confidence": 0.9635956,
+   "speaker": "A"
+  },
+  {
+   "text": "Ensuite,",
+   "start": 26877,
+   "end": 27153,
+   "confidence": 0.72288436,
+   "speaker": "A"
+  },
+  {
+   "text": "le",
+   "start": 27186,
+   "end": 27267,
+   "confidence": 0.9768162,
+   "speaker": "A"
+  },
+  {
+   "text": "choix",
+   "start": 27267,
+   "end": 27511,
+   "confidence": 0.99989736,
+   "speaker": "A"
+  },
+  {
+   "text": "FP8",
+   "start": 27690,
+   "end": 28242,
+   "confidence": 0.9773395,
+   "speaker": "A"
+  },
+  {
+   "text": "plutôt",
+   "start": 28242,
+   "end": 28437,
+   "confidence": 0.9872951,
+   "speaker": "A"
+  },
+  {
+   "text": "que",
+   "start": 28486,
+   "end": 28567,
+   "confidence": 0.99944395,
+   "speaker": "A"
+  },
+  {
+   "text": "BF16,",
+   "start": 28567,
+   "end": 29185,
+   "confidence": 0.8758718,
+   "speaker": "A"
+  },
+  {
+   "text": "c'est",
+   "start": 29218,
+   "end": 29543,
+   "confidence": 0.9978565,
+   "speaker": "A"
+  },
+  {
+   "text": "une",
+   "start": 30290,
+   "end": 30355,
+   "confidence": 0.99728715,
+   "speaker": "A"
+  },
+  {
+   "text": "question",
+   "start": 30355,
+   "end": 30924,
+   "confidence": 0.9999745,
+   "speaker": "A"
+  },
+  {
+   "text": "de",
+   "start": 34653,
+   "end": 34815,
+   "confidence": 0.9979668,
+   "speaker": "A"
+  },
+  {
+   "text": "mémoire",
+   "start": 35867,
+   "end": 37551,
+   "confidence": 0.9530648,
+   "speaker": "A"
+  },
+  {
+   "text": "vidéo",
+   "start": 37567,
+   "end": 37810,
+   "confidence": 0.99431014,
+   "speaker": "A"
+  },
+  {
+   "text": "disponible.",
+   "start": 37810,
+   "end": 38344,
+   "confidence": 0.9882798,
+   "speaker": "A"
+  },
+  {
+   "text": "En",
+   "start": 38878,
+   "end": 38959,
+   "confidence": 0.9703381,
+   "speaker": "A"
+  },
+  {
+   "text": "FP8,",
+   "start": 38959,
+   "end": 39558,
+   "confidence": 0.9857033,
+   "speaker": "A"
+  },
+  {
+   "text": "on",
+   "start": 39607,
+   "end": 39672,
+   "confidence": 0.9478187,
+   "speaker": "A"
+  },
+  {
+   "text": "va",
+   "start": 39672,
+   "end": 39833,
+   "confidence": 0.9906809,
+   "speaker": "A"
+  },
+  {
+   "text": "du",
+   "start": 40643,
+   "end": 40756,
+   "confidence": 0.8634989,
+   "speaker": "A"
+  },
+  {
+   "text": "coup",
+   "start": 40756,
+   "end": 40982,
+   "confidence": 0.9999759,
+   "speaker": "A"
+  },
+  {
+   "text": "avoir",
+   "start": 40982,
+   "end": 41689,
+   "confidence": 0.6918236,
+   "speaker": "A"
+  },
+  {
+   "text": "divisé",
+   "start": 41689,
+   "end": 41994,
+   "confidence": 0.84436893,
+   "speaker": "A"
+  },
+  {
+   "text": "par",
+   "start": 41994,
+   "end": 42252,
+   "confidence": 0.99932444,
+   "speaker": "A"
+  },
+  {
+   "text": "2",
+   "start": 42252,
+   "end": 42380,
+   "confidence": 0.9999368,
+   "speaker": "A"
+  },
+  {
+   "text": "les",
+   "start": 42573,
+   "end": 42734,
+   "confidence": 0.9983748,
+   "speaker": "A"
+  },
+  {
+   "text": "besoins",
+   "start": 43698,
+   "end": 44035,
+   "confidence": 0.9999793,
+   "speaker": "A"
+  },
+  {
+   "text": "en",
+   "start": 44035,
+   "end": 44132,
+   "confidence": 0.85479784,
+   "speaker": "A"
+  },
+  {
+   "text": "mémoire",
+   "start": 44132,
+   "end": 44566,
+   "confidence": 0.99997395,
+   "speaker": "A"
+  },
+  {
+   "text": "vidéo,",
+   "start": 44582,
+   "end": 45016,
+   "confidence": 0.9923839,
+   "speaker": "A"
+  },
+  {
+   "text": "ce",
+   "start": 46590,
+   "end": 46639,
+   "confidence": 0.9918699,
+   "speaker": "A"
+  },
+  {
+   "text": "qui",
+   "start": 46671,
+   "end": 46783,
+   "confidence": 0.99953234,
+   "speaker": "A"
+  },
+  {
+   "text": "est",
+   "start": 46848,
+   "end": 46912,
+   "confidence": 0.99679106,
+   "speaker": "A"
+  },
+  {
+   "text": "sympa.",
+   "start": 46912,
+   "end": 47282,
+   "confidence": 0.8094243,
+   "speaker": "A"
+  },
+  {
+   "text": "Sauf",
+   "start": 48037,
+   "end": 48278,
+   "confidence": 0.9996886,
+   "speaker": "A"
+  },
+  {
+   "text": "qu'en",
+   "start": 48278,
+   "end": 48921,
+   "confidence": 0.87471646,
+   "speaker": "A"
+  },
+  {
+   "text": "BF16,",
+   "start": 49001,
+   "end": 49531,
+   "confidence": 0.98295915,
+   "speaker": "A"
+  },
+  {
+   "text": "du",
+   "start": 49563,
+   "end": 49644,
+   "confidence": 0.99841213,
+   "speaker": "A"
+  },
+  {
+   "text": "coup,",
+   "start": 49644,
+   "end": 49853,
+   "confidence": 0.98838663,
+   "speaker": "A"
+  },
+  {
+   "text": "on",
+   "start": 49901,
+   "end": 50062,
+   "confidence": 0.9998024,
+   "speaker": "A"
+  },
+  {
+   "text": "arrivera",
+   "start": 50062,
+   "end": 50563,
+   "confidence": 0.99988186,
+   "speaker": "A"
+  },
+  {
+   "text": "à",
+   "start": 50870,
+   "end": 50934,
+   "confidence": 0.9998398,
+   "speaker": "A"
+  },
+  {
+   "text": "48",
+   "start": 50934,
+   "end": 51661,
+   "confidence": 0.9993156,
+   "speaker": "A"
+  },
+  {
+   "text": "Go",
+   "start": 51661,
+   "end": 51774,
+   "confidence": 0.89472455,
+   "speaker": "A"
+  },
+  {
+   "text": "juste",
+   "start": 51904,
+   "end": 52227,
+   "confidence": 0.9980268,
+   "speaker": "A"
+  },
+  {
+   "text": "pour",
+   "start": 52227,
+   "end": 52291,
+   "confidence": 0.9998758,
+   "speaker": "A"
+  },
+  {
+   "text": "les",
+   "start": 52308,
+   "end": 52518,
+   "confidence": 0.8978812,
+   "speaker": "A"
+  },
+  {
+   "text": "poids",
+   "start": 52712,
+   "end": 53035,
+   "confidence": 0.5169936,
+   "speaker": "A"
+  },
+  {
+   "text": "du",
+   "start": 53035,
+   "end": 53148,
+   "confidence": 0.9961643,
+   "speaker": "A"
+  },
+  {
+   "text": "modèle,",
+   "start": 53196,
+   "end": 53487,
+   "confidence": 0.9451021,
+   "speaker": "A"
+  },
+  {
+   "text": "alors",
+   "start": 53536,
+   "end": 53762,
+   "confidence": 0.9994481,
+   "speaker": "A"
+  },
+  {
+   "text": "qu'en",
+   "start": 53762,
+   "end": 53923,
+   "confidence": 0.9953849,
+   "speaker": "A"
+  },
+  {
+   "text": "réalité",
+   "start": 53923,
+   "end": 54166,
+   "confidence": 0.9914194,
+   "speaker": "A"
+  },
+  {
+   "text": "on",
+   "start": 54888,
+   "end": 54937,
+   "confidence": 0.5955514,
+   "speaker": "A"
+  },
+  {
+   "text": "aura",
+   "start": 55116,
+   "end": 55343,
+   "confidence": 0.92679155,
+   "speaker": "A"
+  },
+  {
+   "text": "que",
+   "start": 55375,
+   "end": 55505,
+   "confidence": 0.99491054,
+   "speaker": "A"
+  },
+  {
+   "text": "45",
+   "start": 55505,
+   "end": 56155,
+   "confidence": 0.9983011,
+   "speaker": "A"
+  },
+  {
+   "text": "Go",
+   "start": 56155,
+   "end": 56318,
+   "confidence": 0.81976676,
+   "speaker": "A"
+  },
+  {
+   "text": "d'utilisables",
+   "start": 56318,
+   "end": 56870,
+   "confidence": 0.975513,
+   "speaker": "A"
+  },
+  {
+   "text": "sur",
+   "start": 56886,
+   "end": 57130,
+   "confidence": 0.99913955,
+   "speaker": "A"
+  },
+  {
+   "text": "la",
+   "start": 57130,
+   "end": 57292,
+   "confidence": 0.9926057,
+   "speaker": "A"
+  },
+  {
+   "text": "L40S.",
+   "start": 57471,
+   "end": 58689,
+   "confidence": 0.90527713,
+   "speaker": "A"
+  },
+  {
+   "text": "Donc",
+   "start": 60865,
+   "end": 61288,
+   "confidence": 0.9955566,
+   "speaker": "A"
+  },
+  {
+   "text": "au",
+   "start": 61288,
+   "end": 61320,
+   "confidence": 0.94600505,
+   "speaker": "A"
+  },
+  {
+   "text": "final,",
+   "start": 61434,
+   "end": 61856,
+   "confidence": 0.8153187,
+   "speaker": "A"
+  },
+  {
+   "text": "on",
+   "start": 62587,
+   "end": 62652,
+   "confidence": 0.99959475,
+   "speaker": "A"
+  },
+  {
+   "text": "va",
+   "start": 62652,
+   "end": 62685,
+   "confidence": 0.9987459,
+   "speaker": "A"
+  },
+  {
+   "text": "partir",
+   "start": 62685,
+   "end": 62879,
+   "confidence": 0.9919031,
+   "speaker": "A"
+  },
+  {
+   "text": "en",
+   "start": 62911,
+   "end": 62975,
+   "confidence": 0.9630884,
+   "speaker": "A"
+  },
+  {
+   "text": "FP8",
+   "start": 62991,
+   "end": 63555,
+   "confidence": 0.9378469,
+   "speaker": "A"
+  },
+  {
+   "text": "et",
+   "start": 65406,
+   "end": 65487,
+   "confidence": 0.9113329,
+   "speaker": "A"
+  },
+  {
+   "text": "on",
+   "start": 65487,
+   "end": 65503,
+   "confidence": 0.7448849,
+   "speaker": "A"
+  },
+  {
+   "text": "va",
+   "start": 65631,
+   "end": 65873,
+   "confidence": 0.9944666,
+   "speaker": "A"
+  },
+  {
+   "text": "plus",
+   "start": 65873,
+   "end": 66098,
+   "confidence": 0.9203261,
+   "speaker": "A"
+  },
+  {
+   "text": "ou",
+   "start": 66098,
+   "end": 66114,
+   "confidence": 0.97019523,
+   "speaker": "A"
+  },
+  {
+   "text": "moins",
+   "start": 66114,
+   "end": 66227,
+   "confidence": 0.9999002,
+   "speaker": "A"
+  },
+  {
+   "text": "écarter",
+   "start": 66227,
+   "end": 66549,
+   "confidence": 0.99880165,
+   "speaker": "A"
+  },
+  {
+   "text": "l'option",
+   "start": 66549,
+   "end": 66919,
+   "confidence": 0.9998692,
+   "speaker": "A"
+  },
+  {
+   "text": "de",
+   "start": 66919,
+   "end": 67016,
+   "confidence": 0.922324,
+   "speaker": "A"
+  },
+  {
+   "text": "FP16",
+   "start": 67016,
+   "end": 67628,
+   "confidence": 0.99777853,
+   "speaker": "A"
+  },
+  {
+   "text": "qui,",
+   "start": 68368,
+   "end": 68642,
+   "confidence": 0.68667966,
+   "speaker": "A"
+  },
+  {
+   "text": "au",
+   "start": 70155,
+   "end": 70171,
+   "confidence": 0.9994642,
+   "speaker": "A"
+  },
+  {
+   "text": "final,",
+   "start": 70252,
+   "end": 70831,
+   "confidence": 0.7806722,
+   "speaker": "A"
+  },
+  {
+   "text": "Nous,",
+   "start": 83304,
+   "end": 83338,
+   "confidence": 0.476072,
+   "speaker": "A"
+  },
+  {
+   "text": "ah,",
+   "start": 84324,
+   "end": 84358,
+   "confidence": 0.7217812,
+   "speaker": "A"
+  },
+  {
+   "text": "je",
+   "start": 84392,
+   "end": 84477,
+   "confidence": 0.9981773,
+   "speaker": "A"
+  },
+  {
+   "text": "sais",
+   "start": 84477,
+   "end": 84647,
+   "confidence": 0.99902046,
+   "speaker": "A"
+  },
+  {
+   "text": "plus,",
+   "start": 84647,
+   "end": 84868,
+   "confidence": 0.8075688,
+   "speaker": "A"
+  },
+  {
+   "text": "nous",
+   "start": 88850,
+   "end": 88946,
+   "confidence": 0.88607484,
+   "speaker": "A"
+  },
+  {
+   "text": "fait",
+   "start": 88946,
+   "end": 89107,
+   "confidence": 0.9681318,
+   "speaker": "A"
+  },
+  {
+   "text": "perdre",
+   "start": 89267,
+   "end": 89444,
+   "confidence": 0.9993808,
+   "speaker": "A"
+  },
+  {
+   "text": "la",
+   "start": 89444,
+   "end": 89589,
+   "confidence": 0.9136532,
+   "speaker": "A"
+  },
+  {
+   "text": "précision,",
+   "start": 89589,
+   "end": 90039,
+   "confidence": 0.8491775,
+   "speaker": "A"
+  },
+  {
+   "text": "je",
+   "start": 90071,
+   "end": 90232,
+   "confidence": 0.9998185,
+   "speaker": "A"
+  },
+  {
+   "text": "crois.",
+   "start": 90232,
+   "end": 90360,
+   "confidence": 0.8093389,
+   "speaker": "A"
+  },
+  {
+   "text": "Mais",
+   "start": 90714,
+   "end": 90826,
+   "confidence": 0.9800878,
+   "speaker": "A"
+  },
+  {
+   "text": "bon,",
+   "start": 90826,
+   "end": 91003,
+   "confidence": 0.99292165,
+   "speaker": "A"
+  },
+  {
+   "text": "je",
+   "start": 91035,
+   "end": 91067,
+   "confidence": 0.9593615,
+   "speaker": "A"
+  },
+  {
+   "text": "sais",
+   "start": 91067,
+   "end": 91115,
+   "confidence": 0.9996667,
+   "speaker": "A"
+  },
+  {
+   "text": "plus.",
+   "start": 91115,
+   "end": 91244,
+   "confidence": 0.62955254,
+   "speaker": "A"
+  },
+  {
+   "text": "Le",
+   "start": 92080,
+   "end": 92240,
+   "confidence": 0.9274032,
+   "speaker": "A"
+  },
+  {
+   "text": "coup",
+   "start": 92240,
+   "end": 92481,
+   "confidence": 0.97269297,
+   "speaker": "A"
+  },
+  {
+   "text": "nous",
+   "start": 94169,
+   "end": 94281,
+   "confidence": 0.91891223,
+   "speaker": "A"
+  },
+  {
+   "text": "fait",
+   "start": 94281,
+   "end": 94490,
+   "confidence": 0.9913061,
+   "speaker": "A"
+  },
+  {
+   "text": "perdre",
+   "start": 94490,
+   "end": 94747,
+   "confidence": 0.99138945,
+   "speaker": "A"
+  },
+  {
+   "text": "FP8,",
+   "start": 94747,
+   "end": 95406,
+   "confidence": 0.73871803,
+   "speaker": "A"
+  },
+  {
+   "text": "on",
+   "start": 96435,
+   "end": 96499,
+   "confidence": 0.99038094,
+   "speaker": "A"
+  },
+  {
+   "text": "va",
+   "start": 96901,
+   "end": 98026,
+   "confidence": 0.993856,
+   "speaker": "A"
+  },
+  {
+   "text": "perdre",
+   "start": 98026,
+   "end": 98855,
+   "confidence": 0.99979347,
+   "speaker": "A"
+  },
+  {
+   "text": "à",
+   "start": 98855,
+   "end": 98871,
+   "confidence": 0.9533899,
+   "speaker": "A"
+  },
+  {
+   "text": "la",
+   "start": 98871,
+   "end": 99001,
+   "confidence": 0.9998739,
+   "speaker": "A"
+  },
+  {
+   "text": "fois",
+   "start": 99001,
+   "end": 99359,
+   "confidence": 0.9999093,
+   "speaker": "A"
+  },
+  {
+   "text": "en",
+   "start": 99586,
+   "end": 99651,
+   "confidence": 0.9996141,
+   "speaker": "A"
+  },
+  {
+   "text": "précision",
+   "start": 99895,
+   "end": 100545,
+   "confidence": 0.99978584,
+   "speaker": "A"
+  },
+  {
+   "text": "et",
+   "start": 101536,
+   "end": 101601,
+   "confidence": 0.9995492,
+   "speaker": "A"
+  },
+  {
+   "text": "en",
+   "start": 102122,
+   "end": 102170,
+   "confidence": 0.98802966,
+   "speaker": "A"
+  },
+  {
+   "text": "puissance.",
+   "start": 102170,
+   "end": 104169,
+   "confidence": 0.9401142,
+   "speaker": "A"
+  },
+  {
+   "text": "Mais",
+   "start": 106733,
+   "end": 107148,
+   "confidence": 0.57782644,
+   "speaker": "A"
+  },
+  {
+   "text": "au",
+   "start": 107148,
+   "end": 107215,
+   "confidence": 0.9990171,
+   "speaker": "A"
+  },
+  {
+   "text": "final",
+   "start": 107215,
+   "end": 107597,
+   "confidence": 0.99999464,
+   "speaker": "A"
+  },
+  {
+   "text": "c'est",
+   "start": 107631,
+   "end": 107797,
+   "confidence": 0.7390214,
+   "speaker": "A"
+  },
+  {
+   "text": "bien",
+   "start": 107797,
+   "end": 107930,
+   "confidence": 0.99969983,
+   "speaker": "A"
+  },
+  {
+   "text": "parce",
+   "start": 107930,
+   "end": 108163,
+   "confidence": 0.9179338,
+   "speaker": "A"
+  },
+  {
+   "text": "qu'on",
+   "start": 108163,
+   "end": 108296,
+   "confidence": 0.99957746,
+   "speaker": "A"
+  },
+  {
+   "text": "peut",
+   "start": 108296,
+   "end": 108345,
+   "confidence": 0.9976947,
+   "speaker": "A"
+  },
+  {
+   "text": "faire",
+   "start": 108379,
+   "end": 108562,
+   "confidence": 0.9995623,
+   "speaker": "A"
+  },
+  {
+   "text": "tourner",
+   "start": 108562,
+   "end": 108961,
+   "confidence": 0.99995726,
+   "speaker": "A"
+  },
+  {
+   "text": "du",
+   "start": 108961,
+   "end": 109127,
+   "confidence": 0.9662347,
+   "speaker": "A"
+  },
+  {
+   "text": "coup",
+   "start": 109127,
+   "end": 109293,
+   "confidence": 0.9999467,
+   "speaker": "A"
+  },
+  {
+   "text": "la",
+   "start": 109293,
+   "end": 109409,
+   "confidence": 0.9789265,
+   "speaker": "A"
+  },
+  {
+   "text": "L40S",
+   "start": 110480,
+   "end": 110836,
+   "confidence": 0.97228223,
+   "speaker": "A"
+  },
+  {
+   "text": "plutôt",
+   "start": 111063,
+   "end": 111387,
+   "confidence": 0.9931792,
+   "speaker": "A"
+  },
+  {
+   "text": "que",
+   "start": 111387,
+   "end": 111549,
+   "confidence": 0.99955434,
+   "speaker": "A"
+  },
+  {
+   "text": "la",
+   "start": 111549,
+   "end": 111598,
+   "confidence": 0.99216753,
+   "speaker": "A"
+  },
+  {
+   "text": "H100",
+   "start": 111647,
+   "end": 111857,
+   "confidence": 0.98845285,
+   "speaker": "A"
+  },
+  {
+   "text": "et",
+   "start": 111857,
+   "end": 111873,
+   "confidence": 0.4898155,
+   "speaker": "A"
+  },
+  {
+   "text": "ça",
+   "start": 111873,
+   "end": 112198,
+   "confidence": 0.99016094,
+   "speaker": "A"
+  },
+  {
+   "text": "nous",
+   "start": 112230,
+   "end": 112441,
+   "confidence": 0.9754826,
+   "speaker": "A"
+  },
+  {
+   "text": "fait",
+   "start": 112441,
+   "end": 112603,
+   "confidence": 0.9958819,
+   "speaker": "A"
+  },
+  {
+   "text": "diviser",
+   "start": 112603,
+   "end": 112846,
+   "confidence": 0.9998637,
+   "speaker": "A"
+  },
+  {
+   "text": "par",
+   "start": 112846,
+   "end": 113057,
+   "confidence": 0.9989832,
+   "speaker": "A"
+  },
+  {
+   "text": "2",
+   "start": 113089,
+   "end": 113203,
+   "confidence": 0.99985445,
+   "speaker": "A"
+  },
+  {
+   "text": "les",
+   "start": 113332,
+   "end": 113413,
+   "confidence": 0.981575,
+   "speaker": "A"
+  },
+  {
+   "text": "coûts",
+   "start": 113494,
+   "end": 113656,
+   "confidence": 0.99465376,
+   "speaker": "A"
+  },
+  {
+   "text": "de,",
+   "start": 113656,
+   "end": 113899,
+   "confidence": 0.5013909,
+   "speaker": "A"
+  },
+  {
+   "text": "les",
+   "start": 116088,
+   "end": 116250,
+   "confidence": 0.948874,
+   "speaker": "A"
+  },
+  {
+   "text": "coûts",
+   "start": 116250,
+   "end": 116363,
+   "confidence": 0.99961483,
+   "speaker": "A"
+  },
+  {
+   "text": "à",
+   "start": 116428,
+   "end": 116477,
+   "confidence": 0.99293464,
+   "speaker": "A"
+  },
+  {
+   "text": "l'heure",
+   "start": 116477,
+   "end": 116736,
+   "confidence": 0.9992361,
+   "speaker": "A"
+  },
+  {
+   "text": "de",
+   "start": 116736,
+   "end": 116849,
+   "confidence": 0.9974808,
+   "speaker": "A"
+  },
+  {
+   "text": "la",
+   "start": 116898,
+   "end": 116979,
+   "confidence": 0.9994468,
+   "speaker": "A"
+  },
+  {
+   "text": "carte",
+   "start": 116979,
+   "end": 117093,
+   "confidence": 0.9856529,
+   "speaker": "A"
+  },
+  {
+   "text": "graphique,",
+   "start": 117093,
+   "end": 117595,
+   "confidence": 0.7791876,
+   "speaker": "A"
+  },
+  {
+   "text": "ça",
+   "start": 117660,
+   "end": 117789,
+   "confidence": 0.5947921,
+   "speaker": "A"
+  },
+  {
+   "text": "c'est",
+   "start": 117789,
+   "end": 117919,
+   "confidence": 0.99868274,
+   "speaker": "A"
+  },
+  {
+   "text": "cool.",
+   "start": 117919,
+   "end": 118097,
+   "confidence": 0.98218185,
+   "speaker": "A"
+  },
+  {
+   "text": "Cela",
+   "start": 122355,
+   "end": 122598,
+   "confidence": 0.998441,
+   "speaker": "A"
+  },
+  {
+   "text": "dit,",
+   "start": 122598,
+   "end": 122646,
+   "confidence": 0.8867991,
+   "speaker": "A"
+  },
+  {
+   "text": "le",
+   "start": 122678,
+   "end": 122727,
+   "confidence": 0.9977424,
+   "speaker": "A"
+  },
+  {
+   "text": "FPV",
+   "start": 122856,
+   "end": 123260,
+   "confidence": 0.7102889,
+   "speaker": "A"
+  },
+  {
+   "text": "8",
+   "start": 123260,
+   "end": 123583,
+   "confidence": 0.9979936,
+   "speaker": "A"
+  },
+  {
+   "text": "réduit",
+   "start": 123648,
+   "end": 123890,
+   "confidence": 0.96907,
+   "speaker": "A"
+  },
+  {
+   "text": "drastiquement",
+   "start": 123890,
+   "end": 124456,
+   "confidence": 0.99985784,
+   "speaker": "A"
+  },
+  {
+   "text": "la",
+   "start": 124456,
+   "end": 124536,
+   "confidence": 0.9993591,
+   "speaker": "A"
+  },
+  {
+   "text": "précision",
+   "start": 124617,
+   "end": 125102,
+   "confidence": 0.99998045,
+   "speaker": "A"
+  },
+  {
+   "text": "et",
+   "start": 126168,
+   "end": 126184,
+   "confidence": 0.96930593,
+   "speaker": "A"
+  },
+  {
+   "text": "du",
+   "start": 126184,
+   "end": 126394,
+   "confidence": 0.99926764,
+   "speaker": "A"
+  },
+  {
+   "text": "coup",
+   "start": 126394,
+   "end": 126491,
+   "confidence": 0.99998987,
+   "speaker": "A"
+  },
+  {
+   "text": "il",
+   "start": 126491,
+   "end": 126637,
+   "confidence": 0.993134,
+   "speaker": "A"
+  },
+  {
+   "text": "nous",
+   "start": 126637,
+   "end": 126718,
+   "confidence": 0.99618405,
+   "speaker": "A"
+  },
+  {
+   "text": "faudra",
+   "start": 126718,
+   "end": 127057,
+   "confidence": 0.99851406,
+   "speaker": "A"
+  },
+  {
+   "text": "aussi",
+   "start": 127057,
+   "end": 127283,
+   "confidence": 0.9998932,
+   "speaker": "A"
+  },
+  {
+   "text": "garder",
+   "start": 127283,
+   "end": 127768,
+   "confidence": 0.9995521,
+   "speaker": "A"
+  },
+  {
+   "text": "l'ordre",
+   "start": 128576,
+   "end": 130122,
+   "confidence": 0.99384964,
+   "speaker": "A"
+  },
+  {
+   "text": "de",
+   "start": 130138,
+   "end": 130303,
+   "confidence": 0.995955,
+   "speaker": "A"
+  },
+  {
+   "text": "grandeur",
+   "start": 130303,
+   "end": 130812,
+   "confidence": 0.99962413,
+   "speaker": "A"
+  },
+  {
+   "text": "des",
+   "start": 131608,
+   "end": 131770,
+   "confidence": 0.947596,
+   "speaker": "A"
+  },
+  {
+   "text": "poids",
+   "start": 131851,
+   "end": 132289,
+   "confidence": 0.8096241,
+   "speaker": "A"
+  },
+  {
+   "text": "à",
+   "start": 132841,
+   "end": 132922,
+   "confidence": 0.9871057,
+   "speaker": "A"
+  },
+  {
+   "text": "ajuster",
+   "start": 132922,
+   "end": 133393,
+   "confidence": 0.9990344,
+   "speaker": "A"
+  },
+  {
+   "text": "dans",
+   "start": 133393,
+   "end": 133555,
+   "confidence": 0.5801446,
+   "speaker": "A"
+  },
+  {
+   "text": "le",
+   "start": 133798,
+   "end": 134009,
+   "confidence": 0.97353,
+   "speaker": "A"
+  },
+  {
+   "text": "calcul",
+   "start": 134204,
+   "end": 135259,
+   "confidence": 0.94898707,
+   "speaker": "A"
+  },
+  {
+   "text": "matriciel.",
+   "start": 135259,
+   "end": 135713,
+   "confidence": 0.81929696,
+   "speaker": "A"
+  },
+  {
+   "text": "Bon,",
+   "start": 136151,
+   "end": 136200,
+   "confidence": 0.60189337,
+   "speaker": "A"
+  },
+  {
+   "text": "lequel,",
+   "start": 136265,
+   "end": 136524,
+   "confidence": 0.9044047,
+   "speaker": "A"
+  },
+  {
+   "text": "je",
+   "start": 136557,
+   "end": 136670,
+   "confidence": 0.9991047,
+   "speaker": "A"
+  },
+  {
+   "text": "ne",
+   "start": 136670,
+   "end": 136719,
+   "confidence": 0.99301815,
+   "speaker": "A"
+  },
+  {
+   "text": "sais",
+   "start": 136719,
+   "end": 136881,
+   "confidence": 0.9999486,
+   "speaker": "A"
+  },
+  {
+   "text": "pas.",
+   "start": 136881,
+   "end": 136930,
+   "confidence": 0.98176634,
+   "speaker": "A"
+  },
+  {
+   "text": "Chiffre:",
+   "start": 138050,
+   "end": 138437,
+   "confidence": 0.89395773,
+   "speaker": "A"
+  },
+  {
+   "text": "la",
+   "start": 138501,
+   "end": 138630,
+   "confidence": 0.97341055,
+   "speaker": "A"
+  },
+  {
+   "text": "place",
+   "start": 138630,
+   "end": 138872,
+   "confidence": 0.99996006,
+   "speaker": "A"
+  },
+  {
+   "text": "qui",
+   "start": 138872,
+   "end": 139034,
+   "confidence": 0.9888503,
+   "speaker": "A"
+  },
+  {
+   "text": "reste",
+   "start": 139034,
+   "end": 139276,
+   "confidence": 0.99987066,
+   "speaker": "A"
+  },
+  {
+   "text": "pour",
+   "start": 139276,
+   "end": 139340,
+   "confidence": 0.99956614,
+   "speaker": "A"
+  },
+  {
+   "text": "le",
+   "start": 139356,
+   "end": 139437,
+   "confidence": 0.99944276,
+   "speaker": "A"
+  },
+  {
+   "text": "cache.",
+   "start": 139518,
+   "end": 139937,
+   "confidence": 0.9484845,
+   "speaker": "A"
+  },
+  {
+   "text": "Alors,",
+   "start": 140663,
+   "end": 140938,
+   "confidence": 0.89241415,
+   "speaker": "A"
+  },
+  {
+   "text": "la",
+   "start": 141858,
+   "end": 142019,
+   "confidence": 0.99879456,
+   "speaker": "A"
+  },
+  {
+   "text": "mémoire",
+   "start": 142180,
+   "end": 142503,
+   "confidence": 0.99996936,
+   "speaker": "A"
+  },
+  {
+   "text": "vidéo",
+   "start": 142503,
+   "end": 142745,
+   "confidence": 0.99811196,
+   "speaker": "A"
+  },
+  {
+   "text": "qui",
+   "start": 142745,
+   "end": 142826,
+   "confidence": 0.9943499,
+   "speaker": "A"
+  },
+  {
+   "text": "restera",
+   "start": 142826,
+   "end": 143229,
+   "confidence": 0.9992156,
+   "speaker": "A"
+  },
+  {
+   "text": "pour",
+   "start": 143229,
+   "end": 143342,
+   "confidence": 0.57294285,
+   "speaker": "A"
+  },
+  {
+   "text": "le—",
+   "start": 143342,
+   "end": 143471,
+   "confidence": 0.6122047,
+   "speaker": "A"
+  },
+  {
+   "text": "sur",
+   "start": 145165,
+   "end": 145391,
+   "confidence": 0.9026469,
+   "speaker": "A"
+  },
+  {
+   "text": "la",
+   "start": 145407,
+   "end": 145569,
+   "confidence": 0.99786276,
+   "speaker": "A"
+  },
+  {
+   "text": "carte",
+   "start": 145569,
+   "end": 145682,
+   "confidence": 0.99931896,
+   "speaker": "A"
+  },
+  {
+   "text": "graphique",
+   "start": 145682,
+   "end": 145843,
+   "confidence": 0.9997499,
+   "speaker": "A"
+  },
+  {
+   "text": "sera",
+   "start": 145843,
+   "end": 146053,
+   "confidence": 0.97023386,
+   "speaker": "A"
+  },
+  {
+   "text": "utilisée",
+   "start": 146053,
+   "end": 146408,
+   "confidence": 0.99596727,
+   "speaker": "A"
+  },
+  {
+   "text": "pour",
+   "start": 146537,
+   "end": 146843,
+   "confidence": 0.99987507,
+   "speaker": "A"
+  },
+  {
+   "text": "le",
+   "start": 146860,
+   "end": 146940,
+   "confidence": 0.9998324,
+   "speaker": "A"
+  },
+  {
+   "text": "cache",
+   "start": 146940,
+   "end": 147166,
+   "confidence": 0.99992776,
+   "speaker": "A"
+  },
+  {
+   "text": "et",
+   "start": 147618,
+   "end": 147667,
+   "confidence": 0.9254388,
+   "speaker": "A"
+  },
+  {
+   "text": "d'autres",
+   "start": 147748,
+   "end": 148154,
+   "confidence": 0.93912196,
+   "speaker": "A"
+  },
+  {
+   "text": "choses,",
+   "start": 148154,
+   "end": 148365,
+   "confidence": 0.91780823,
+   "speaker": "A"
+  },
+  {
+   "text": "mais",
+   "start": 148398,
+   "end": 148560,
+   "confidence": 0.9994449,
+   "speaker": "A"
+  },
+  {
+   "text": "en",
+   "start": 148999,
+   "end": 149048,
+   "confidence": 0.9914187,
+   "speaker": "A"
+  },
+  {
+   "text": "grande",
+   "start": 149048,
+   "end": 150607,
+   "confidence": 0.9980635,
+   "speaker": "A"
+  },
+  {
+   "text": "partie,",
+   "start": 150753,
+   "end": 152101,
+   "confidence": 0.9327176,
+   "speaker": "A"
+  },
+  {
+   "text": "en",
+   "start": 152150,
+   "end": 152215,
+   "confidence": 0.9989931,
+   "speaker": "A"
+  },
+  {
+   "text": "dehors",
+   "start": 152215,
+   "end": 152442,
+   "confidence": 0.9998361,
+   "speaker": "A"
+  },
+  {
+   "text": "du",
+   "start": 152458,
+   "end": 152523,
+   "confidence": 0.99955124,
+   "speaker": "A"
+  },
+  {
+   "text": "modèle,",
+   "start": 152539,
+   "end": 152848,
+   "confidence": 0.9986899,
+   "speaker": "A"
+  },
+  {
+   "text": "c'est",
+   "start": 153595,
+   "end": 153758,
+   "confidence": 0.9994576,
+   "speaker": "A"
+  },
+  {
+   "text": "pour",
+   "start": 153758,
+   "end": 153823,
+   "confidence": 0.999918,
+   "speaker": "A"
+  },
+  {
+   "text": "le",
+   "start": 153839,
+   "end": 153920,
+   "confidence": 0.99980646,
+   "speaker": "A"
+  },
+  {
+   "text": "cache.",
+   "start": 153920,
+   "end": 154147,
+   "confidence": 0.99780554,
+   "speaker": "A"
+  },
+  {
+   "text": "Dans",
+   "start": 156952,
+   "end": 157117,
+   "confidence": 0.97383624,
+   "speaker": "A"
+  },
+  {
+   "text": "notre",
+   "start": 157117,
+   "end": 157265,
+   "confidence": 0.9956917,
+   "speaker": "A"
+  },
+  {
+   "text": "cas,",
+   "start": 157281,
+   "end": 157412,
+   "confidence": 0.99799144,
+   "speaker": "A"
+  },
+  {
+   "text": "ça",
+   "start": 157445,
+   "end": 157609,
+   "confidence": 0.9994417,
+   "speaker": "A"
+  },
+  {
+   "text": "nous",
+   "start": 157642,
+   "end": 157774,
+   "confidence": 0.99982136,
+   "speaker": "A"
+  },
+  {
+   "text": "laisse",
+   "start": 157774,
+   "end": 158037,
+   "confidence": 0.99988043,
+   "speaker": "A"
+  },
+  {
+   "text": "en",
+   "start": 158037,
+   "end": 158102,
+   "confidence": 0.9930983,
+   "speaker": "A"
+  },
+  {
+   "text": "gros",
+   "start": 158102,
+   "end": 158349,
+   "confidence": 0.9999703,
+   "speaker": "A"
+  },
+  {
+   "text": "15",
+   "start": 158349,
+   "end": 158743,
+   "confidence": 0.9998586,
+   "speaker": "A"
+  },
+  {
+   "text": "Go.",
+   "start": 158760,
+   "end": 158891,
+   "confidence": 0.698352,
+   "speaker": "A"
+  },
+  {
+   "text": "À",
+   "start": 159256,
+   "end": 159306,
+   "confidence": 0.77635026,
+   "speaker": "A"
+  },
+  {
+   "text": "peu",
+   "start": 159457,
+   "end": 159557,
+   "confidence": 0.9995857,
+   "speaker": "A"
+  },
+  {
+   "text": "près.",
+   "start": 159591,
+   "end": 159842,
+   "confidence": 0.766008,
+   "speaker": "A"
+  },
+  {
+   "text": "Donc",
+   "start": 162196,
+   "end": 162359,
+   "confidence": 0.99900305,
+   "speaker": "A"
+  },
+  {
+   "text": "ça",
+   "start": 162359,
+   "end": 162523,
+   "confidence": 0.93578106,
+   "speaker": "A"
+  },
+  {
+   "text": "correspond",
+   "start": 162523,
+   "end": 162997,
+   "confidence": 0.99997497,
+   "speaker": "A"
+  },
+  {
+   "text": "à",
+   "start": 162997,
+   "end": 163014,
+   "confidence": 0.99988055,
+   "speaker": "A"
+  },
+  {
+   "text": "97",
+   "start": 163014,
+   "end": 164568,
+   "confidence": 0.86649513,
+   "speaker": "A"
+  },
+  {
+   "text": "712",
+   "start": 164568,
+   "end": 165026,
+   "confidence": 0.9942372,
+   "speaker": "A"
+  },
+  {
+   "text": "tokens,",
+   "start": 165026,
+   "end": 165370,
+   "confidence": 0.7449558,
+   "speaker": "A"
+  },
+  {
+   "text": "comme",
+   "start": 165468,
+   "end": 165631,
+   "confidence": 0.99924976,
+   "speaker": "A"
+  },
+  {
+   "text": "tu",
+   "start": 165631,
+   "end": 165713,
+   "confidence": 0.96803916,
+   "speaker": "A"
+  },
+  {
+   "text": "me",
+   "start": 165713,
+   "end": 165746,
+   "confidence": 0.98562884,
+   "speaker": "A"
+  },
+  {
+   "text": "l'avais",
+   "start": 165746,
+   "end": 165959,
+   "confidence": 0.99896264,
+   "speaker": "A"
+  },
+  {
+   "text": "expliqué.",
+   "start": 165975,
+   "end": 166171,
+   "confidence": 0.96460086,
+   "speaker": "A"
+  },
+  {
+   "text": "Et",
+   "start": 169236,
+   "end": 169252,
+   "confidence": 0.99723107,
+   "speaker": "A"
+  },
+  {
+   "text": "ça,",
+   "start": 169252,
+   "end": 169365,
+   "confidence": 0.9094118,
+   "speaker": "A"
+  },
+  {
+   "text": "maintenant,",
+   "start": 169397,
+   "end": 169607,
+   "confidence": 0.77798146,
+   "speaker": "A"
+  },
+  {
+   "text": "on",
+   "start": 169623,
+   "end": 169639,
+   "confidence": 0.95911676,
+   "speaker": "A"
+  },
+  {
+   "text": "doit",
+   "start": 169704,
+   "end": 169800,
+   "confidence": 0.9994392,
+   "speaker": "A"
+  },
+  {
+   "text": "savoir",
+   "start": 169800,
+   "end": 170188,
+   "confidence": 0.9999403,
+   "speaker": "A"
+  },
+  {
+   "text": "combien",
+   "start": 170204,
+   "end": 170446,
+   "confidence": 0.9994282,
+   "speaker": "A"
+  },
+  {
+   "text": "ça",
+   "start": 170446,
+   "end": 170559,
+   "confidence": 0.9994299,
+   "speaker": "A"
+  },
+  {
+   "text": "représente",
+   "start": 170559,
+   "end": 170898,
+   "confidence": 0.9999621,
+   "speaker": "A"
+  },
+  {
+   "text": "de",
+   "start": 170930,
+   "end": 171011,
+   "confidence": 0.97981113,
+   "speaker": "A"
+  },
+  {
+   "text": "conversation.",
+   "start": 171011,
+   "end": 171575,
+   "confidence": 0.6118086,
+   "speaker": "A"
+  },
+  {
+   "text": "Mais",
+   "start": 172140,
+   "end": 172221,
+   "confidence": 0.9994005,
+   "speaker": "A"
+  },
+  {
+   "text": "ça,",
+   "start": 172221,
+   "end": 172350,
+   "confidence": 0.9710711,
+   "speaker": "A"
+  },
+  {
+   "text": "c'est",
+   "start": 172414,
+   "end": 172624,
+   "confidence": 0.99995565,
+   "speaker": "A"
+  },
+  {
+   "text": "pour",
+   "start": 172785,
+   "end": 172931,
+   "confidence": 0.9999019,
+   "speaker": "A"
+  },
+  {
+   "text": "les",
+   "start": 172947,
+   "end": 173108,
+   "confidence": 0.99074346,
+   "speaker": "A"
+  },
+  {
+   "text": "prochains",
+   "start": 173108,
+   "end": 173544,
+   "confidence": 0.99972594,
+   "speaker": "A"
+  },
+  {
+   "text": "tests.",
+   "start": 173592,
+   "end": 173883,
+   "confidence": 0.98668224,
+   "speaker": "A"
+  }
+ ],
+ "utterances": [
+  {
+   "speaker": "A",
+   "text": "OK, donc maintenant je suis en train d'enregistrer mes réponses. Le contexte: à quoi sert P1.1 dans l'expérience? Là, l'objectif c'est de pouvoir voir si le modèle rentre en entier sur la carte graphique et savoir si les outils marchent dessus. Si, voilà, déjà le contexte. Ensuite, le choix FP8 plutôt que BF16, c'est une question de mémoire vidéo disponible. En FP8, on va du coup avoir divisé par 2 les besoins en mémoire vidéo, ce qui est sympa. Sauf qu'en BF16, du coup, on arrivera à 48 Go juste pour les poids du modèle, alors qu'en réalité on aura que 45 Go d'utilisables sur la L40S. Donc au final, on va partir en FP8 et on va plus ou moins écarter l'option de FP16 qui, au final, Nous, ah, je sais plus, nous fait perdre la précision, je crois. Mais bon, je sais plus. Le coup nous fait perdre FP8, on va perdre à la fois en précision et en puissance. Mais au final c'est bien parce qu'on peut faire tourner du coup la L40S plutôt que la H100 et ça nous fait diviser par 2 les coûts de, les coûts à l'heure de la carte graphique, ça c'est cool. Cela dit, le FPV 8 réduit drastiquement la précision et du coup il nous faudra aussi garder l'ordre de grandeur des poids à ajuster dans le calcul matriciel. Bon, lequel, je ne sais pas. Chiffre: la place qui reste pour le cache. Alors, la mémoire vidéo qui restera pour le— sur la carte graphique sera utilisée pour le cache et d'autres choses, mais en grande partie, en dehors du modèle, c'est pour le cache. Dans notre cas, ça nous laisse en gros 15 Go. À peu près. Donc ça correspond à 97 712 tokens, comme tu me l'avais expliqué. Et ça, maintenant, on doit savoir combien ça représente de conversation. Mais ça, c'est pour les prochains tests.",
+   "confidence": 0.9465453,
+   "start": 733,
+   "end": 173883,
+   "words": [
+    {
+     "text": "OK,",
+     "start": 733,
+     "end": 1007,
+     "confidence": 0.81489867,
+     "speaker": "A"
+    },
+    {
+     "text": "donc",
+     "start": 1039,
+     "end": 1151,
+     "confidence": 0.9856046,
+     "speaker": "A"
+    },
+    {
+     "text": "maintenant",
+     "start": 1151,
+     "end": 1393,
+     "confidence": 0.94541,
+     "speaker": "A"
+    },
+    {
+     "text": "je",
+     "start": 1393,
+     "end": 1473,
+     "confidence": 0.96638376,
+     "speaker": "A"
+    },
+    {
+     "text": "suis",
+     "start": 1473,
+     "end": 1666,
+     "confidence": 0.9999881,
+     "speaker": "A"
+    },
+    {
+     "text": "en",
+     "start": 1666,
+     "end": 1682,
+     "confidence": 0.9999522,
+     "speaker": "A"
+    },
+    {
+     "text": "train",
+     "start": 1682,
+     "end": 1795,
+     "confidence": 0.9999975,
+     "speaker": "A"
+    },
+    {
+     "text": "d'enregistrer",
+     "start": 1795,
+     "end": 2406,
+     "confidence": 0.9994248,
+     "speaker": "A"
+    },
+    {
+     "text": "mes",
+     "start": 2486,
+     "end": 2647,
+     "confidence": 0.81838304,
+     "speaker": "A"
+    },
+    {
+     "text": "réponses.",
+     "start": 2647,
+     "end": 3081,
+     "confidence": 0.99829215,
+     "speaker": "A"
+    },
+    {
+     "text": "Le",
+     "start": 3692,
+     "end": 3773,
+     "confidence": 0.99745923,
+     "speaker": "A"
+    },
+    {
+     "text": "contexte:",
+     "start": 3853,
+     "end": 4368,
+     "confidence": 0.99983895,
+     "speaker": "A"
+    },
+    {
+     "text": "à",
+     "start": 4432,
+     "end": 4496,
+     "confidence": 0.99052936,
+     "speaker": "A"
+    },
+    {
+     "text": "quoi",
+     "start": 4496,
+     "end": 4657,
+     "confidence": 0.99999106,
+     "speaker": "A"
+    },
+    {
+     "text": "sert",
+     "start": 4657,
+     "end": 4882,
+     "confidence": 0.9954059,
+     "speaker": "A"
+    },
+    {
+     "text": "P1.1",
+     "start": 4979,
+     "end": 5300,
+     "confidence": 0.9788431,
+     "speaker": "A"
+    },
+    {
+     "text": "dans",
+     "start": 5300,
+     "end": 5558,
+     "confidence": 0.9743525,
+     "speaker": "A"
+    },
+    {
+     "text": "l'expérience?",
+     "start": 5558,
+     "end": 6314,
+     "confidence": 0.9930656,
+     "speaker": "A"
+    },
+    {
+     "text": "Là,",
+     "start": 6587,
+     "end": 6635,
+     "confidence": 0.9999651,
+     "speaker": "A"
+    },
+    {
+     "text": "l'objectif",
+     "start": 6651,
+     "end": 7407,
+     "confidence": 0.83989555,
+     "speaker": "A"
+    },
+    {
+     "text": "c'est",
+     "start": 8034,
+     "end": 8147,
+     "confidence": 0.9996094,
+     "speaker": "A"
+    },
+    {
+     "text": "de",
+     "start": 8147,
+     "end": 8276,
+     "confidence": 0.99995553,
+     "speaker": "A"
+    },
+    {
+     "text": "pouvoir",
+     "start": 8276,
+     "end": 8810,
+     "confidence": 0.9978556,
+     "speaker": "A"
+    },
+    {
+     "text": "voir",
+     "start": 10056,
+     "end": 10444,
+     "confidence": 0.9942866,
+     "speaker": "A"
+    },
+    {
+     "text": "si",
+     "start": 10493,
+     "end": 10654,
+     "confidence": 0.9953714,
+     "speaker": "A"
+    },
+    {
+     "text": "le",
+     "start": 10654,
+     "end": 10703,
+     "confidence": 0.98293674,
+     "speaker": "A"
+    },
+    {
+     "text": "modèle",
+     "start": 10703,
+     "end": 11205,
+     "confidence": 0.99868083,
+     "speaker": "A"
+    },
+    {
+     "text": "rentre",
+     "start": 11269,
+     "end": 11528,
+     "confidence": 0.99687177,
+     "speaker": "A"
+    },
+    {
+     "text": "en",
+     "start": 11528,
+     "end": 11609,
+     "confidence": 0.9999757,
+     "speaker": "A"
+    },
+    {
+     "text": "entier",
+     "start": 11609,
+     "end": 12030,
+     "confidence": 0.99992275,
+     "speaker": "A"
+    },
+    {
+     "text": "sur",
+     "start": 12564,
+     "end": 12758,
+     "confidence": 0.9999206,
+     "speaker": "A"
+    },
+    {
+     "text": "la",
+     "start": 12758,
+     "end": 12888,
+     "confidence": 0.9998932,
+     "speaker": "A"
+    },
+    {
+     "text": "carte",
+     "start": 12888,
+     "end": 13066,
+     "confidence": 0.999984,
+     "speaker": "A"
+    },
+    {
+     "text": "graphique",
+     "start": 13066,
+     "end": 13632,
+     "confidence": 0.9845473,
+     "speaker": "A"
+    },
+    {
+     "text": "et",
+     "start": 13713,
+     "end": 13779,
+     "confidence": 0.9966306,
+     "speaker": "A"
+    },
+    {
+     "text": "savoir",
+     "start": 16466,
+     "end": 18062,
+     "confidence": 0.99933136,
+     "speaker": "A"
+    },
+    {
+     "text": "si",
+     "start": 18583,
+     "end": 18827,
+     "confidence": 0.99682236,
+     "speaker": "A"
+    },
+    {
+     "text": "les",
+     "start": 18827,
+     "end": 19006,
+     "confidence": 0.9999995,
+     "speaker": "A"
+    },
+    {
+     "text": "outils",
+     "start": 19006,
+     "end": 19316,
+     "confidence": 0.9996511,
+     "speaker": "A"
+    },
+    {
+     "text": "marchent",
+     "start": 20206,
+     "end": 20610,
+     "confidence": 0.9492258,
+     "speaker": "A"
+    },
+    {
+     "text": "dessus.",
+     "start": 20610,
+     "end": 21047,
+     "confidence": 0.64635456,
+     "speaker": "A"
+    },
+    {
+     "text": "Si,",
+     "start": 22310,
+     "end": 22520,
+     "confidence": 0.98135406,
+     "speaker": "A"
+    },
+    {
+     "text": "voilà,",
+     "start": 23443,
+     "end": 25110,
+     "confidence": 0.99962664,
+     "speaker": "A"
+    },
+    {
+     "text": "déjà",
+     "start": 25142,
+     "end": 25336,
+     "confidence": 0.9815823,
+     "speaker": "A"
+    },
+    {
+     "text": "le",
+     "start": 25336,
+     "end": 25627,
+     "confidence": 0.9299099,
+     "speaker": "A"
+    },
+    {
+     "text": "contexte.",
+     "start": 25627,
+     "end": 26081,
+     "confidence": 0.9635956,
+     "speaker": "A"
+    },
+    {
+     "text": "Ensuite,",
+     "start": 26877,
+     "end": 27153,
+     "confidence": 0.72288436,
+     "speaker": "A"
+    },
+    {
+     "text": "le",
+     "start": 27186,
+     "end": 27267,
+     "confidence": 0.9768162,
+     "speaker": "A"
+    },
+    {
+     "text": "choix",
+     "start": 27267,
+     "end": 27511,
+     "confidence": 0.99989736,
+     "speaker": "A"
+    },
+    {
+     "text": "FP8",
+     "start": 27690,
+     "end": 28242,
+     "confidence": 0.9773395,
+     "speaker": "A"
+    },
+    {
+     "text": "plutôt",
+     "start": 28242,
+     "end": 28437,
+     "confidence": 0.9872951,
+     "speaker": "A"
+    },
+    {
+     "text": "que",
+     "start": 28486,
+     "end": 28567,
+     "confidence": 0.99944395,
+     "speaker": "A"
+    },
+    {
+     "text": "BF16,",
+     "start": 28567,
+     "end": 29185,
+     "confidence": 0.8758718,
+     "speaker": "A"
+    },
+    {
+     "text": "c'est",
+     "start": 29218,
+     "end": 29543,
+     "confidence": 0.9978565,
+     "speaker": "A"
+    },
+    {
+     "text": "une",
+     "start": 30290,
+     "end": 30355,
+     "confidence": 0.99728715,
+     "speaker": "A"
+    },
+    {
+     "text": "question",
+     "start": 30355,
+     "end": 30924,
+     "confidence": 0.9999745,
+     "speaker": "A"
+    },
+    {
+     "text": "de",
+     "start": 34653,
+     "end": 34815,
+     "confidence": 0.9979668,
+     "speaker": "A"
+    },
+    {
+     "text": "mémoire",
+     "start": 35867,
+     "end": 37551,
+     "confidence": 0.9530648,
+     "speaker": "A"
+    },
+    {
+     "text": "vidéo",
+     "start": 37567,
+     "end": 37810,
+     "confidence": 0.99431014,
+     "speaker": "A"
+    },
+    {
+     "text": "disponible.",
+     "start": 37810,
+     "end": 38344,
+     "confidence": 0.9882798,
+     "speaker": "A"
+    },
+    {
+     "text": "En",
+     "start": 38878,
+     "end": 38959,
+     "confidence": 0.9703381,
+     "speaker": "A"
+    },
+    {
+     "text": "FP8,",
+     "start": 38959,
+     "end": 39558,
+     "confidence": 0.9857033,
+     "speaker": "A"
+    },
+    {
+     "text": "on",
+     "start": 39607,
+     "end": 39672,
+     "confidence": 0.9478187,
+     "speaker": "A"
+    },
+    {
+     "text": "va",
+     "start": 39672,
+     "end": 39833,
+     "confidence": 0.9906809,
+     "speaker": "A"
+    },
+    {
+     "text": "du",
+     "start": 40643,
+     "end": 40756,
+     "confidence": 0.8634989,
+     "speaker": "A"
+    },
+    {
+     "text": "coup",
+     "start": 40756,
+     "end": 40982,
+     "confidence": 0.9999759,
+     "speaker": "A"
+    },
+    {
+     "text": "avoir",
+     "start": 40982,
+     "end": 41689,
+     "confidence": 0.6918236,
+     "speaker": "A"
+    },
+    {
+     "text": "divisé",
+     "start": 41689,
+     "end": 41994,
+     "confidence": 0.84436893,
+     "speaker": "A"
+    },
+    {
+     "text": "par",
+     "start": 41994,
+     "end": 42252,
+     "confidence": 0.99932444,
+     "speaker": "A"
+    },
+    {
+     "text": "2",
+     "start": 42252,
+     "end": 42380,
+     "confidence": 0.9999368,
+     "speaker": "A"
+    },
+    {
+     "text": "les",
+     "start": 42573,
+     "end": 42734,
+     "confidence": 0.9983748,
+     "speaker": "A"
+    },
+    {
+     "text": "besoins",
+     "start": 43698,
+     "end": 44035,
+     "confidence": 0.9999793,
+     "speaker": "A"
+    },
+    {
+     "text": "en",
+     "start": 44035,
+     "end": 44132,
+     "confidence": 0.85479784,
+     "speaker": "A"
+    },
+    {
+     "text": "mémoire",
+     "start": 44132,
+     "end": 44566,
+     "confidence": 0.99997395,
+     "speaker": "A"
+    },
+    {
+     "text": "vidéo,",
+     "start": 44582,
+     "end": 45016,
+     "confidence": 0.9923839,
+     "speaker": "A"
+    },
+    {
+     "text": "ce",
+     "start": 46590,
+     "end": 46639,
+     "confidence": 0.9918699,
+     "speaker": "A"
+    },
+    {
+     "text": "qui",
+     "start": 46671,
+     "end": 46783,
+     "confidence": 0.99953234,
+     "speaker": "A"
+    },
+    {
+     "text": "est",
+     "start": 46848,
+     "end": 46912,
+     "confidence": 0.99679106,
+     "speaker": "A"
+    },
+    {
+     "text": "sympa.",
+     "start": 46912,
+     "end": 47282,
+     "confidence": 0.8094243,
+     "speaker": "A"
+    },
+    {
+     "text": "Sauf",
+     "start": 48037,
+     "end": 48278,
+     "confidence": 0.9996886,
+     "speaker": "A"
+    },
+    {
+     "text": "qu'en",
+     "start": 48278,
+     "end": 48921,
+     "confidence": 0.87471646,
+     "speaker": "A"
+    },
+    {
+     "text": "BF16,",
+     "start": 49001,
+     "end": 49531,
+     "confidence": 0.98295915,
+     "speaker": "A"
+    },
+    {
+     "text": "du",
+     "start": 49563,
+     "end": 49644,
+     "confidence": 0.99841213,
+     "speaker": "A"
+    },
+    {
+     "text": "coup,",
+     "start": 49644,
+     "end": 49853,
+     "confidence": 0.98838663,
+     "speaker": "A"
+    },
+    {
+     "text": "on",
+     "start": 49901,
+     "end": 50062,
+     "confidence": 0.9998024,
+     "speaker": "A"
+    },
+    {
+     "text": "arrivera",
+     "start": 50062,
+     "end": 50563,
+     "confidence": 0.99988186,
+     "speaker": "A"
+    },
+    {
+     "text": "à",
+     "start": 50870,
+     "end": 50934,
+     "confidence": 0.9998398,
+     "speaker": "A"
+    },
+    {
+     "text": "48",
+     "start": 50934,
+     "end": 51661,
+     "confidence": 0.9993156,
+     "speaker": "A"
+    },
+    {
+     "text": "Go",
+     "start": 51661,
+     "end": 51774,
+     "confidence": 0.89472455,
+     "speaker": "A"
+    },
+    {
+     "text": "juste",
+     "start": 51904,
+     "end": 52227,
+     "confidence": 0.9980268,
+     "speaker": "A"
+    },
+    {
+     "text": "pour",
+     "start": 52227,
+     "end": 52291,
+     "confidence": 0.9998758,
+     "speaker": "A"
+    },
+    {
+     "text": "les",
+     "start": 52308,
+     "end": 52518,
+     "confidence": 0.8978812,
+     "speaker": "A"
+    },
+    {
+     "text": "poids",
+     "start": 52712,
+     "end": 53035,
+     "confidence": 0.5169936,
+     "speaker": "A"
+    },
+    {
+     "text": "du",
+     "start": 53035,
+     "end": 53148,
+     "confidence": 0.9961643,
+     "speaker": "A"
+    },
+    {
+     "text": "modèle,",
+     "start": 53196,
+     "end": 53487,
+     "confidence": 0.9451021,
+     "speaker": "A"
+    },
+    {
+     "text": "alors",
+     "start": 53536,
+     "end": 53762,
+     "confidence": 0.9994481,
+     "speaker": "A"
+    },
+    {
+     "text": "qu'en",
+     "start": 53762,
+     "end": 53923,
+     "confidence": 0.9953849,
+     "speaker": "A"
+    },
+    {
+     "text": "réalité",
+     "start": 53923,
+     "end": 54166,
+     "confidence": 0.9914194,
+     "speaker": "A"
+    },
+    {
+     "text": "on",
+     "start": 54888,
+     "end": 54937,
+     "confidence": 0.5955514,
+     "speaker": "A"
+    },
+    {
+     "text": "aura",
+     "start": 55116,
+     "end": 55343,
+     "confidence": 0.92679155,
+     "speaker": "A"
+    },
+    {
+     "text": "que",
+     "start": 55375,
+     "end": 55505,
+     "confidence": 0.99491054,
+     "speaker": "A"
+    },
+    {
+     "text": "45",
+     "start": 55505,
+     "end": 56155,
+     "confidence": 0.9983011,
+     "speaker": "A"
+    },
+    {
+     "text": "Go",
+     "start": 56155,
+     "end": 56318,
+     "confidence": 0.81976676,
+     "speaker": "A"
+    },
+    {
+     "text": "d'utilisables",
+     "start": 56318,
+     "end": 56870,
+     "confidence": 0.975513,
+     "speaker": "A"
+    },
+    {
+     "text": "sur",
+     "start": 56886,
+     "end": 57130,
+     "confidence": 0.99913955,
+     "speaker": "A"
+    },
+    {
+     "text": "la",
+     "start": 57130,
+     "end": 57292,
+     "confidence": 0.9926057,
+     "speaker": "A"
+    },
+    {
+     "text": "L40S.",
+     "start": 57471,
+     "end": 58689,
+     "confidence": 0.90527713,
+     "speaker": "A"
+    },
+    {
+     "text": "Donc",
+     "start": 60865,
+     "end": 61288,
+     "confidence": 0.9955566,
+     "speaker": "A"
+    },
+    {
+     "text": "au",
+     "start": 61288,
+     "end": 61320,
+     "confidence": 0.94600505,
+     "speaker": "A"
+    },
+    {
+     "text": "final,",
+     "start": 61434,
+     "end": 61856,
+     "confidence": 0.8153187,
+     "speaker": "A"
+    },
+    {
+     "text": "on",
+     "start": 62587,
+     "end": 62652,
+     "confidence": 0.99959475,
+     "speaker": "A"
+    },
+    {
+     "text": "va",
+     "start": 62652,
+     "end": 62685,
+     "confidence": 0.9987459,
+     "speaker": "A"
+    },
+    {
+     "text": "partir",
+     "start": 62685,
+     "end": 62879,
+     "confidence": 0.9919031,
+     "speaker": "A"
+    },
+    {
+     "text": "en",
+     "start": 62911,
+     "end": 62975,
+     "confidence": 0.9630884,
+     "speaker": "A"
+    },
+    {
+     "text": "FP8",
+     "start": 62991,
+     "end": 63555,
+     "confidence": 0.9378469,
+     "speaker": "A"
+    },
+    {
+     "text": "et",
+     "start": 65406,
+     "end": 65487,
+     "confidence": 0.9113329,
+     "speaker": "A"
+    },
+    {
+     "text": "on",
+     "start": 65487,
+     "end": 65503,
+     "confidence": 0.7448849,
+     "speaker": "A"
+    },
+    {
+     "text": "va",
+     "start": 65631,
+     "end": 65873,
+     "confidence": 0.9944666,
+     "speaker": "A"
+    },
+    {
+     "text": "plus",
+     "start": 65873,
+     "end": 66098,
+     "confidence": 0.9203261,
+     "speaker": "A"
+    },
+    {
+     "text": "ou",
+     "start": 66098,
+     "end": 66114,
+     "confidence": 0.97019523,
+     "speaker": "A"
+    },
+    {
+     "text": "moins",
+     "start": 66114,
+     "end": 66227,
+     "confidence": 0.9999002,
+     "speaker": "A"
+    },
+    {
+     "text": "écarter",
+     "start": 66227,
+     "end": 66549,
+     "confidence": 0.99880165,
+     "speaker": "A"
+    },
+    {
+     "text": "l'option",
+     "start": 66549,
+     "end": 66919,
+     "confidence": 0.9998692,
+     "speaker": "A"
+    },
+    {
+     "text": "de",
+     "start": 66919,
+     "end": 67016,
+     "confidence": 0.922324,
+     "speaker": "A"
+    },
+    {
+     "text": "FP16",
+     "start": 67016,
+     "end": 67628,
+     "confidence": 0.99777853,
+     "speaker": "A"
+    },
+    {
+     "text": "qui,",
+     "start": 68368,
+     "end": 68642,
+     "confidence": 0.68667966,
+     "speaker": "A"
+    },
+    {
+     "text": "au",
+     "start": 70155,
+     "end": 70171,
+     "confidence": 0.9994642,
+     "speaker": "A"
+    },
+    {
+     "text": "final,",
+     "start": 70252,
+     "end": 70831,
+     "confidence": 0.7806722,
+     "speaker": "A"
+    },
+    {
+     "text": "Nous,",
+     "start": 83304,
+     "end": 83338,
+     "confidence": 0.476072,
+     "speaker": "A"
+    },
+    {
+     "text": "ah,",
+     "start": 84324,
+     "end": 84358,
+     "confidence": 0.7217812,
+     "speaker": "A"
+    },
+    {
+     "text": "je",
+     "start": 84392,
+     "end": 84477,
+     "confidence": 0.9981773,
+     "speaker": "A"
+    },
+    {
+     "text": "sais",
+     "start": 84477,
+     "end": 84647,
+     "confidence": 0.99902046,
+     "speaker": "A"
+    },
+    {
+     "text": "plus,",
+     "start": 84647,
+     "end": 84868,
+     "confidence": 0.8075688,
+     "speaker": "A"
+    },
+    {
+     "text": "nous",
+     "start": 88850,
+     "end": 88946,
+     "confidence": 0.88607484,
+     "speaker": "A"
+    },
+    {
+     "text": "fait",
+     "start": 88946,
+     "end": 89107,
+     "confidence": 0.9681318,
+     "speaker": "A"
+    },
+    {
+     "text": "perdre",
+     "start": 89267,
+     "end": 89444,
+     "confidence": 0.9993808,
+     "speaker": "A"
+    },
+    {
+     "text": "la",
+     "start": 89444,
+     "end": 89589,
+     "confidence": 0.9136532,
+     "speaker": "A"
+    },
+    {
+     "text": "précision,",
+     "start": 89589,
+     "end": 90039,
+     "confidence": 0.8491775,
+     "speaker": "A"
+    },
+    {
+     "text": "je",
+     "start": 90071,
+     "end": 90232,
+     "confidence": 0.9998185,
+     "speaker": "A"
+    },
+    {
+     "text": "crois.",
+     "start": 90232,
+     "end": 90360,
+     "confidence": 0.8093389,
+     "speaker": "A"
+    },
+    {
+     "text": "Mais",
+     "start": 90714,
+     "end": 90826,
+     "confidence": 0.9800878,
+     "speaker": "A"
+    },
+    {
+     "text": "bon,",
+     "start": 90826,
+     "end": 91003,
+     "confidence": 0.99292165,
+     "speaker": "A"
+    },
+    {
+     "text": "je",
+     "start": 91035,
+     "end": 91067,
+     "confidence": 0.9593615,
+     "speaker": "A"
+    },
+    {
+     "text": "sais",
+     "start": 91067,
+     "end": 91115,
+     "confidence": 0.9996667,
+     "speaker": "A"
+    },
+    {
+     "text": "plus.",
+     "start": 91115,
+     "end": 91244,
+     "confidence": 0.62955254,
+     "speaker": "A"
+    },
+    {
+     "text": "Le",
+     "start": 92080,
+     "end": 92240,
+     "confidence": 0.9274032,
+     "speaker": "A"
+    },
+    {
+     "text": "coup",
+     "start": 92240,
+     "end": 92481,
+     "confidence": 0.97269297,
+     "speaker": "A"
+    },
+    {
+     "text": "nous",
+     "start": 94169,
+     "end": 94281,
+     "confidence": 0.91891223,
+     "speaker": "A"
+    },
+    {
+     "text": "fait",
+     "start": 94281,
+     "end": 94490,
+     "confidence": 0.9913061,
+     "speaker": "A"
+    },
+    {
+     "text": "perdre",
+     "start": 94490,
+     "end": 94747,
+     "confidence": 0.99138945,
+     "speaker": "A"
+    },
+    {
+     "text": "FP8,",
+     "start": 94747,
+     "end": 95406,
+     "confidence": 0.73871803,
+     "speaker": "A"
+    },
+    {
+     "text": "on",
+     "start": 96435,
+     "end": 96499,
+     "confidence": 0.99038094,
+     "speaker": "A"
+    },
+    {
+     "text": "va",
+     "start": 96901,
+     "end": 98026,
+     "confidence": 0.993856,
+     "speaker": "A"
+    },
+    {
+     "text": "perdre",
+     "start": 98026,
+     "end": 98855,
+     "confidence": 0.99979347,
+     "speaker": "A"
+    },
+    {
+     "text": "à",
+     "start": 98855,
+     "end": 98871,
+     "confidence": 0.9533899,
+     "speaker": "A"
+    },
+    {
+     "text": "la",
+     "start": 98871,
+     "end": 99001,
+     "confidence": 0.9998739,
+     "speaker": "A"
+    },
+    {
+     "text": "fois",
+     "start": 99001,
+     "end": 99359,
+     "confidence": 0.9999093,
+     "speaker": "A"
+    },
+    {
+     "text": "en",
+     "start": 99586,
+     "end": 99651,
+     "confidence": 0.9996141,
+     "speaker": "A"
+    },
+    {
+     "text": "précision",
+     "start": 99895,
+     "end": 100545,
+     "confidence": 0.99978584,
+     "speaker": "A"
+    },
+    {
+     "text": "et",
+     "start": 101536,
+     "end": 101601,
+     "confidence": 0.9995492,
+     "speaker": "A"
+    },
+    {
+     "text": "en",
+     "start": 102122,
+     "end": 102170,
+     "confidence": 0.98802966,
+     "speaker": "A"
+    },
+    {
+     "text": "puissance.",
+     "start": 102170,
+     "end": 104169,
+     "confidence": 0.9401142,
+     "speaker": "A"
+    },
+    {
+     "text": "Mais",
+     "start": 106733,
+     "end": 107148,
+     "confidence": 0.57782644,
+     "speaker": "A"
+    },
+    {
+     "text": "au",
+     "start": 107148,
+     "end": 107215,
+     "confidence": 0.9990171,
+     "speaker": "A"
+    },
+    {
+     "text": "final",
+     "start": 107215,
+     "end": 107597,
+     "confidence": 0.99999464,
+     "speaker": "A"
+    },
+    {
+     "text": "c'est",
+     "start": 107631,
+     "end": 107797,
+     "confidence": 0.7390214,
+     "speaker": "A"
+    },
+    {
+     "text": "bien",
+     "start": 107797,
+     "end": 107930,
+     "confidence": 0.99969983,
+     "speaker": "A"
+    },
+    {
+     "text": "parce",
+     "start": 107930,
+     "end": 108163,
+     "confidence": 0.9179338,
+     "speaker": "A"
+    },
+    {
+     "text": "qu'on",
+     "start": 108163,
+     "end": 108296,
+     "confidence": 0.99957746,
+     "speaker": "A"
+    },
+    {
+     "text": "peut",
+     "start": 108296,
+     "end": 108345,
+     "confidence": 0.9976947,
+     "speaker": "A"
+    },
+    {
+     "text": "faire",
+     "start": 108379,
+     "end": 108562,
+     "confidence": 0.9995623,
+     "speaker": "A"
+    },
+    {
+     "text": "tourner",
+     "start": 108562,
+     "end": 108961,
+     "confidence": 0.99995726,
+     "speaker": "A"
+    },
+    {
+     "text": "du",
+     "start": 108961,
+     "end": 109127,
+     "confidence": 0.9662347,
+     "speaker": "A"
+    },
+    {
+     "text": "coup",
+     "start": 109127,
+     "end": 109293,
+     "confidence": 0.9999467,
+     "speaker": "A"
+    },
+    {
+     "text": "la",
+     "start": 109293,
+     "end": 109409,
+     "confidence": 0.9789265,
+     "speaker": "A"
+    },
+    {
+     "text": "L40S",
+     "start": 110480,
+     "end": 110836,
+     "confidence": 0.97228223,
+     "speaker": "A"
+    },
+    {
+     "text": "plutôt",
+     "start": 111063,
+     "end": 111387,
+     "confidence": 0.9931792,
+     "speaker": "A"
+    },
+    {
+     "text": "que",
+     "start": 111387,
+     "end": 111549,
+     "confidence": 0.99955434,
+     "speaker": "A"
+    },
+    {
+     "text": "la",
+     "start": 111549,
+     "end": 111598,
+     "confidence": 0.99216753,
+     "speaker": "A"
+    },
+    {
+     "text": "H100",
+     "start": 111647,
+     "end": 111857,
+     "confidence": 0.98845285,
+     "speaker": "A"
+    },
+    {
+     "text": "et",
+     "start": 111857,
+     "end": 111873,
+     "confidence": 0.4898155,
+     "speaker": "A"
+    },
+    {
+     "text": "ça",
+     "start": 111873,
+     "end": 112198,
+     "confidence": 0.99016094,
+     "speaker": "A"
+    },
+    {
+     "text": "nous",
+     "start": 112230,
+     "end": 112441,
+     "confidence": 0.9754826,
+     "speaker": "A"
+    },
+    {
+     "text": "fait",
+     "start": 112441,
+     "end": 112603,
+     "confidence": 0.9958819,
+     "speaker": "A"
+    },
+    {
+     "text": "diviser",
+     "start": 112603,
+     "end": 112846,
+     "confidence": 0.9998637,
+     "speaker": "A"
+    },
+    {
+     "text": "par",
+     "start": 112846,
+     "end": 113057,
+     "confidence": 0.9989832,
+     "speaker": "A"
+    },
+    {
+     "text": "2",
+     "start": 113089,
+     "end": 113203,
+     "confidence": 0.99985445,
+     "speaker": "A"
+    },
+    {
+     "text": "les",
+     "start": 113332,
+     "end": 113413,
+     "confidence": 0.981575,
+     "speaker": "A"
+    },
+    {
+     "text": "coûts",
+     "start": 113494,
+     "end": 113656,
+     "confidence": 0.99465376,
+     "speaker": "A"
+    },
+    {
+     "text": "de,",
+     "start": 113656,
+     "end": 113899,
+     "confidence": 0.5013909,
+     "speaker": "A"
+    },
+    {
+     "text": "les",
+     "start": 116088,
+     "end": 116250,
+     "confidence": 0.948874,
+     "speaker": "A"
+    },
+    {
+     "text": "coûts",
+     "start": 116250,
+     "end": 116363,
+     "confidence": 0.99961483,
+     "speaker": "A"
+    },
+    {
+     "text": "à",
+     "start": 116428,
+     "end": 116477,
+     "confidence": 0.99293464,
+     "speaker": "A"
+    },
+    {
+     "text": "l'heure",
+     "start": 116477,
+     "end": 116736,
+     "confidence": 0.9992361,
+     "speaker": "A"
+    },
+    {
+     "text": "de",
+     "start": 116736,
+     "end": 116849,
+     "confidence": 0.9974808,
+     "speaker": "A"
+    },
+    {
+     "text": "la",
+     "start": 116898,
+     "end": 116979,
+     "confidence": 0.9994468,
+     "speaker": "A"
+    },
+    {
+     "text": "carte",
+     "start": 116979,
+     "end": 117093,
+     "confidence": 0.9856529,
+     "speaker": "A"
+    },
+    {
+     "text": "graphique,",
+     "start": 117093,
+     "end": 117595,
+     "confidence": 0.7791876,
+     "speaker": "A"
+    },
+    {
+     "text": "ça",
+     "start": 117660,
+     "end": 117789,
+     "confidence": 0.5947921,
+     "speaker": "A"
+    },
+    {
+     "text": "c'est",
+     "start": 117789,
+     "end": 117919,
+     "confidence": 0.99868274,
+     "speaker": "A"
+    },
+    {
+     "text": "cool.",
+     "start": 117919,
+     "end": 118097,
+     "confidence": 0.98218185,
+     "speaker": "A"
+    },
+    {
+     "text": "Cela",
+     "start": 122355,
+     "end": 122598,
+     "confidence": 0.998441,
+     "speaker": "A"
+    },
+    {
+     "text": "dit,",
+     "start": 122598,
+     "end": 122646,
+     "confidence": 0.8867991,
+     "speaker": "A"
+    },
+    {
+     "text": "le",
+     "start": 122678,
+     "end": 122727,
+     "confidence": 0.9977424,
+     "speaker": "A"
+    },
+    {
+     "text": "FPV",
+     "start": 122856,
+     "end": 123260,
+     "confidence": 0.7102889,
+     "speaker": "A"
+    },
+    {
+     "text": "8",
+     "start": 123260,
+     "end": 123583,
+     "confidence": 0.9979936,
+     "speaker": "A"
+    },
+    {
+     "text": "réduit",
+     "start": 123648,
+     "end": 123890,
+     "confidence": 0.96907,
+     "speaker": "A"
+    },
+    {
+     "text": "drastiquement",
+     "start": 123890,
+     "end": 124456,
+     "confidence": 0.99985784,
+     "speaker": "A"
+    },
+    {
+     "text": "la",
+     "start": 124456,
+     "end": 124536,
+     "confidence": 0.9993591,
+     "speaker": "A"
+    },
+    {
+     "text": "précision",
+     "start": 124617,
+     "end": 125102,
+     "confidence": 0.99998045,
+     "speaker": "A"
+    },
+    {
+     "text": "et",
+     "start": 126168,
+     "end": 126184,
+     "confidence": 0.96930593,
+     "speaker": "A"
+    },
+    {
+     "text": "du",
+     "start": 126184,
+     "end": 126394,
+     "confidence": 0.99926764,
+     "speaker": "A"
+    },
+    {
+     "text": "coup",
+     "start": 126394,
+     "end": 126491,
+     "confidence": 0.99998987,
+     "speaker": "A"
+    },
+    {
+     "text": "il",
+     "start": 126491,
+     "end": 126637,
+     "confidence": 0.993134,
+     "speaker": "A"
+    },
+    {
+     "text": "nous",
+     "start": 126637,
+     "end": 126718,
+     "confidence": 0.99618405,
+     "speaker": "A"
+    },
+    {
+     "text": "faudra",
+     "start": 126718,
+     "end": 127057,
+     "confidence": 0.99851406,
+     "speaker": "A"
+    },
+    {
+     "text": "aussi",
+     "start": 127057,
+     "end": 127283,
+     "confidence": 0.9998932,
+     "speaker": "A"
+    },
+    {
+     "text": "garder",
+     "start": 127283,
+     "end": 127768,
+     "confidence": 0.9995521,
+     "speaker": "A"
+    },
+    {
+     "text": "l'ordre",
+     "start": 128576,
+     "end": 130122,
+     "confidence": 0.99384964,
+     "speaker": "A"
+    },
+    {
+     "text": "de",
+     "start": 130138,
+     "end": 130303,
+     "confidence": 0.995955,
+     "speaker": "A"
+    },
+    {
+     "text": "grandeur",
+     "start": 130303,
+     "end": 130812,
+     "confidence": 0.99962413,
+     "speaker": "A"
+    },
+    {
+     "text": "des",
+     "start": 131608,
+     "end": 131770,
+     "confidence": 0.947596,
+     "speaker": "A"
+    },
+    {
+     "text": "poids",
+     "start": 131851,
+     "end": 132289,
+     "confidence": 0.8096241,
+     "speaker": "A"
+    },
+    {
+     "text": "à",
+     "start": 132841,
+     "end": 132922,
+     "confidence": 0.9871057,
+     "speaker": "A"
+    },
+    {
+     "text": "ajuster",
+     "start": 132922,
+     "end": 133393,
+     "confidence": 0.9990344,
+     "speaker": "A"
+    },
+    {
+     "text": "dans",
+     "start": 133393,
+     "end": 133555,
+     "confidence": 0.5801446,
+     "speaker": "A"
+    },
+    {
+     "text": "le",
+     "start": 133798,
+     "end": 134009,
+     "confidence": 0.97353,
+     "speaker": "A"
+    },
+    {
+     "text": "calcul",
+     "start": 134204,
+     "end": 135259,
+     "confidence": 0.94898707,
+     "speaker": "A"
+    },
+    {
+     "text": "matriciel.",
+     "start": 135259,
+     "end": 135713,
+     "confidence": 0.81929696,
+     "speaker": "A"
+    },
+    {
+     "text": "Bon,",
+     "start": 136151,
+     "end": 136200,
+     "confidence": 0.60189337,
+     "speaker": "A"
+    },
+    {
+     "text": "lequel,",
+     "start": 136265,
+     "end": 136524,
+     "confidence": 0.9044047,
+     "speaker": "A"
+    },
+    {
+     "text": "je",
+     "start": 136557,
+     "end": 136670,
+     "confidence": 0.9991047,
+     "speaker": "A"
+    },
+    {
+     "text": "ne",
+     "start": 136670,
+     "end": 136719,
+     "confidence": 0.99301815,
+     "speaker": "A"
+    },
+    {
+     "text": "sais",
+     "start": 136719,
+     "end": 136881,
+     "confidence": 0.9999486,
+     "speaker": "A"
+    },
+    {
+     "text": "pas.",
+     "start": 136881,
+     "end": 136930,
+     "confidence": 0.98176634,
+     "speaker": "A"
+    },
+    {
+     "text": "Chiffre:",
+     "start": 138050,
+     "end": 138437,
+     "confidence": 0.89395773,
+     "speaker": "A"
+    },
+    {
+     "text": "la",
+     "start": 138501,
+     "end": 138630,
+     "confidence": 0.97341055,
+     "speaker": "A"
+    },
+    {
+     "text": "place",
+     "start": 138630,
+     "end": 138872,
+     "confidence": 0.99996006,
+     "speaker": "A"
+    },
+    {
+     "text": "qui",
+     "start": 138872,
+     "end": 139034,
+     "confidence": 0.9888503,
+     "speaker": "A"
+    },
+    {
+     "text": "reste",
+     "start": 139034,
+     "end": 139276,
+     "confidence": 0.99987066,
+     "speaker": "A"
+    },
+    {
+     "text": "pour",
+     "start": 139276,
+     "end": 139340,
+     "confidence": 0.99956614,
+     "speaker": "A"
+    },
+    {
+     "text": "le",
+     "start": 139356,
+     "end": 139437,
+     "confidence": 0.99944276,
+     "speaker": "A"
+    },
+    {
+     "text": "cache.",
+     "start": 139518,
+     "end": 139937,
+     "confidence": 0.9484845,
+     "speaker": "A"
+    },
+    {
+     "text": "Alors,",
+     "start": 140663,
+     "end": 140938,
+     "confidence": 0.89241415,
+     "speaker": "A"
+    },
+    {
+     "text": "la",
+     "start": 141858,
+     "end": 142019,
+     "confidence": 0.99879456,
+     "speaker": "A"
+    },
+    {
+     "text": "mémoire",
+     "start": 142180,
+     "end": 142503,
+     "confidence": 0.99996936,
+     "speaker": "A"
+    },
+    {
+     "text": "vidéo",
+     "start": 142503,
+     "end": 142745,
+     "confidence": 0.99811196,
+     "speaker": "A"
+    },
+    {
+     "text": "qui",
+     "start": 142745,
+     "end": 142826,
+     "confidence": 0.9943499,
+     "speaker": "A"
+    },
+    {
+     "text": "restera",
+     "start": 142826,
+     "end": 143229,
+     "confidence": 0.9992156,
+     "speaker": "A"
+    },
+    {
+     "text": "pour",
+     "start": 143229,
+     "end": 143342,
+     "confidence": 0.57294285,
+     "speaker": "A"
+    },
+    {
+     "text": "le—",
+     "start": 143342,
+     "end": 143471,
+     "confidence": 0.6122047,
+     "speaker": "A"
+    },
+    {
+     "text": "sur",
+     "start": 145165,
+     "end": 145391,
+     "confidence": 0.9026469,
+     "speaker": "A"
+    },
+    {
+     "text": "la",
+     "start": 145407,
+     "end": 145569,
+     "confidence": 0.99786276,
+     "speaker": "A"
+    },
+    {
+     "text": "carte",
+     "start": 145569,
+     "end": 145682,
+     "confidence": 0.99931896,
+     "speaker": "A"
+    },
+    {
+     "text": "graphique",
+     "start": 145682,
+     "end": 145843,
+     "confidence": 0.9997499,
+     "speaker": "A"
+    },
+    {
+     "text": "sera",
+     "start": 145843,
+     "end": 146053,
+     "confidence": 0.97023386,
+     "speaker": "A"
+    },
+    {
+     "text": "utilisée",
+     "start": 146053,
+     "end": 146408,
+     "confidence": 0.99596727,
+     "speaker": "A"
+    },
+    {
+     "text": "pour",
+     "start": 146537,
+     "end": 146843,
+     "confidence": 0.99987507,
+     "speaker": "A"
+    },
+    {
+     "text": "le",
+     "start": 146860,
+     "end": 146940,
+     "confidence": 0.9998324,
+     "speaker": "A"
+    },
+    {
+     "text": "cache",
+     "start": 146940,
+     "end": 147166,
+     "confidence": 0.99992776,
+     "speaker": "A"
+    },
+    {
+     "text": "et",
+     "start": 147618,
+     "end": 147667,
+     "confidence": 0.9254388,
+     "speaker": "A"
+    },
+    {
+     "text": "d'autres",
+     "start": 147748,
+     "end": 148154,
+     "confidence": 0.93912196,
+     "speaker": "A"
+    },
+    {
+     "text": "choses,",
+     "start": 148154,
+     "end": 148365,
+     "confidence": 0.91780823,
+     "speaker": "A"
+    },
+    {
+     "text": "mais",
+     "start": 148398,
+     "end": 148560,
+     "confidence": 0.9994449,
+     "speaker": "A"
+    },
+    {
+     "text": "en",
+     "start": 148999,
+     "end": 149048,
+     "confidence": 0.9914187,
+     "speaker": "A"
+    },
+    {
+     "text": "grande",
+     "start": 149048,
+     "end": 150607,
+     "confidence": 0.9980635,
+     "speaker": "A"
+    },
+    {
+     "text": "partie,",
+     "start": 150753,
+     "end": 152101,
+     "confidence": 0.9327176,
+     "speaker": "A"
+    },
+    {
+     "text": "en",
+     "start": 152150,
+     "end": 152215,
+     "confidence": 0.9989931,
+     "speaker": "A"
+    },
+    {
+     "text": "dehors",
+     "start": 152215,
+     "end": 152442,
+     "confidence": 0.9998361,
+     "speaker": "A"
+    },
+    {
+     "text": "du",
+     "start": 152458,
+     "end": 152523,
+     "confidence": 0.99955124,
+     "speaker": "A"
+    },
+    {
+     "text": "modèle,",
+     "start": 152539,
+     "end": 152848,
+     "confidence": 0.9986899,
+     "speaker": "A"
+    },
+    {
+     "text": "c'est",
+     "start": 153595,
+     "end": 153758,
+     "confidence": 0.9994576,
+     "speaker": "A"
+    },
+    {
+     "text": "pour",
+     "start": 153758,
+     "end": 153823,
+     "confidence": 0.999918,
+     "speaker": "A"
+    },
+    {
+     "text": "le",
+     "start": 153839,
+     "end": 153920,
+     "confidence": 0.99980646,
+     "speaker": "A"
+    },
+    {
+     "text": "cache.",
+     "start": 153920,
+     "end": 154147,
+     "confidence": 0.99780554,
+     "speaker": "A"
+    },
+    {
+     "text": "Dans",
+     "start": 156952,
+     "end": 157117,
+     "confidence": 0.97383624,
+     "speaker": "A"
+    },
+    {
+     "text": "notre",
+     "start": 157117,
+     "end": 157265,
+     "confidence": 0.9956917,
+     "speaker": "A"
+    },
+    {
+     "text": "cas,",
+     "start": 157281,
+     "end": 157412,
+     "confidence": 0.99799144,
+     "speaker": "A"
+    },
+    {
+     "text": "ça",
+     "start": 157445,
+     "end": 157609,
+     "confidence": 0.9994417,
+     "speaker": "A"
+    },
+    {
+     "text": "nous",
+     "start": 157642,
+     "end": 157774,
+     "confidence": 0.99982136,
+     "speaker": "A"
+    },
+    {
+     "text": "laisse",
+     "start": 157774,
+     "end": 158037,
+     "confidence": 0.99988043,
+     "speaker": "A"
+    },
+    {
+     "text": "en",
+     "start": 158037,
+     "end": 158102,
+     "confidence": 0.9930983,
+     "speaker": "A"
+    },
+    {
+     "text": "gros",
+     "start": 158102,
+     "end": 158349,
+     "confidence": 0.9999703,
+     "speaker": "A"
+    },
+    {
+     "text": "15",
+     "start": 158349,
+     "end": 158743,
+     "confidence": 0.9998586,
+     "speaker": "A"
+    },
+    {
+     "text": "Go.",
+     "start": 158760,
+     "end": 158891,
+     "confidence": 0.698352,
+     "speaker": "A"
+    },
+    {
+     "text": "À",
+     "start": 159256,
+     "end": 159306,
+     "confidence": 0.77635026,
+     "speaker": "A"
+    },
+    {
+     "text": "peu",
+     "start": 159457,
+     "end": 159557,
+     "confidence": 0.9995857,
+     "speaker": "A"
+    },
+    {
+     "text": "près.",
+     "start": 159591,
+     "end": 159842,
+     "confidence": 0.766008,
+     "speaker": "A"
+    },
+    {
+     "text": "Donc",
+     "start": 162196,
+     "end": 162359,
+     "confidence": 0.99900305,
+     "speaker": "A"
+    },
+    {
+     "text": "ça",
+     "start": 162359,
+     "end": 162523,
+     "confidence": 0.93578106,
+     "speaker": "A"
+    },
+    {
+     "text": "correspond",
+     "start": 162523,
+     "end": 162997,
+     "confidence": 0.99997497,
+     "speaker": "A"
+    },
+    {
+     "text": "à",
+     "start": 162997,
+     "end": 163014,
+     "confidence": 0.99988055,
+     "speaker": "A"
+    },
+    {
+     "text": "97",
+     "start": 163014,
+     "end": 164568,
+     "confidence": 0.86649513,
+     "speaker": "A"
+    },
+    {
+     "text": "712",
+     "start": 164568,
+     "end": 165026,
+     "confidence": 0.9942372,
+     "speaker": "A"
+    },
+    {
+     "text": "tokens,",
+     "start": 165026,
+     "end": 165370,
+     "confidence": 0.7449558,
+     "speaker": "A"
+    },
+    {
+     "text": "comme",
+     "start": 165468,
+     "end": 165631,
+     "confidence": 0.99924976,
+     "speaker": "A"
+    },
+    {
+     "text": "tu",
+     "start": 165631,
+     "end": 165713,
+     "confidence": 0.96803916,
+     "speaker": "A"
+    },
+    {
+     "text": "me",
+     "start": 165713,
+     "end": 165746,
+     "confidence": 0.98562884,
+     "speaker": "A"
+    },
+    {
+     "text": "l'avais",
+     "start": 165746,
+     "end": 165959,
+     "confidence": 0.99896264,
+     "speaker": "A"
+    },
+    {
+     "text": "expliqué.",
+     "start": 165975,
+     "end": 166171,
+     "confidence": 0.96460086,
+     "speaker": "A"
+    },
+    {
+     "text": "Et",
+     "start": 169236,
+     "end": 169252,
+     "confidence": 0.99723107,
+     "speaker": "A"
+    },
+    {
+     "text": "ça,",
+     "start": 169252,
+     "end": 169365,
+     "confidence": 0.9094118,
+     "speaker": "A"
+    },
+    {
+     "text": "maintenant,",
+     "start": 169397,
+     "end": 169607,
+     "confidence": 0.77798146,
+     "speaker": "A"
+    },
+    {
+     "text": "on",
+     "start": 169623,
+     "end": 169639,
+     "confidence": 0.95911676,
+     "speaker": "A"
+    },
+    {
+     "text": "doit",
+     "start": 169704,
+     "end": 169800,
+     "confidence": 0.9994392,
+     "speaker": "A"
+    },
+    {
+     "text": "savoir",
+     "start": 169800,
+     "end": 170188,
+     "confidence": 0.9999403,
+     "speaker": "A"
+    },
+    {
+     "text": "combien",
+     "start": 170204,
+     "end": 170446,
+     "confidence": 0.9994282,
+     "speaker": "A"
+    },
+    {
+     "text": "ça",
+     "start": 170446,
+     "end": 170559,
+     "confidence": 0.9994299,
+     "speaker": "A"
+    },
+    {
+     "text": "représente",
+     "start": 170559,
+     "end": 170898,
+     "confidence": 0.9999621,
+     "speaker": "A"
+    },
+    {
+     "text": "de",
+     "start": 170930,
+     "end": 171011,
+     "confidence": 0.97981113,
+     "speaker": "A"
+    },
+    {
+     "text": "conversation.",
+     "start": 171011,
+     "end": 171575,
+     "confidence": 0.6118086,
+     "speaker": "A"
+    },
+    {
+     "text": "Mais",
+     "start": 172140,
+     "end": 172221,
+     "confidence": 0.9994005,
+     "speaker": "A"
+    },
+    {
+     "text": "ça,",
+     "start": 172221,
+     "end": 172350,
+     "confidence": 0.9710711,
+     "speaker": "A"
+    },
+    {
+     "text": "c'est",
+     "start": 172414,
+     "end": 172624,
+     "confidence": 0.99995565,
+     "speaker": "A"
+    },
+    {
+     "text": "pour",
+     "start": 172785,
+     "end": 172931,
+     "confidence": 0.9999019,
+     "speaker": "A"
+    },
+    {
+     "text": "les",
+     "start": 172947,
+     "end": 173108,
+     "confidence": 0.99074346,
+     "speaker": "A"
+    },
+    {
+     "text": "prochains",
+     "start": 173108,
+     "end": 173544,
+     "confidence": 0.99972594,
+     "speaker": "A"
+    },
+    {
+     "text": "tests.",
+     "start": 173592,
+     "end": 173883,
+     "confidence": 0.98668224,
+     "speaker": "A"
+    }
+   ]
+  }
+ ],
+ "confidence": 0.9465453,
+ "audio_duration": 175,
+ "punctuate": true,
+ "format_text": true,
+ "dual_channel": false,
+ "webhook_url": null,
+ "webhook_status_code": null,
+ "webhook_auth": false,
+ "webhook_auth_header_name": null,
+ "speed_boost": false,
+ "auto_highlights_result": null,
+ "auto_highlights": false,
+ "audio_start_from": null,
+ "audio_end_at": null,
+ "word_boost": [],
+ "boost_param": null,
+ "prompt": null,
+ "keyterms_prompt": [],
+ "filter_profanity": false,
+ "redact_pii": false,
+ "redact_pii_audio": false,
+ "redact_pii_audio_quality": null,
+ "redact_pii_audio_options": null,
+ "redact_pii_policies": null,
+ "redact_pii_sub": null,
+ "redact_static_entities": null,
+ "speaker_labels": true,
+ "speaker_options": {
+  "min_speakers_expected": 1,
+  "max_speakers_expected": 1,
+  "advanced_speaker_segmentation": false
+ },
+ "content_safety": false,
+ "iab_categories": false,
+ "content_safety_labels": {
+  "status": "unavailable",
+  "results": [],
+  "summary": {}
+ },
+ "iab_categories_result": {
+  "status": "unavailable",
+  "results": [],
+  "summary": {}
+ },
+ "language_detection": false,
+ "language_detection_options": null,
+ "language_detection_results": null,
+ "language_confidence_threshold": null,
+ "language_confidence": null,
+ "custom_spelling": null,
+ "throttled": false,
+ "auto_chapters": false,
+ "summarization": false,
+ "summary_type": null,
+ "summary_model": null,
+ "custom_topics": false,
+ "topics": [],
+ "speech_threshold": null,
+ "speech_model": null,
+ "speech_models": [
+  "universal-3-pro",
+  "universal-2"
+ ],
+ "speech_model_used": "universal-3-pro",
+ "temperature": null,
+ "remove_audio_tags": "all",
+ "chapters": null,
+ "disfluencies": false,
+ "entity_detection": false,
+ "sentiment_analysis": false,
+ "sentiment_analysis_results": null,
+ "entities": null,
+ "speakers_expected": 1,
+ "summary": null,
+ "custom_topics_results": null,
+ "is_deleted": null,
+ "multichannel": null,
+ "project_id": 1496692,
+ "token_id": 2101754
+}
