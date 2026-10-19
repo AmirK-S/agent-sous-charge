@@ -1,0 +1,26 @@
+# Machine de P1 louée par SkyPilot : une L40S, la moins chère disponible chez les fournisseurs branchés.
+# Usage, depuis le dossier du projet :
+#   sky launch -c p1 pod/p1-skypilot.yaml -i 30 --down -y
+# -i 30 --down : la machine est supprimée après 30 minutes sans activité (garde-fou de coût).
+# Plafond décidé avec Amir le 19/10 : 1,60 $/h.
+
+resources:
+  accelerators: L40S:1
+  disk_size: 150          # poids 45 Go + environnements vLLM et τ³ environ 17 Go + marge
+  any_of:                 # SkyPilot prend la moins chère et passe à la suivante si c'est complet
+    - infra: vast
+    - infra: nebius
+      use_spot: true      # 0,75 $/h ; peut être reprise : τ³ reprend avec --auto-resume
+    - infra: shadeform
+    - infra: runpod
+    - infra: nebius       # à la demande, 1,55 $/h, dernier recours
+
+workdir: .                # le projet, sans ce que liste .skyignore
+
+# Pas de plafond de prix natif dans SkyPilot : la liste ci-dessus ne contient que des offres sous 1,60 $/h au catalogue.
+setup: |
+  set -euo pipefail
+  export W="$HOME/workspace"
+  mkdir -p "$W"
+  rm -rf "$W/agent-sous-charge" && cp -r ~/sky_workdir "$W/agent-sous-charge"
+  bash "$W/agent-sous-charge/pod/installer-pod.sh" 2>&1 | tee "$W/install.log"

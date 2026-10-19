@@ -7,7 +7,7 @@ set -euo pipefail
 TAU_COMMIT="96a3ef92"                                   # commit lu le 18/10 (version 1.0.1)
 MODELE="mistralai/Mistral-Small-3.2-24B-Instruct-2506"
 REVISION="95a6d26c4bfb886c58daf9d3f7332c857cb27b43"         # lue sur l'API Hugging Face le 18/10
-W=/workspace
+W="${W:-/workspace}"   # surchargé par SkyPilot (W=$HOME/workspace) hors RunPod
 export HF_HOME="$W/hf"
 
 echo "== Machine =="

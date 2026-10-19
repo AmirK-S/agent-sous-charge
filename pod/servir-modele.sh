@@ -2,7 +2,7 @@
 # Sert Mistral Small 3.2 en FP8 avec appels d'outils, sur le port 8000 du pod.
 # Les arguments sont ceux à épingler dans le pré-enregistrement (section 3).
 set -euo pipefail
-W=/workspace
+W="${W:-/workspace}"   # surchargé par SkyPilot (W=$HOME/workspace) hors RunPod
 export HF_HOME="$W/hf"
 # Les poids sont déjà sur le volume : aucun téléchargement pendant le service.
 export HF_HUB_OFFLINE=1

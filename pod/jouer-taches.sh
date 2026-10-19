@@ -4,9 +4,9 @@
 # Usage, sur le pod : bash jouer-taches.sh <nom_du_lot> task_004 [task_005 ...]
 # Ne jouer que des tâches de développement (donnees/partage-taches.json).
 set -euo pipefail
-W=/workspace
+W="${W:-/workspace}"   # surchargé par SkyPilot (W=$HOME/workspace) hors RunPod
 LOT="$1"; shift
-set -a; source /root/.openrouter.env; set +a
+set -a; source "$HOME/.openrouter.env"; set +a
 cd "$W/tau2-bench"
 
 "$W/venv-tau/bin/tau2" run \

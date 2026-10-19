@@ -1,0 +1,4 @@
+# Ce que SkyPilot n'envoie pas sur la machine louée
+.git
+apprentissage/oraux
+mesures/pod-18-10
