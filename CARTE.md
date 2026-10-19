@@ -50,6 +50,8 @@ But derrière la destination : qu'Amir devienne réellement bon en montée en ch
 
 ## Journal de la carte
 
+- 19/10 : P1.2 et P1.3 jouées via SkyPilot (D2) chez Nebius ; P1.2 fermée ; P1.3 : médiane 14 822 tokens par conversation, prédiction d'Amir juste ; oral de P1.3 et décision G2 en attente.
+
 - 19/10 : P1.1 fermée (vLLM sert Mistral Small 3.2 en FP8 sur une L40S, 97 712 tokens de cache ; oral d'Amir validé) ; R11 ajouté au brouillard.
 
 - 18/10 : revue d'Astra seul par API (0,21 $), 12 objections retenues, 3 exigences supprimées ; pré-enregistrement v3, simplifié.
