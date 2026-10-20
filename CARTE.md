@@ -25,6 +25,23 @@ But derrière la destination : qu'Amir devienne réellement bon en montée en ch
 | Chaque tranche se termine à l'oral (contexte, choix, coût, chiffre) | séance du 18/10 |
 | Protocole : [pré-enregistrement v3](PRE-ENREGISTREMENT.md), après trois revues adverses ([ADV1](tickets/ADV1-gemini.md), [ADV2](tickets/ADV2-astra.md), [ADV3](tickets/ADV3-astra-direct.md)) ; une seule affirmation certifiée (un modèle, une carte, un site, 57 tâches) ; le reste descriptif ; devis plafond avant gel | Amir, Gemini, Astra, 18/10 |
 
+## Feuille de route et budget (estimation du 20/10, à remplacer par le devis plafond de P0)
+
+| # | Étape | Séances | GPU | Coût estimé |
+|---|---|---|---|---|
+| 1 | Clore P1.3 (micro-leçon cache KV, oral) | 0,3 | non | 0 |
+| 2 | P1.4 serveur MCP, P1.5 fidélité sur les 97 tâches | 2 à 3 | non | 0 |
+| 3 | P1.6 traces (OpenTelemetry, Phoenix), P1.7 abandons | 2 à 3 | un peu | 2 à 5 $ |
+| 4 | D1 image Docker | 1 | non | 0 |
+| 5 | Cuisine G4 (utilisateur), G5 (client simulé), G6 (seuils) | 2 à 3 | non | 0 |
+| 6 | P0 pilote, dont G2 tranché en mesurant L40S et H100 le même jour | 2 à 3 | oui | 50 à 80 $ |
+| 7 | G7 optimisations successives, sur le développement (cœur de la vidéo) | 5 à 10 | oui, spot | 20 à 40 $ |
+| 8 | Devis plafond, revue adverse, gel du protocole | 1 | non | 1 $ |
+| 9 | Campagne confirmatoire, repli, réplication | 2 à 3 | oui | 40 à 150 $ selon la carte |
+| 10 | G8 scénario et vidéo | ? | non | 0 |
+
+Total estimé : environ 100 à 170 $ si la carte est une L40S, 180 à 300 $ si c'est une H100 (repère de pointe par API et marge de reprises compris). Base : conversation moyenne de 98 s et 131 500 tokens de prompt côté agent, client simulé à 0,0014 $ la conversation par API (mesures de P1.3).
+
 ## Frontière (prenable maintenant)
 
 | Ticket | Type | Objet | Bloque |
