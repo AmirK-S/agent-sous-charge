@@ -49,3 +49,17 @@ Amir s'enregistre 2 minutes : ce qu'on a fait, pourquoi, ce que ça coûte, ce q
 - 20/10 : ancien pod RunPod `xe77f1xnjb3r8x` supprimé (HTTP 204, relecture 404, plus aucun pod). L'outil MCP RunPod est hors service (ancienne clé révoquée) ; l'API REST de RunPod marche avec la nouvelle clé (`~/.runpod/config.toml`). Stratégie FinOps : aucun stockage permanent avant D1, spot pour le développement, crédit Nebius d'abord, machine supprimée à chaque fin de séance.
 - 20/10 : micro-leçon cache KV faite (carte 2) ; oral de P1.3 : contexte, coût et chiffre justes ; raison du plancher reprise deux fois (les conversations attendent le client ou un outil, 1,7 sur 4 calculaient).
 - 20/10 : **porte de P1.3 fermée** après une image (le restaurant : le cache, ce sont les tables ; un client lit le menu la plupart du temps). Amir : « 6,6 clients qui calculent ÷ 0,4 du temps passé à calculer » ; correction du calcul : 16,5, soit 15 à 17 clients ouverts à la louche, avant le coût des recalculs. **P1.1, P1.2 et P1.3 fermées ; prochaine tranche : P1.4 (serveur MCP).**
+
+## Plan de P1.4 (20/10, lecture du code de τ³ au commit 96a3ef92)
+
+**Ce que dit le code** : pas de MCP dans τ³. 15 outils agent avec `bm25` (dont `KB_search`, `transfer_to_human_agents`, `change_user_email`, `log_verification`, et des outils « découvrables » appelables par leur nom), 6 outils client. Chemin d'un appel : `orchestrator._execute_tool_calls` → `Environment.get_response` (enveloppe `"Error: {e}"`, sérialisation `to_json_str`) → `make_tool_call` → `ToolKitBase.use_tool` → la méthode Python, arguments passés bruts, sans validation. État : une base `TransactionalDB` relue depuis `db.json` à chaque simulation, partagée par l'agent et le client, plus un état en mémoire (outils découverts, `_read_log_allowlist`). Concurrence par fils d'exécution. Notation : l'évaluateur **rejoue** la trajectoire en local et compare les hash ; la base distante n'est jamais hashée.
+
+**Conception proposée (provisoire jusqu'à validation d'Amir)**
+1. **Point d'injection** : une sous-classe d'`Environment` qui remplace `make_tool_call` par un appel MCP. On garde `get_response` tel quel, donc l'enveloppe d'erreur et la sérialisation restent identiques.
+2. **Serveur à état, une session MCP = une simulation** : le serveur héberge son propre `Environment` banking, initialisé avec l'état de la tâche (`set_state`) à l'ouverture de session ; la base vit côté serveur, comme dans une vraie banque.
+3. **Schémas des outils gardés côté τ³** : ceux générés par une bibliothèque MCP diffèrent (titres, descriptions) et changeraient ce que voit le modèle.
+4. **SDK MCP bas niveau, pas d'auto-validation** : arguments transmis bruts, réponse `{content, error}` renvoyée telle quelle, exceptions relancées côté client avec le même texte.
+5. **Transport HTTP** (« streamable HTTP » de MCP), pas stdio : un vrai aller-retour réseau, comme en banque, dont on mesurera le coût.
+6. **Pièges connus pour P1.5** : le pied de page `[Timing: ...]` de `KB_search` change à chaque appel (à normaliser dans la comparaison) ; l'ordre des documents BM25 vient d'un `glob` non trié (risque d'égalités départagées différemment) ; formats de nombres (25 contre 25.0) si un intermédiaire convertit les types.
+
+**Fini quand** : une conversation τ³ complète passe par MCP (journal du serveur à l'appui) ; P1.5 dira ensuite s'il y a zéro écart sur les 97 tâches.
