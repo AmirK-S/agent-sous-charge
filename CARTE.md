@@ -67,6 +67,8 @@ Total estimé : environ 100 à 170 $ si la carte est une L40S, 180 à 300 $ si c
 
 ## Journal de la carte
 
+- 20/10 : P1.3 fermée (micro-leçon cache KV, carte 2, oral) ; feuille de route et budget estimés ; ancien pod RunPod supprimé ; prochaine tranche : P1.4.
+
 - 19/10 : P1.2 et P1.3 jouées via SkyPilot (D2) chez Nebius ; P1.2 fermée ; P1.3 : médiane 14 822 tokens par conversation, prédiction d'Amir juste ; oral de P1.3 et décision G2 en attente.
 
 - 19/10 : P1.1 fermée (vLLM sert Mistral Small 3.2 en FP8 sur une L40S, 97 712 tokens de cache ; oral d'Amir validé) ; R11 ajouté au brouillard.
