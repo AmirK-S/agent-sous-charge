@@ -15,12 +15,10 @@ nvidia-smi --query-gpu=name,memory.total,power.limit,driver_version --format=csv
 nproc; free -g | head -2
 
 echo "== Outils =="
-# vLLM compile des noyaux au démarrage : il lui faut Python.h. Présent sur l'image RunPod,
-# absent des machines Ubuntu nues (Nebius, 19/10).
-if [ ! -f /usr/include/python3.12/Python.h ] && command -v apt-get > /dev/null; then
-  SUDO=$(command -v sudo || true)
-  $SUDO env DEBIAN_FRONTEND=noninteractive apt-get install -y -qq python3.12-dev > /dev/null
-fi
+# vLLM compile des noyaux au démarrage : il lui faut Python.h. Plutôt que de dépendre du Python du
+# système (absent ou sans en-têtes selon l'image : Nebius le 19/10, RunPod via SkyPilot le 21/10),
+# on utilise le Python géré par uv, qui embarque ses en-têtes.
+export UV_PYTHON_PREFERENCE=only-managed
 # Ubuntu 24.04 protège le Python système (PEP 668) : uv s'installe par son script officiel.
 command -v uv > /dev/null || curl -LsSf https://astral.sh/uv/install.sh | sh
 export PATH="$HOME/.local/bin:$PATH"
