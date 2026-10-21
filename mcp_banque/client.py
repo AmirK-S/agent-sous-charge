@@ -10,6 +10,7 @@ dans un fil à part, avec une seule connexion MCP partagée par toutes les conve
 import asyncio
 import os
 import threading
+import weakref
 from typing import Any, Literal, Optional
 
 from mcp import Client
@@ -37,6 +38,11 @@ class _Connexion:
         r = self._attendre(self.client.call_tool(nom, arguments, meta=meta))
         return r.content[0].text, bool(r.is_error)
 
+    def appeler_sans_attendre(self, nom: str, arguments: dict[str, Any], meta: dict[str, Any]) -> None:
+        """Pour la fermeture depuis le ramasse-miettes : ne jamais bloquer (risque d'interblocage)."""
+        if not self.boucle.is_closed():
+            asyncio.run_coroutine_threadsafe(self.client.call_tool(nom, arguments, meta=meta), self.boucle)
+
 
 _connexion: Optional[_Connexion] = None
 _verrou = threading.Lock()
@@ -48,6 +54,11 @@ def connexion() -> _Connexion:
         if _connexion is None:
             _connexion = _Connexion(URL)
     return _connexion
+
+
+def _fermer(conversation: str) -> None:
+    if _connexion is not None:
+        _connexion.appeler_sans_attendre(FERMER, {}, {CLE_CONVERSATION: conversation})
 
 
 class ErreurOutil(Exception):
@@ -65,6 +76,8 @@ class EnvironnementMCP(Environment):
         if erreur:
             raise RuntimeError(f"ouverture de conversation refusée : {texte}")
         self.conversation = texte
+        # τ³ n'a pas de fin de conversation explicite : on ferme quand il abandonne l'objet.
+        weakref.finalize(self, _fermer, texte)
 
     def _appel(self, nom: str, arguments: dict[str, Any], demandeur: str = "assistant") -> tuple[str, bool]:
         return connexion().appeler(nom, arguments, {CLE_CONVERSATION: self.conversation, CLE_DEMANDEUR: demandeur})
@@ -95,9 +108,6 @@ class EnvironnementMCP(Environment):
 
     def get_user_db_hash(self) -> Optional[str]:
         return self._empreintes()[1]
-
-    def fermer(self) -> None:
-        self._appel(FERMER, {})
 
 
 def constructeur(solo_mode: bool = False, retrieval_variant=None, retrieval_kwargs=None,

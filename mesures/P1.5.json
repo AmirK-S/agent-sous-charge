@@ -1,0 +1,32 @@
+{
+ "taches": 97,
+ "appels": 1246,
+ "resultats": {
+  "série": {
+   "paralleles": 1,
+   "duree_s": 14.0,
+   "ecarts": [],
+   "latence_mcp_ms": {
+    "mediane": 1.83,
+    "p99": 3.86
+   },
+   "latence_direct_ms": {
+    "mediane": 0.09,
+    "p99": 1.8
+   }
+  },
+  "parallèle": {
+   "paralleles": 8,
+   "duree_s": 10.7,
+   "ecarts": [],
+   "latence_mcp_ms": {
+    "mediane": 9.04,
+    "p99": 78.11
+   },
+   "latence_direct_ms": {
+    "mediane": 0.09,
+    "p99": 1.8
+   }
+  }
+ }
+}
