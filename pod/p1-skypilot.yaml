@@ -4,6 +4,7 @@
 # -i 30 --down : la machine est supprimée après 30 minutes sans activité (garde-fou de coût).
 # Plafond décidé avec Amir le 19/10 : 1,60 $/h.
 
+# Hôte requis : pilote compatible CUDA 13.0 (vLLM 0.32.0 embarque PyTorch pour CUDA 13.0 ; constaté le 21/10).
 resources:
   accelerators: L40S:1
   disk_size: 150          # poids 45 Go + environnements vLLM et τ³ environ 17 Go + marge

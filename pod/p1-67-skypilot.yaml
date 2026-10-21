@@ -5,6 +5,7 @@
 # Garde-fou de coût : vLLM s'arrête seul au bout de 90 min, puis la machine est supprimée 10 min après.
 # Budget accordé par Amir le 21/10 : 3 $.
 
+# Hôte requis : pilote compatible CUDA 13.0 (vLLM 0.32.0 embarque PyTorch pour CUDA 13.0 ; constaté le 21/10).
 resources:
   accelerators: L40S:1
   memory: 64+

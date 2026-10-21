@@ -3,6 +3,7 @@
 # Usage : sky launch -c p13 pod/p1-3-skypilot.yaml -i 60 --down -y
 # Tâches : les 12 premières du lot de développement après task_004 (donnees/partage-taches.json).
 
+# Hôte requis : pilote compatible CUDA 13.0 (vLLM 0.32.0 embarque PyTorch pour CUDA 13.0 ; constaté le 21/10).
 resources:
   accelerators: L40S:1
   memory: 64+             # leçon du 19/10 : avec 31 Go de mémoire vive, le chargement prenait 600 s

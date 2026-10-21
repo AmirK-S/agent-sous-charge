@@ -4,7 +4,9 @@
 #
 # Base CUDA « devel » : vLLM compile des noyaux au démarrage et a besoin de nvcc
 # (« Could not find nvcc » sur l'image par défaut de SkyPilot chez RunPod, 21/10).
-FROM nvidia/cuda:12.8.1-devel-ubuntu24.04
+# CUDA 13.0 : vLLM 0.32.0 est livré avec PyTorch 2.13 compilé pour CUDA 13.0 (manifeste de la
+# première construction, 21/10) ; nvcc doit suivre. Hôte requis : pilote compatible CUDA 13.0.
+FROM nvidia/cuda:13.0.3-devel-ubuntu24.04
 
 ARG VLLM_VERSION=0.32.0
 ARG TAU_COMMIT=96a3ef92329baf908ffe9dfe188cea34e8701d2a
