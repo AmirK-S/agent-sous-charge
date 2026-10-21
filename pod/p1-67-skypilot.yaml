@@ -14,6 +14,9 @@ resources:
       use_spot: true
     - infra: shadeform
     - infra: runpod
+      # L'image par défaut de SkyPilot chez RunPod n'a pas nvcc ; vLLM en a besoin pour compiler
+      # ses noyaux au démarrage (« Could not find nvcc », 21/10). Image PyTorch officielle de RunPod.
+      image_id: docker:runpod/pytorch:1.0.2-cu1281-torch280-ubuntu2404
 
 workdir: .
 
@@ -35,5 +38,7 @@ run: |
   cd "$W"
   export OTLP_ENDPOINT=grpc://localhost:4317 OTEL_EXPORTER_OTLP_TRACES_INSECURE=true
   export OTEL_RESOURCE_ATTRIBUTES="openinference.project.name=$PROJET_TRACES"
-  timeout 90m env W="$W" bash agent-sous-charge/pod/servir-modele.sh > /dev/null 2>&1 || true
-  echo "vLLM arrêté (fin du garde-fou de 90 min ou arrêt manuel)"
+  timeout 90m env W="$W" bash agent-sous-charge/pod/servir-modele.sh > /dev/null 2>&1
+  code=$?
+  echo "vLLM arrêté, code $code (124 = fin du garde-fou de 90 min)"
+  [ $code -eq 124 ] || { grep -E 'Error|Traceback' "$W/vllm.log" | tail -20; }
