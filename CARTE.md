@@ -64,7 +64,7 @@ Total estimé : environ 100 à 170 $ si la carte est une L40S, 180 à 300 $ si c
 | G8 | cuisine | Le scénario et le ton de la vidéo | G6, G7 |
 | P0 | prototype | Essai pilote sur GPU loués (section 9 du pré-enregistrement), 40 à 70 $ | P1, T1 |
 | T1 | tâche | Compte de location GPU et page de dépense | G2 |
-| [D1](tickets/D1-image-docker.md) | déploiement | Image Docker de l'expérience : construite le 21/10 (CUDA 13.0, vLLM 0.32.0, τ³ épinglé) ; reste à la rendre publique (Amir, un clic) et à la vérifier sur une carte | P0 |
+| ~~[D1](tickets/D1-image-docker.md)~~ | déploiement | **Fait le 21/10** : image publique, vérifiée sur L40S ; environnement identique partout, mais pas de gain de temps (25 min de la location au modèle, dominés par les téléchargements) ; suite : poids sur un volume réseau | P0 |
 | S1 | sécurité | Ce qu'une banque ou la défense exigerait des outils derrière MCP : authentification et permissions par client, journal d'audit, défense contre l'injection de prompt par les documents ; isolation du cache entre clients (sinon fuite par mesure du temps de réponse ; parade : `cache_salt` de vLLM, et le marqueur unique par conversation du protocole) ; et ce que chaque garde-fou coûte en latence, en tokens, donc en clients par GPU | P1.4 |
 | R12 | recherche | Fine-tuning agentique (par exemple LoRA sur les trajectoires de développement) : levier très avancé ; risque d'apprendre le développement par cœur, et l'affirmation ne porterait plus sur « ce modèle » | G7 |
 | R11 | recherche | Coût du FP8 en qualité : BF16 contre FP8 au repos, sur les 40 tâches de développement, sur une carte de 80 Go | P1, devis |
