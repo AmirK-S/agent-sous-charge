@@ -50,7 +50,7 @@ Total estimé : environ 100 à 170 $ si la carte est une L40S, 180 à 300 $ si c
 
 | Ticket | Type | Objet | Bloque |
 |---|---|---|---|
-| P1 | prototype | Sur le Mac : une tâche de bout en bout, serveur MCP, traces, test d'équivalence MCP sur les 97 tâches | pilote |
+| ~~P1~~ | prototype | **Terminé le 21/10** : vLLM sur L40S, une tâche de bout en bout, taille des conversations, serveur MCP à état, fidélité 0 écart, traces jusqu'à vLLM, abandons | pilote |
 | [G2](tickets/G2-gpu-impose.md) | cuisine | Le GPU imposé : L40S ou H100, selon la place mémoire des conversations bancaires | T1 |
 | G4 | cuisine | Ce qu'est un utilisateur : une tâche bancaire τ³, temps de réflexion, patience | G6 |
 | G5 | cuisine | Le client simulé : quel LLM, hors du GPU testé, et son coût | T1 |
@@ -70,6 +70,8 @@ Total estimé : environ 100 à 170 $ si la carte est une L40S, 180 à 300 $ si c
 | R11 | recherche | Coût du FP8 en qualité : BF16 contre FP8 au repos, sur les 40 tâches de développement, sur une carte de 80 Go | P1, devis |
 
 ## Journal de la carte
+
+- 21/10 : **P1 terminé** (portes de P1.6 et P1.7 fermées) ; image Docker D1 accordée en public sur GitHub (gratuit, sans notre code ni clé) ; G6 : sources réunies, 2 s est le niveau le plus souple de MLPerf.
 
 - 21/10 : P1.4 et P1.5 fermées (MCP à état, 0 écart sur 1 246 appels) ; P1.6 (traces de bout en bout jusqu'à vLLM) et P1.7 (aucune écriture après abandon, générations arrêtées en 0,22 s) passent le contrôle technique ; oraux à faire. Environ 1,10 $ de GPU.
 
