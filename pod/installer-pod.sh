@@ -20,12 +20,19 @@ echo "== Outils =="
 # on utilise le Python géré par uv, qui embarque ses en-têtes.
 export UV_PYTHON_PREFERENCE=only-managed
 # Ubuntu 24.04 protège le Python système (PEP 668) : uv s'installe par son script officiel.
-command -v uv > /dev/null || curl -LsSf https://astral.sh/uv/install.sh | sh
+command -v uv > /dev/null || [ -x /opt/uv/bin/uv ] || curl -LsSf https://astral.sh/uv/install.sh | sh
+export PATH="/opt/uv/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+VLLM_VERSION="0.32.0"   # épinglée (avant le 21/10 : non épinglée, 0.32.0 obtenue par chance à chaque fois)
+# Avec l'image D1 (docker/Dockerfile), tout est déjà dans /opt : on s'y branche au lieu de réinstaller.
+mkdir -p "$W"
+for d in venv venv-tau tau2-bench; do
+  [ -d "/opt/$d" ] && [ ! -e "$W/$d" ] && ln -s "/opt/$d" "$W/$d"
+done
 # Deux environnements séparés : vLLM et τ³ ne se parlent que par HTTP,
 # et leurs dépendances épinglées ne doivent pas se marcher dessus.
 [ -d "$W/venv" ] || uv venv "$W/venv" --python 3.12
-VIRTUAL_ENV="$W/venv" uv pip install -q vllm
+VIRTUAL_ENV="$W/venv" uv pip install -q "vllm==$VLLM_VERSION"
 "$W/venv/bin/python" -c "import vllm; print('vLLM', vllm.__version__)"
 
 echo "== τ³-bench au commit épinglé =="
