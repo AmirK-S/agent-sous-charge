@@ -8,6 +8,12 @@ export HF_HOME="$W/hf"
 export HF_HUB_OFFLINE=1
 source "$W/venv/bin/activate"
 
+# P1.6 : si OTLP_ENDPOINT est défini (ex. grpc://localhost:4317), vLLM envoie ses traces, rattachées
+# à celles de τ³ par l'en-tête traceparent. Paquets requis : opentelemetry-sdk, -api, -exporter-otlp,
+# -semantic-conventions-ai. Projet Phoenix : OTEL_RESOURCE_ATTRIBUTES=openinference.project.name=<projet>.
+TRACES=()
+[ -n "${OTLP_ENDPOINT:-}" ] && TRACES=(--otlp-traces-endpoint "$OTLP_ENDPOINT")
+
 vllm serve mistralai/Mistral-Small-3.2-24B-Instruct-2506 \
   --revision 95a6d26c4bfb886c58daf9d3f7332c857cb27b43 \
   --tokenizer-mode mistral --config-format hf --load-format safetensors \
@@ -18,4 +24,5 @@ vllm serve mistralai/Mistral-Small-3.2-24B-Instruct-2506 \
   --gpu-memory-utilization 0.92 \
   --enable-prefix-caching \
   --port 8000 \
+  "${TRACES[@]}" \
   2>&1 | tee "$W/vllm.log"

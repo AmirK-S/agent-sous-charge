@@ -20,6 +20,10 @@ import anyio
 import uvicorn
 from mcp import types
 from mcp.server.lowlevel import Server
+from opentelemetry import context as otel_context
+from opentelemetry import trace  # noqa: F401
+
+from mcp_banque.traces import installer
 
 from tau2.data_model.tasks import EnvFunctionCall, InitializationData
 from tau2.domains.banking_knowledge import retrieval as _recherche
@@ -31,10 +35,14 @@ CLE_DEMANDEUR = "agent-sous-charge/demandeur"
 
 # Outils de gestion de session, à côté des outils bancaires.
 OUVRIR, ETAT, EMPREINTE, FERMER = "session_ouvrir", "session_etat_initial", "session_empreinte", "session_fermer"
+# P1.7 : le client abandonne. L'abandon prend le verrou de la conversation : il attend la fin de l'outil
+# en cours (jamais d'écriture coupée en deux), et tout appel d'outil arrivé après est refusé sans être exécuté.
+ABANDONNER = "session_abandonner"
 
 INACTIVITE_MAX_S = 30 * 60
 
 conversations: dict[str, Environment] = {}
+abandonnees: set[str] = set()
 verrous: dict[str, threading.Lock] = {}
 dernier_appel: dict[str, float] = {}
 _verrou_global = threading.Lock()
@@ -86,6 +94,7 @@ def _catalogue() -> list[types.Tool]:
         (ETAT, "Applique l'état initial d'une tâche (données et actions d'initialisation)."),
         (EMPREINTE, "Renvoie les empreintes (hash) des bases agent et client de la conversation."),
         (FERMER, "Ferme la conversation et libère sa base."),
+        (ABANDONNER, "Le client abandonne : plus aucun outil exécuté pour cette conversation."),
     ]:
         outils.append(types.Tool(name=nom, description=desc, input_schema={"type": "object"}))
     return outils
@@ -123,6 +132,9 @@ def _executer(nom: str, args: dict[str, Any], meta: dict[str, Any]) -> types.Cal
                 message_history=[],
             )
             return _texte("ok")
+        if nom == ABANDONNER:
+            abandonnees.add(cid)
+            return _texte("ok")
         if nom == EMPREINTE:
             return _texte(f"{env.get_db_hash()}|{env.get_user_db_hash()}")
         if nom == FERMER:
@@ -130,7 +142,10 @@ def _executer(nom: str, args: dict[str, Any], meta: dict[str, Any]) -> types.Cal
                 conversations.pop(cid, None)
                 verrous.pop(cid, None)
                 dernier_appel.pop(cid, None)
+                abandonnees.discard(cid)
             return _texte("ok")
+        if cid in abandonnees:
+            return _texte("conversation abandonnée : appel refusé, rien n'a été exécuté", erreur=True)
         # Outil bancaire : même chemin que Environment.get_response, moins l'enveloppe d'erreur,
         # que le client remet à l'identique en relançant l'exception avec le même texte.
         try:
@@ -152,9 +167,24 @@ def creer_serveur() -> Server:
     catalogue.append(types.Tool(name="session_compte", description="Nombre de conversations ouvertes.",
                                 input_schema={"type": "object"}))
 
+    traceur = installer("serveur-mcp-banque")
+
+    def executer_trace(contexte, nom, args, meta):
+        jeton = otel_context.attach(contexte)
+        try:
+            with traceur.start_as_current_span(f"banque {nom}", attributes={
+                    "outil": nom, "conversation": str(meta.get(CLE_CONVERSATION))}) as span:
+                r = _executer(nom, args, meta)
+                span.set_attribute("erreur", bool(r.is_error))
+                return r
+        finally:
+            otel_context.detach(jeton)
+
     async def appeler(ctx, params: types.CallToolRequestParams) -> types.CallToolResult:
         meta = dict(params.meta or {})
-        return await anyio.to_thread.run_sync(_executer, params.name, dict(params.arguments or {}), meta)
+        # Le SDK MCP a déjà ouvert un span « tools/call » rattaché à la trace de τ³ : on s'y accroche.
+        contexte = otel_context.get_current()
+        return await anyio.to_thread.run_sync(executer_trace, contexte, params.name, dict(params.arguments or {}), meta)
 
     return Server("banque-tau3", version="0.1.0", on_list_tools=lister, on_call_tool=appeler)
 

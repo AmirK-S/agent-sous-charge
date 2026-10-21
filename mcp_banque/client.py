@@ -14,6 +14,8 @@ import weakref
 from typing import Any, Literal, Optional
 
 from mcp import Client
+from opentelemetry import context as otel_context
+from opentelemetry import trace
 
 from mcp_banque.serveur import CLE_CONVERSATION, CLE_DEMANDEUR, EMPREINTE, ETAT, FERMER, OUVRIR
 from tau2.domains.banking_knowledge.environment import get_environment as get_environment_local
@@ -35,7 +37,18 @@ class _Connexion:
         return asyncio.run_coroutine_threadsafe(coro, self.boucle).result()
 
     def appeler(self, nom: str, arguments: dict[str, Any], meta: dict[str, Any]) -> tuple[str, bool]:
-        r = self._attendre(self.client.call_tool(nom, arguments, meta=meta))
+        # Le contexte de trace vit dans le fil de τ³ ; on le transporte dans la boucle asyncio
+        # pour que la requête HTTP vers le serveur porte le bon `traceparent`.
+        contexte = otel_context.get_current()
+
+        async def avec_contexte():
+            jeton = otel_context.attach(contexte)
+            try:
+                return await self.client.call_tool(nom, arguments, meta=meta)
+            finally:
+                otel_context.detach(jeton)
+
+        r = self._attendre(avec_contexte())
         return r.content[0].text, bool(r.is_error)
 
     def appeler_sans_attendre(self, nom: str, arguments: dict[str, Any], meta: dict[str, Any]) -> None:
@@ -83,7 +96,9 @@ class EnvironnementMCP(Environment):
         return connexion().appeler(nom, arguments, {CLE_CONVERSATION: self.conversation, CLE_DEMANDEUR: demandeur})
 
     def make_tool_call(self, tool_name: str, requestor: Literal["user", "assistant"] = "assistant", **kwargs) -> Any:
-        texte, erreur = self._appel(tool_name, kwargs, requestor)
+        with trace.get_tracer("tau3").start_as_current_span(
+                f"outil {tool_name}", attributes={"outil": tool_name, "demandeur": requestor, "conversation": self.conversation}):
+            texte, erreur = self._appel(tool_name, kwargs, requestor)
         if erreur:
             raise ErreurOutil(texte)
         return texte

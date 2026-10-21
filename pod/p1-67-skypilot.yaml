@@ -1,0 +1,39 @@
+# P1.6 et P1.7 : vLLM tracé sur une L40S, piloté depuis le Mac par un tunnel SSH.
+# Le Mac fait tourner τ³, le serveur MCP et Phoenix ; la machine louée ne fait tourner que vLLM.
+#   sky launch -c p167 pod/p1-67-skypilot.yaml -i 10 --down -y
+#   ssh -N -L 8000:localhost:8000 -R 4317:localhost:4317 p167   (vLLM ici, traces vers Phoenix là-bas)
+# Garde-fou de coût : vLLM s'arrête seul au bout de 90 min, puis la machine est supprimée 10 min après.
+# Budget accordé par Amir le 21/10 : 3 $.
+
+resources:
+  accelerators: L40S:1
+  memory: 64+
+  disk_size: 150
+  any_of:
+    - infra: nebius
+      use_spot: true
+    - infra: shadeform
+    - infra: runpod
+
+workdir: .
+
+envs:
+  PROJET_TRACES: p16-gpu
+
+setup: |
+  set -euo pipefail
+  export W="$HOME/workspace"
+  mkdir -p "$W"
+  rm -rf "$W/agent-sous-charge" && cp -r ~/sky_workdir "$W/agent-sous-charge"
+  bash "$W/agent-sous-charge/pod/installer-pod.sh" 2>&1 | tee "$W/install.log"
+  VIRTUAL_ENV="$W/venv" ~/.local/bin/uv pip install -q opentelemetry-sdk opentelemetry-api \
+    opentelemetry-exporter-otlp opentelemetry-semantic-conventions-ai
+
+run: |
+  set -uo pipefail
+  export W="$HOME/workspace"
+  cd "$W"
+  export OTLP_ENDPOINT=grpc://localhost:4317 OTEL_EXPORTER_OTLP_TRACES_INSECURE=true
+  export OTEL_RESOURCE_ATTRIBUTES="openinference.project.name=$PROJET_TRACES"
+  timeout 90m env W="$W" bash agent-sous-charge/pod/servir-modele.sh > /dev/null 2>&1 || true
+  echo "vLLM arrêté (fin du garde-fou de 90 min ou arrêt manuel)"
