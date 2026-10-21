@@ -52,7 +52,7 @@ Total estimé : environ 100 à 170 $ si la carte est une L40S, 180 à 300 $ si c
 |---|---|---|---|
 | ~~P1~~ | prototype | **Terminé le 21/10** : vLLM sur L40S, une tâche de bout en bout, taille des conversations, serveur MCP à état, fidélité 0 écart, traces jusqu'à vLLM, abandons | pilote |
 | [G2](tickets/G2-gpu-impose.md) | cuisine | Le GPU imposé : L40S ou H100, selon la place mémoire des conversations bancaires | T1 |
-| G4 | cuisine | Ce qu'est un utilisateur : une tâche bancaire τ³, temps de réflexion, patience | G6 |
+| [G4](tickets/G4-utilisateur.md) | cuisine | Ce qu’est un utilisateur : temps de réflexion et patience ; préparé le 21/10 (mesure : environ une minute entre deux messages) | G6 |
 | G5 | cuisine | Le client simulé : quel LLM, hors du GPU testé, et son coût | T1 |
 
 ## Brouillard (pas encore décidable)
