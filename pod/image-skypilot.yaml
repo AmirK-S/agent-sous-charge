@@ -1,0 +1,36 @@
+# D1 · Machine lancée sur notre image (vLLM 0.32.0 et τ³ préinstallés) : plus de réinstallation.
+# Seuls les poids du modèle (45 Go) se téléchargent au démarrage.
+#   sky launch -c d1 pod/image-skypilot.yaml -i 10 --down -y
+# Prérequis : image publique sur ghcr.io (visibilité à basculer par Amir dans les réglages du paquet).
+# Hôte requis : pilote compatible CUDA 13.0.
+
+resources:
+  accelerators: L40S:1
+  memory: 64+
+  disk_size: 150
+  image_id: docker:ghcr.io/amirk-s/agent-sous-charge-gpu:vllm0.32.0-tau96a3ef92
+  any_of:
+    - infra: nebius
+      use_spot: true
+    - infra: shadeform
+    - infra: runpod
+
+workdir: .
+
+setup: |
+  set -euo pipefail
+  export W="$HOME/workspace"
+  mkdir -p "$W"
+  rm -rf "$W/agent-sous-charge" && cp -r ~/sky_workdir "$W/agent-sous-charge"
+  cat /opt/versions.txt
+  # Le script se branche sur /opt (liens symboliques) : il ne fait plus que télécharger les poids.
+  time bash "$W/agent-sous-charge/pod/installer-pod.sh" 2>&1 | tee "$W/install.log"
+
+run: |
+  set -uo pipefail
+  export W="$HOME/workspace"
+  cd "$W"
+  timeout 30m env W="$W" bash agent-sous-charge/pod/servir-modele.sh > /dev/null 2>&1
+  code=$?
+  echo "vLLM arrêté, code $code (124 = fin du garde-fou de 30 min)"
+  [ $code -eq 124 ] || { grep -E 'Error|Traceback' "$W/vllm.log" | tail -20; }

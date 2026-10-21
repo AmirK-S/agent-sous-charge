@@ -64,12 +64,14 @@ Total estimé : environ 100 à 170 $ si la carte est une L40S, 180 à 300 $ si c
 | G8 | cuisine | Le scénario et le ton de la vidéo | G6, G7 |
 | P0 | prototype | Essai pilote sur GPU loués (section 9 du pré-enregistrement), 40 à 70 $ | P1, T1 |
 | T1 | tâche | Compte de location GPU et page de dépense | G2 |
-| D1 | déploiement | Image Docker à nous (vLLM et τ³ préinstallés, poids téléchargés au démarrage) : plus de réinstallation ni de disque payé entre deux séances, n'importe quelle machine libre fait l'affaire ; et la même image tourne chez d'autres fournisseurs (Scaleway, OVHcloud, Nebius : voir R8), d'où l'argument souverain (la comparaison de prix : une anecdote, pas un segment). Construction par GitHub Actions (Amir a des minutes ; disque des machines standard d'environ 14 Go, à vérifier) ; maintenance faible car versions épinglées puis gelées. À faire après P1 et avant P0 : un environnement identique au fichier près chez tous les fournisseurs (SkyPilot sait lancer une image Docker). Né de la panne du 19/10 | P1, P0 |
+| [D1](tickets/D1-image-docker.md) | déploiement | Image Docker de l'expérience : construite le 21/10 (CUDA 13.0, vLLM 0.32.0, τ³ épinglé) ; reste à la rendre publique (Amir, un clic) et à la vérifier sur une carte | P0 |
 | S1 | sécurité | Ce qu'une banque ou la défense exigerait des outils derrière MCP : authentification et permissions par client, journal d'audit, défense contre l'injection de prompt par les documents ; isolation du cache entre clients (sinon fuite par mesure du temps de réponse ; parade : `cache_salt` de vLLM, et le marqueur unique par conversation du protocole) ; et ce que chaque garde-fou coûte en latence, en tokens, donc en clients par GPU | P1.4 |
 | R12 | recherche | Fine-tuning agentique (par exemple LoRA sur les trajectoires de développement) : levier très avancé ; risque d'apprendre le développement par cœur, et l'affirmation ne porterait plus sur « ce modèle » | G7 |
 | R11 | recherche | Coût du FP8 en qualité : BF16 contre FP8 au repos, sur les 40 tâches de développement, sur une carte de 80 Go | P1, devis |
 
 ## Journal de la carte
+
+- 21/10 (soir) : D1 construite par GitHub Actions ; trouvaille : vLLM 0.32.0 embarque PyTorch pour CUDA 13.0 (nos recettes visaient 12.8) ; G4 préparé (environ une minute de réflexion par tour, mesuré) ; G6 sourcé.
 
 - 21/10 : **P1 terminé** (portes de P1.6 et P1.7 fermées) ; image Docker D1 accordée en public sur GitHub (gratuit, sans notre code ni clé) ; G6 : sources réunies, 2 s est le niveau le plus souple de MLPerf.
 
