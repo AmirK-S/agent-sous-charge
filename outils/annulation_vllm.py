@@ -1,7 +1,7 @@
 """P1.7 (côté modèle) · Une génération abandonnée par le client doit s'arrêter dans vLLM.
 
 Pour chaque mode (réponse en flux, réponse d'un bloc) : on lance 8 générations longues (2 000 tokens
-demandés), on coupe la connexion au bout de 1 s, puis on lit /metrics de vLLM : le nombre de requêtes
+demandés), on coupe la connexion 1 s après que les 8 tournent, puis on lit /metrics de vLLM : le nombre de requêtes
 en cours doit retomber à 0 en moins de 2 s. Sinon, des générations orphelines occupent la carte pour rien.
 Témoin : les mêmes requêtes non coupées sont bien en cours au moment de la coupure.
 
@@ -38,6 +38,11 @@ async def generation(url: str, flux: bool) -> None:
 async def essai(url: str, flux: bool) -> dict:
     async with httpx.AsyncClient(timeout=10) as c:
         taches = [asyncio.create_task(generation(url, flux)) for _ in range(8)]
+        # On coupe seulement quand les 8 générations tournent vraiment (au plus 15 s d'attente) :
+        # à travers un tunnel, elles mettent un moment à arriver.
+        depart = time.monotonic()
+        while (avant := await en_cours(c, url)) < 8 and time.monotonic() - depart < 15:
+            await asyncio.sleep(0.1)
         await asyncio.sleep(1.0)
         avant = await en_cours(c, url)
         for t in taches:

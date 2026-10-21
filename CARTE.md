@@ -67,6 +67,8 @@ Total estimé : environ 100 à 170 $ si la carte est une L40S, 180 à 300 $ si c
 
 ## Journal de la carte
 
+- 21/10 : P1.4 et P1.5 fermées (MCP à état, 0 écart sur 1 246 appels) ; P1.6 (traces de bout en bout jusqu'à vLLM) et P1.7 (aucune écriture après abandon, générations arrêtées en 0,22 s) passent le contrôle technique ; oraux à faire. Environ 1,10 $ de GPU.
+
 - 20/10 : P1.3 fermée (micro-leçon cache KV, carte 2, oral) ; feuille de route et budget estimés ; ancien pod RunPod supprimé ; prochaine tranche : P1.4.
 
 - 19/10 : P1.2 et P1.3 jouées via SkyPilot (D2) chez Nebius ; P1.2 fermée ; P1.3 : médiane 14 822 tokens par conversation, prédiction d'Amir juste ; oral de P1.3 et décision G2 en attente.
