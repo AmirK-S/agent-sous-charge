@@ -24,6 +24,10 @@ But derrière la destination : qu'Amir devienne réellement bon en montée en ch
 | Angle libre confirmé : personne ne publie pass^k par palier de concurrence sur un agent avec outils | R3, 18/10 |
 | Chaque tranche se termine à l'oral (contexte, choix, coût, chiffre) | séance du 18/10 |
 | Protocole : [pré-enregistrement v3](PRE-ENREGISTREMENT.md), après trois revues adverses ([ADV1](tickets/ADV1-gemini.md), [ADV2](tickets/ADV2-astra.md), [ADV3](tickets/ADV3-astra-direct.md)) ; une seule affirmation certifiée (un modèle, une carte, un site, 57 tâches) ; le reste descriptif ; devis plafond avant gel | Amir, Gemini, Astra, 18/10 |
+| G5 : client simulé par API (GPT-6 Luna, 0,0014 $ la conversation mesurée en P1.3) plutôt qu'un second GPU ; tenue du p99 < 1,5 s à vérifier au pilote | Amir, 21/10 |
+| G2 : ne pas trancher avant le pilote ; mesurer L40S et H100 le même jour (environ 10 $ de plus), choisir sur le coût par conversation réussie | Amir, 21/10 |
+| P0 : pilote accordé, plafond 80 $ ; soldes des fournisseurs vérifiés et recharges indiquées à Amir avant lancement (pas de recharge automatique) | Amir, 21/10 |
+| G4 et G6, **provisoire** : réflexion du client 5 à 20 s, patience 30 s par tour ; premier token < 2 s au p99, tour < 8 s au p95. Amir trouve 2 s peut-être trop strict : sources à trouver avant de trancher. Biais du temps de réflexion neutralisé par des tirages communs à toutes les configurations, l'affirmation en débit, et une sensibilité publiée | Amir, 21/10 |
 
 ## Feuille de route et budget (estimation du 20/10, à remplacer par le devis plafond de P0)
 
