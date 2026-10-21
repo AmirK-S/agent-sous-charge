@@ -12,8 +12,8 @@ resources:
   any_of:
     - infra: nebius
       use_spot: true
-    - infra: shadeform
     - infra: runpod
+  # Shadeform retiré : SkyPilot n'y lance pas d'image Docker (« Docker images not supported on Shadeform yet », 21/10).
 
 workdir: .
 
