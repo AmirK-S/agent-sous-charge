@@ -59,7 +59,7 @@ Total estimé : environ 100 à 170 $ si la carte est une L40S, 180 à 300 $ si c
 
 | Ticket | Type | Objet | Attend |
 |---|---|---|---|
-| G6 | cuisine | Les seuils : latence, erreurs, pass^k, test statistique | G4 |
+| [G6](tickets/G6-seuils.md) | cuisine | Les seuils : latence, erreurs, pass^k, test statistique ; sources réunies le 21/10 | G4 |
 | G7 | cuisine | La progression des optimisations et leur ordre. Piste d'Amir (20/10) : une courbe qui part du bas, comme la vidéo du serveur à 12 $ : (1) Ollama ou serveur Python, une requête à la fois ; (2) vLLM et son regroupement continu ; (3) cache du préfixe commun ; (4) cache KV en FP8 ; (5) harness sobre (moins de résultats, garde-fou anti-boucle) ; (6) décodage spéculatif, découpage des longs prompts ; (7) seulement à la fin, « et si on achète une H100 ? ». Chute visée : le logiciel multiplie plus que le matériel, au même prix | P1 |
 | G8 | cuisine | Le scénario et le ton de la vidéo | G6, G7 |
 | P0 | prototype | Essai pilote sur GPU loués (section 9 du pré-enregistrement), 40 à 70 $ | P1, T1 |
