@@ -3,6 +3,10 @@
 # Débits : 2, 4, 8, 12, 16 puis 24 conversations/minute (surcharge volontaire), 10 min chacun,
 # temps de réflexion réaliste (G4), 40 tâches de développement. Garde-fou : 2 h au plus.
 
+# Ressources demandées : sans elles, SkyPilot lançait la tâche en parallèle de la précédente (22/10).
+resources:
+  accelerators: L40S:1
+
 workdir: .
 
 file_mounts:

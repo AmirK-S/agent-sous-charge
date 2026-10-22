@@ -43,7 +43,9 @@ cd "$W/tau2-bench"
 git fetch -q --all
 git checkout -q "$TAU_COMMIT"
 # Versions exactes du verrou du dépôt, plus l'extra du domaine banking (BM25).
-UV_PROJECT_ENVIRONMENT="$W/venv-tau" uv sync --frozen --extra knowledge
+# --inexact : ne pas retirer ce que l'image a ajouté (MCP, OpenTelemetry) ; sans lui, uv sync les supprimait
+# et le serveur MCP ne démarrait plus (nuit du 22/10).
+UV_PROJECT_ENVIRONMENT="$W/venv-tau" uv sync --frozen --inexact --extra knowledge
 # Bug de τ³ à ce commit : le cœur importe le module vocal (websockets) sans le déclarer.
 # L'extra voice tirerait pyaudio, à compiler : on n'ajoute que websockets, à la version du verrou.
 VIRTUAL_ENV="$W/venv-tau" uv pip install -q "websockets==15.0.1"
