@@ -6,8 +6,8 @@
   commencées pendant la fenêtre de mesure d'un palier lui sont attribuées.
 - Temps de réflexion (G4) : « réaliste » = lecture de la réponse de l'agent à 238 mots/min + frappe du
   message à 36 mots/min + pause uniforme 2 à 5 s ; « presse » = uniforme 5 à 20 s ; « aucun » = 0.
-- Mesures par conversation : note τ³, fin, et chaque tour (du message du client à la réponse finale de
-  l'agent, outils compris). Mesures par palier : histogrammes vLLM (premier token, temps par token),
+- Mesures par conversation : note τ³, fin, et chaque tour [instant de début, durée] (du message du client
+  à la réponse finale de l'agent, outils compris). Mesures par palier : histogrammes vLLM (premier token, temps par token),
   relevés au début et à la fin de la fenêtre.
 - Limite connue (pilote) : la patience de 30 s est comptée après coup (tours trop longs = abandons),
   sans couper réellement la conversation.
@@ -44,6 +44,7 @@ from tau2.user.user_simulator import UserSimulator  # noqa: E402
 LECTURE_MPM, FRAPPE_MPM = 238, 36
 _local = threading.local()  # état de la conversation du fil courant
 MODE_REFLEXION = "realiste"
+T0 = [time.monotonic()]  # début de la séance, fixé dans main()
 
 
 def _mots(texte) -> int:
@@ -76,7 +77,9 @@ def _instrumenter() -> None:
         msg, state = gen_agent(self, message, state)
         c = getattr(_local, "conv", None)
         if c is not None and not msg.is_tool_call() and c.get("debut_tour") is not None:
-            c["tours"].append(round(time.monotonic() - c["debut_tour"], 3))
+            # Tour horodaté (secondes depuis le début de la séance) : avec l'escalier continu, un tour se
+            # range dans la fenêtre de temps où il a eu lieu, pas dans le palier où sa conversation a commencé.
+            c["tours"].append([round(c["debut_tour"] - T0[0], 1), round(time.monotonic() - c["debut_tour"], 3)])
             c["debut_tour"] = None
         return msg, state
 
@@ -185,6 +188,7 @@ def main() -> None:
             sortie.flush()
 
     t0 = time.monotonic()
+    T0[0] = t0
     fils, prochain_palier = [], 0
     for instant, palier, tache_id, graine in calendrier:
         while palier >= prochain_palier:  # bornes de palier : relevé des histogrammes vLLM
