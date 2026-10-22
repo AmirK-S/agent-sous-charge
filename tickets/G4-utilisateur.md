@@ -1,6 +1,6 @@
 # G4 · cuisine · Ce qu'est un utilisateur : temps de réflexion et patience
 
-**Statut :** préparé le 21/10, à trancher par Amir. Débloque G6 (seuils) et le scénario de charge du pilote.
+**Statut :** recommandation appliquée **en provisoire** le 22/10 (décision réversible avant le gel), à confirmer à la revue du vendredi.
 
 ## La question
 Entre deux messages, combien de temps le client simulé « réfléchit-il » avant de répondre ? C'est ce temps qui décide combien de conversations la carte peut tenir ouvertes : plus il est long, plus la carte sert de clients à la fois.
@@ -42,5 +42,6 @@ Le banc ajoute des clients jusqu'à ce que la carte ne s'arrête plus. Des clien
 La carte n'attend vraiment qu'au début (remplissage) et à la fin (vidage) d'une séance ; **l'escalier continu** (monter d'un palier à l'autre sans vider) réduit ce coût à un seul remplissage et un seul vidage par séance.
 Les mesures au repos (partie 1 du pilote) n'en dépendent pas : clients joués sans temps de réflexion.
 
-## Résolution
-_à remplir par Amir (reformulation)_
+## Résolution provisoire (22/10)
+Temps de réflexion **calculé** (lecture 238 mots/min, frappe 36 mots/min, pause 2 à 5 s) pour le chiffre officiel ; client pressé (5 à 20 s) pour les essais de réglage et en sensibilité ; escalier continu pour ne payer qu'un remplissage et un vidage par séance.
+Compréhension d'Amir, à ses mots : « vLLM jette le cache inutilisé, donc les clients lents ne bloquent pas la carte ; ça se répercute sur le temps de réponse ». Il ne l'a pas formulée comme une décision : à confirmer vendredi.
