@@ -1,6 +1,6 @@
 # G6 · cuisine · Les seuils : latence, patience, temps de réflexion
 
-**Statut :** valeurs provisoires du 21/10 ; sources réunies le 21/10 ; à trancher par Amir.
+**Statut :** tranché par Amir le 22/10.
 
 ## Valeurs provisoires (21/10) et ce que disent les sources
 
@@ -26,5 +26,6 @@
 ## Points faibles
 Le « 2 s de Miller » n'est connu que par des sources secondaires ; les taux d'abandon viennent d'éditeurs ; aucun objectif publié pour un agent à plusieurs étapes ; les objectifs de DistServe et Sarathi-Serve sont fixés par leurs auteurs, pas mesurés sur des utilisateurs.
 
-## Résolution
-_à remplir par Amir_
+## Résolution (22/10, Amir)
+Les quatre seuils sont acceptés : **premier token < 2 s au p99**, **temps par token de sortie < 200 ms au p99**, **tour complet < 10 s au p95** (avec affichage de progression pendant les outils ; 8 s sans), **patience de 30 s** par tour (sensibilité à 15 et 60 s).
+Question d'Amir : « peut-on être plus relax ensuite ? » Pas après avoir vu les résultats (ce serait choisir le seuil qui arrange). En revanche, **la courbe capacité contre seuil** (combien de clients à 2 s, 4 s, 6 s…) est pré-enregistrée comme résultat **descriptif** : c'est elle qui permet à une entreprise de choisir son compromis confort contre coût. Le seuil de 2 s reste celui de l'affirmation certifiée.
