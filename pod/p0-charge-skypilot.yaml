@@ -1,0 +1,35 @@
+# P0, partie 2 (nuit du 22/10) : paliers de charge, Mistral Small 3.2 sur L40S, escalier continu.
+# Mise en file sur la machine de la partie 1 :  sky exec p0r pod/p0-charge-skypilot.yaml
+# Débits : 2, 4, 8, 12, 16 puis 24 conversations/minute (surcharge volontaire), 10 min chacun,
+# temps de réflexion réaliste (G4), 40 tâches de développement. Garde-fou : 2 h au plus.
+
+workdir: .
+
+file_mounts:
+  ~/.openrouter.env: ~/.config/openrouter/env
+
+envs:
+  PALIERS: "2,4,8,12,16,24"
+  MINUTES: "10"
+  REFLEXION: realiste
+
+run: |
+  set -uo pipefail
+  export W="$HOME/workspace"
+  P="$W/agent-sous-charge"
+  rm -rf "$P" && cp -r ~/sky_workdir "$P"
+  chmod 600 ~/.openrouter.env
+  set -a; source ~/.openrouter.env; set +a
+  pkill -f "vllm serve" || true; pkill -f mcp_banque.serveur || true; sleep 5
+  (cd "$P" && PYTHONPATH="$P" setsid nohup "$W/venv-tau/bin/python" -m mcp_banque.serveur --port 8765 > "$W/serveur-mcp-charge.log" 2>&1 < /dev/null &)
+  (setsid nohup env W="$W" bash "$P/pod/servir-modele.sh" > /dev/null 2>&1 < /dev/null &)
+  debut=$(date +%s)
+  until curl -sf localhost:8000/v1/models > /dev/null; do sleep 10; [ $(( $(date +%s) - debut )) -lt 1200 ] || { echo "vLLM absent"; exit 1; }; done
+  echo "vLLM prêt en $(( $(date +%s) - debut )) s ; début des paliers : $(date -u +%H:%M:%S)"
+  cd "$P" && timeout 2h env PYTHONPATH="$P" "$W/venv-tau/bin/python" -m mcp_banque.charge \
+    --modele mistralai/Mistral-Small-3.2-24B-Instruct-2506 --paliers "$PALIERS" --minutes "$MINUTES" \
+    --reflexion "$REFLEXION" --vidage-max-min 15 --sortie "$W/charge-mistral-l40s.jsonl" 2>&1 \
+    | grep -E --line-buffered "prévues|palier|fin des arrivées|ttft|Traceback"
+  echo "fin des paliers : $(date -u +%H:%M:%S)"
+  ps -o rss= -p $(pgrep -f mcp_banque.serveur) | awk '{printf "mémoire du serveur MCP : %.0f Mo\n",$1/1024}'
+  pkill -f "vllm serve"; pkill -f mcp_banque.serveur
