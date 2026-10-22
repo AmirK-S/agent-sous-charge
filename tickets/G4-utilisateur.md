@@ -32,5 +32,15 @@ pendant ce temps, la carte sert les autres clients
 - **Temps de réflexion** : le délai entre la réponse de l'agent et le message suivant du client.
 - **Analyse de sensibilité** : refaire la mesure avec une autre hypothèse pour voir si la conclusion change.
 
+## La peur d'Amir (22/10) : « payer la carte pendant que les clients réfléchissent »
+`X` = la carte calcule pour ce client ; `.` = le client lit ou tape.
+```
+3 clients :  la carte  X X X . . X X X . . X X X . .   ← elle attend 40 % du temps
+5 clients :  la carte  X X X X X X X X X X X X X X X   ← elle ne s'arrête jamais
+```
+Le banc ajoute des clients jusqu'à ce que la carte ne s'arrête plus. Des clients lents demandent **plus de clients** (environ 60 au lieu de 15), pas plus de temps de carte : on paie la fenêtre de mesure, pas la réflexion. Les faux clients ne coûtent presque rien pendant qu'ils « réfléchissent ».
+La carte n'attend vraiment qu'au début (remplissage) et à la fin (vidage) d'une séance ; **l'escalier continu** (monter d'un palier à l'autre sans vider) réduit ce coût à un seul remplissage et un seul vidage par séance.
+Les mesures au repos (partie 1 du pilote) n'en dépendent pas : clients joués sans temps de réflexion.
+
 ## Résolution
 _à remplir par Amir (reformulation)_
