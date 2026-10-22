@@ -1,0 +1,52 @@
+# P0, partie 1 (nuit du 22/10) : réussite au repos, 40 tâches de développement × 4 essais, Mistral puis Gemma.
+#   sky launch -c p0r pod/p0-repos-skypilot.yaml -i 15 --down -y
+# Plafond accordé par Amir : 10 $. Spot Nebius (crédit déjà payé) ; garde-fou : tout s'arrête au bout de 4 h.
+# Hôte requis : pilote compatible CUDA 13.0.
+
+resources:
+  accelerators: L40S:1
+  memory: 64+
+  disk_size: 220          # Mistral 45 Go + Gemma 63 Go + image
+  image_id: docker:ghcr.io/amirk-s/agent-sous-charge-gpu:vllm0.32.0-tau96a3ef92
+  any_of:
+    - infra: nebius
+      use_spot: true
+    - infra: runpod
+
+workdir: .
+
+file_mounts:
+  ~/.openrouter.env: ~/.config/openrouter/env
+
+setup: |
+  set -euo pipefail
+  export W="$HOME/workspace"
+  mkdir -p "$W"
+  rm -rf "$W/agent-sous-charge" && cp -r ~/sky_workdir "$W/agent-sous-charge"
+  cat /opt/versions.txt
+  bash "$W/agent-sous-charge/pod/installer-pod.sh" 2>&1 | tee "$W/install.log"
+  HF_HOME="$W/hf" "$W/venv/bin/hf" download google/gemma-4-31B-it \
+    --revision 842da3794eaa0b77d5f08bae87a17459d91ff475 > /dev/null
+  du -sh "$W/hf"
+
+run: |
+  set -uo pipefail
+  export W="$HOME/workspace"
+  P="$W/agent-sous-charge"
+  chmod 600 ~/.openrouter.env
+  attendre_vllm() {
+    local debut=$(date +%s)
+    until curl -sf localhost:8000/v1/models > /dev/null; do
+      sleep 10
+      [ $(( $(date +%s) - debut )) -lt 1200 ] || { echo "vLLM ne répond pas après 20 min"; return 1; }
+    done
+    echo "vLLM prêt en $(( $(date +%s) - debut )) s"
+  }
+  jouer() {   # $1 lot, $2 script de service, $3 modèle
+    (setsid nohup env W="$W" bash "$P/pod/$2" > /dev/null 2>&1 < /dev/null &)
+    attendre_vllm && { echo "début $1 : $(date -u +%H:%M:%S)"; env W="$W" bash "$P/pod/jouer-repos.sh" "$1" "$3" > /dev/null 2>&1; echo "fin $1 : $(date -u +%H:%M:%S)"; }
+    grep -E "Average Reward|Pass\^1" "$W/jouer-$1.log" | tail -2
+    pkill -f "vllm serve"; sleep 20
+  }
+  timeout 4h bash -c "$(declare -f attendre_vllm jouer); W=$W P=$P; jouer p0-repos-mistral servir-modele.sh mistralai/Mistral-Small-3.2-24B-Instruct-2506; jouer p0-repos-gemma servir-gemma.sh google/gemma-4-31B-it"
+  echo "nuit terminée : $(date -u +%H:%M:%S)"

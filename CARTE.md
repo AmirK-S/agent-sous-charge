@@ -38,7 +38,7 @@ But derrière la destination : qu'Amir devienne réellement bon en montée en ch
 | 3 | P1.6 traces (OpenTelemetry, Phoenix), P1.7 abandons | 2 à 3 | un peu | 2 à 5 $ |
 | 4 | D1 image Docker | 1 | non | 0 |
 | 5 | Cuisine G4 (utilisateur), G5 (client simulé), G6 (seuils) | 2 à 3 | non | 0 |
-| 6 | P0 pilote, dont G2 tranché en mesurant L40S et H100 le même jour | 2 à 3 | oui | 50 à 80 $ |
+| 6 | P0 pilote, dont G2 tranché en mesurant L40S et H100 le même jour | 2 à 3 | oui | 10 à 25 $ (réestimé le 22/10) |
 | 7 | G7 optimisations successives, sur le développement (cœur de la vidéo) | 5 à 10 | oui, spot | 20 à 40 $ |
 | 8 | Devis plafond, revue adverse, gel du protocole | 1 | non | 1 $ |
 | 9 | Campagne confirmatoire, repli, réplication | 2 à 3 | oui | 40 à 150 $ selon la carte |
@@ -62,7 +62,7 @@ Total estimé : environ 100 à 170 $ si la carte est une L40S, 180 à 300 $ si c
 | [G6](tickets/G6-seuils.md) | cuisine | Seuils de latence **tranchés le 22/10** (2 s, 200 ms, 10 s, 30 s ; courbe capacité contre seuil en descriptif) ; restent erreurs, pass^k et test statistique | G4 |
 | G7 | cuisine | La progression des optimisations et leur ordre. Piste d'Amir (20/10) : une courbe qui part du bas, comme la vidéo du serveur à 12 $ : (1) Ollama ou serveur Python, une requête à la fois ; (2) vLLM et son regroupement continu ; (3) cache du préfixe commun ; (4) cache KV en FP8 ; (5) harness sobre (moins de résultats, garde-fou anti-boucle) ; (6) décodage spéculatif, découpage des longs prompts ; (7) seulement à la fin, « et si on achète une H100 ? ». Chute visée : le logiciel multiplie plus que le matériel, au même prix | P1 |
 | G8 | cuisine | Le scénario et le ton de la vidéo | G6, G7 |
-| P0 | prototype | Essai pilote sur GPU loués (section 9 du pré-enregistrement), 40 à 70 $ | P1, T1 |
+| P0 | prototype | Essai pilote sur GPU loués (section 9 du pré-enregistrement) ; réestimé le 22/10 à **10 à 25 $** (client simulé par API depuis G5, une seule carte louée), environ 7,5 h de GPU ; partie 1 (repos, deux modèles) lancée la nuit du 22/10, plafond 10 $ | P1, T1 |
 | T1 | tâche | Compte de location GPU et page de dépense | G2 |
 | ~~[D1](tickets/D1-image-docker.md)~~ | déploiement | **Fait le 21/10** : image publique, vérifiée sur L40S ; environnement identique partout, mais pas de gain de temps (25 min de la location au modèle, dominés par les téléchargements) ; suite : poids sur un volume réseau | P0 |
 | S1 | sécurité | Ce qu'une banque ou la défense exigerait des outils derrière MCP : authentification et permissions par client, journal d'audit, défense contre l'injection de prompt par les documents ; isolation du cache entre clients (sinon fuite par mesure du temps de réponse ; parade : `cache_salt` de vLLM, et le marqueur unique par conversation du protocole) ; et ce que chaque garde-fou coûte en latence, en tokens, donc en clients par GPU | P1.4 |
