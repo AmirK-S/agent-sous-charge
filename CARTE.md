@@ -27,7 +27,7 @@ But derrière la destination : qu'Amir devienne réellement bon en montée en ch
 | G5 : client simulé par API (GPT-6 Luna, 0,0014 $ la conversation mesurée en P1.3) plutôt qu'un second GPU ; tenue du p99 < 1,5 s à vérifier au pilote | Amir, 21/10 |
 | G2 : ne pas trancher avant le pilote ; mesurer L40S et H100 le même jour (environ 10 $ de plus), choisir sur le coût par conversation réussie | Amir, 21/10 |
 | P0 : pilote accordé, plafond 80 $ ; soldes des fournisseurs vérifiés et recharges indiquées à Amir avant lancement (pas de recharge automatique) | Amir, 21/10 |
-| G4 et G6, **provisoire** : réflexion du client 5 à 20 s, patience 30 s par tour ; premier token < 2 s au p99, tour < 8 s au p95. Amir trouve 2 s peut-être trop strict : sources à trouver avant de trancher. Biais du temps de réflexion neutralisé par des tirages communs à toutes les configurations, l'affirmation en débit, et une sensibilité publiée | Amir, 21/10 |
+| G4 et G6, **tranchés le 22/10** (détail dans les tickets) ; valeurs d'origine : réflexion du client 5 à 20 s, patience 30 s par tour ; premier token < 2 s au p99, tour < 8 s au p95. Amir trouve 2 s peut-être trop strict : sources à trouver avant de trancher. Biais du temps de réflexion neutralisé par des tirages communs à toutes les configurations, l'affirmation en débit, et une sensibilité publiée | Amir, 21/10 |
 
 ## Feuille de route et budget (estimation du 20/10, à remplacer par le devis plafond de P0)
 
@@ -52,7 +52,7 @@ Total estimé : environ 100 à 170 $ si la carte est une L40S, 180 à 300 $ si c
 |---|---|---|---|
 | ~~P1~~ | prototype | **Terminé le 21/10** : vLLM sur L40S, une tâche de bout en bout, taille des conversations, serveur MCP à état, fidélité 0 écart, traces jusqu'à vLLM, abandons | pilote |
 | [G2](tickets/G2-gpu-impose.md) | cuisine | Le GPU imposé : L40S ou H100, selon la place mémoire des conversations bancaires | T1 |
-| [G4](tickets/G4-utilisateur.md) | cuisine | Ce qu’est un utilisateur : temps de réflexion et patience ; préparé le 21/10 (mesure : environ une minute entre deux messages) | G6 |
+| ~~[G4](tickets/G4-utilisateur.md)~~ | cuisine | **Tranché le 22/10** : temps de réflexion calculé (environ une minute), client pressé pour les réglages, escalier continu jusqu'à rupture d'un seuil | G6 |
 | G5 | cuisine | Le client simulé : quel LLM, hors du GPU testé, et son coût | T1 |
 
 ## Brouillard (pas encore décidable)
