@@ -62,3 +62,19 @@ Amir n'a pas envie d'apprendre « en général » ; il apprend quand il en a bes
 ## Règle 7 : les revues adverses aux grands jalons seulement
 
 Avant le gel du protocole, à la fin du pilote, avant toute publication. Par un modèle d'une autre famille, appelé seul (la revue d'Astra seul a été la plus utile : elle a retiré de l'inutile coûteux). Pas à chaque étape.
+
+## Règle 8 : la preuve avant la recommandation (ajoutée le 23/10)
+
+Écrite après une erreur : 15 $ de criblage de modèles proposés le 23/10 sans avoir lu le classement officiel du banc, qui donnait déjà la réponse.
+- **Avant toute recommandation qui dépense ou qui change de cap**, deux vérifications, écrites dans le ticket : *ce que d'autres ont déjà mesuré* (classement, article, dépôt) et *ce que nos propres données disent déjà* (diagnostic gratuit).
+- **Une décision qui en contredit une ancienne rouvre l'ancienne** dans la carte (« remise en cause le … »), au lieu de la contourner en silence.
+- **Une remise en question d'Amir n'est pas un ordre de changer d'avis.** La session garde sa recommandation si la preuve la soutient, et dit ce qui la ferait changer.
+
+## Règle 9 : la fin de séance (ajoutée le 23/10)
+
+Avant de rendre la main, la session coche :
+1. La résolution ou l'état est écrit dans le ticket.
+2. Une ligne dans le journal de `CARTE.md` ; la frontière et le brouillard sont à jour (rien de fait ne reste « ouvert », rien d'ouvert n'est oublié).
+3. `REPRISE.md`, section « État », est réécrite : fait, ticket en cours, ce qui tourne, dépensé, prochaine action.
+4. Un numéro de ticket nouveau est vérifié contre la carte et le journal (pas de doublon).
+5. Commit et push.

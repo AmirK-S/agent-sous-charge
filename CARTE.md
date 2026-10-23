@@ -14,8 +14,8 @@ But derrière la destination : qu'Amir devienne réellement bon en montée en ch
 | Décision | Source |
 |---|---|
 | Question : « votre agent bancaire tourne chez vous, sur votre GPU : combien de clients avant de cesser d'être fiable, à quel coût par conversation réussie, à quelle distance d'un modèle de pointe ? » | Amir, 18/10 |
-| Cas d'usage : domaine banking_knowledge de τ³-bench (97 tâches, 698 documents, BM25 hors ligne), notation par état final de la base ; outils servis par MCP (à construire) ; témoin retail supprimé (ADV3) | R1, R6, Amir 18/10 |
-| Modèles : Mistral Small 3.2 (européen) et Gemma 4 31B (américain) ; un modèle de pointe par API en repère de qualité, hors charge ; ni Qwen, ni DeepSeek, ni Llama 4 | R5, R7, Amir 18/10 |
+| Cas d'usage : domaine banking_knowledge de τ³-bench (97 tâches, 698 documents), notation par état final de la base ; outils servis par MCP (fait) ; témoin retail supprimé (ADV3). **Recherche « BM25 seul » remise en cause le 23/10 ([G11](tickets/G11-qualite-au-repos.md))** | R1, R6, Amir 18/10 |
+| Modèles : Mistral Small 3.2 (européen) et Gemma 4 31B (américain) ; un modèle de pointe par API en repère de qualité, hors charge ; ni Qwen, ni DeepSeek, ni Llama 4. **Remis en cause le 23/10 : 4,5 et 6 % de réussite au repos ([G11](tickets/G11-qualite-au-repos.md))** | R5, R7, Amir 18/10 |
 | Un seul GPU, tout en réel, aucun simulateur | Amir, 18/10 |
 | Destination, hors périmètre et critère d'arrêt ([G1](tickets/G1-destination-et-hors-perimetre.md)) | Amir, 18/10 |
 | Règles du défi ([G9](tickets/G9-regles-du-defi.md)) | Amir, 18/10 |
@@ -51,9 +51,9 @@ Total estimé : environ 100 à 170 $ si la carte est une L40S, 180 à 300 $ si c
 | Ticket | Type | Objet | Bloque |
 |---|---|---|---|
 | ~~P1~~ | prototype | **Terminé le 21/10** : vLLM sur L40S, une tâche de bout en bout, taille des conversations, serveur MCP à état, fidélité 0 écart, traces jusqu'à vLLM, abandons | pilote |
-| [G2](tickets/G2-gpu-impose.md) | cuisine | Le GPU imposé : L40S ou H100, selon la place mémoire des conversations bancaires | T1 |
+| [G11](tickets/G11-qualite-au-repos.md) | cuisine (avec Amir) | **Ouvert le 23/10.** Au repos, les agents réussissent 4,5 et 6 %. Que remet-on en cause : la recherche, la façon de chercher, le modèle ou le banc ? Diagnostic gratuit fait : l'agent fait 2 recherches pour 10 documents requis | G2, P0, G7 |
+| [G2](tickets/G2-gpu-impose.md) | cuisine | Le GPU imposé : L40S ou H100. **Bloqué par G11** : la recherche et le modèle changent la taille des conversations | T1 |
 | ~~[G4](tickets/G4-utilisateur.md)~~ | cuisine | **Tranché le 22/10** : temps de réflexion calculé (environ une minute), client pressé pour les réglages, escalier continu jusqu'à rupture d'un seuil | G6 |
-| G5 | cuisine | Le client simulé : quel LLM, hors du GPU testé, et son coût | T1 |
 
 ## Brouillard (pas encore décidable)
 
@@ -62,7 +62,7 @@ Total estimé : environ 100 à 170 $ si la carte est une L40S, 180 à 300 $ si c
 | [G6](tickets/G6-seuils.md) | cuisine | Seuils de latence **tranchés le 22/10** (2 s, 200 ms, 10 s, 30 s ; courbe capacité contre seuil en descriptif) ; restent erreurs, pass^k et test statistique | G4 |
 | G7 | cuisine | La progression des optimisations et leur ordre. Piste d'Amir (20/10) : une courbe qui part du bas, comme la vidéo du serveur à 12 $ : (1) Ollama ou serveur Python, une requête à la fois ; (2) vLLM et son regroupement continu ; (3) cache du préfixe commun ; (4) cache KV en FP8 ; (5) harness sobre (moins de résultats, garde-fou anti-boucle) ; (6) décodage spéculatif, découpage des longs prompts ; (7) seulement à la fin, « et si on achète une H100 ? ». Chute visée : le logiciel multiplie plus que le matériel, au même prix | P1 |
 | G8 | cuisine | Le scénario et le ton de la vidéo | G6, G7 |
-| P0 | prototype | Essai pilote sur GPU loués (section 9 du pré-enregistrement) ; réestimé le 22/10 à **10 à 25 $** (client simulé par API depuis G5, une seule carte louée), environ 7,5 h de GPU ; partie 1 (repos, deux modèles) lancée la nuit du 22/10, plafond 10 $ | P1, T1 |
+| P0 | prototype | Essai pilote sur GPU loués. **Partie 1 jouée la nuit du 22/10** (7,60 $, [rapport](mesures/P0-nuit-22-10.md)) : repos 4,5 % (Mistral) et 6 % (Gemma), saturation de la L40S entre 2 et 4 conversations/min. Suite suspendue à G11 | G11 |
 | T1 | tâche | Compte de location GPU et page de dépense | G2 |
 | ~~[D1](tickets/D1-image-docker.md)~~ | déploiement | **Fait le 21/10** : image publique, vérifiée sur L40S ; environnement identique partout, mais pas de gain de temps (25 min de la location au modèle, dominés par les téléchargements) ; suite : poids sur un volume réseau | P0 |
 | S1 | sécurité | Ce qu'une banque ou la défense exigerait des outils derrière MCP : authentification et permissions par client, journal d'audit, défense contre l'injection de prompt par les documents ; isolation du cache entre clients (sinon fuite par mesure du temps de réponse ; parade : `cache_salt` de vLLM, et le marqueur unique par conversation du protocole) ; et ce que chaque garde-fou coûte en latence, en tokens, donc en clients par GPU | P1.4 |
@@ -70,6 +70,10 @@ Total estimé : environ 100 à 170 $ si la carte est une L40S, 180 à 300 $ si c
 | R11 | recherche | Coût du FP8 en qualité : BF16 contre FP8 au repos, sur les 40 tâches de développement, sur une carte de 80 Go | P1, devis |
 
 ## Journal de la carte
+
+- 23/10 : remise en ordre du suivi (carte et reprise périmées depuis le 19/10, numéro G10 réutilisé, décisions du 18/10 contredites sans être rouvertes). G11 ouvert : diagnostic gratuit, le goulot est la recherche (l'agent fait 2 recherches pour 10 documents requis). Criblage de modèles proposé puis suspendu avant toute dépense : le classement officiel montrait déjà le résultat. 0 $.
+
+- 22/10 (nuit) : P0 partie 1 en autonomie sur L40S Nebius (7,60 $) : repos de Mistral 4,5 %, repos de Gemma 6 %, paliers de Mistral (saturation entre 2 et 4 conversations/min, effondrement au-delà). Gemma ne tient pas sous charge sur L40S (7,18 Gio de cache KV).
 
 - 22/10 : G6 (latence) tranché par Amir ; recharge OpenRouter préparée (15,89 $, factures au numéro de TVA de l'entreprise), à valider par Amir lui-même : l'achat par Claude est bloqué par la sécurité de l'environnement.
 

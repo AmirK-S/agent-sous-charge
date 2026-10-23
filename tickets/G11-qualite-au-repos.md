@@ -1,4 +1,6 @@
-# G10 · décision · Les modèles réussissent trop peu au repos
+# G11 · cuisine (avec Amir) · Les modèles réussissent trop peu au repos : que remet-on en cause ?
+
+> Numéro G10 déjà pris le 18/10 (journal de la carte) : ticket renuméroté G11 le 23/10.
 
 **Statut :** rouvert le 23/10 : le criblage est suspendu, rien n'a été dépensé (voir « Diagnostic ») · **Né de :** nuit du P0 (mesures/P0-nuit-22-10.md)
 
@@ -57,3 +59,12 @@ Base : 40 tâches × 1 essai ; environ 230 000 tokens d'entrée cumulés par con
 
 - **Lecture pour Mistral** : quand l'agent trouve les documents, il réussit plus d'une fois sur deux ; sinon, presque jamais. Le goulot est la recherche avant le modèle. Réserves : c'est une corrélation (les tâches faciles demandent peut-être moins de documents), et c'est le modèle qui choisit ses requêtes. Gemma : trop peu de données, et 3 réussites avec peu de documents, à regarder.
 - **Piste conforme à G9** : une recherche hybride sur la machine (mots-clés et sens, petit modèle d'embeddings servi localement, reclassement éventuel). C'est ce que ferait une banque réelle. Le coût est en mémoire de la carte, ce qui intéresse l'étude.
+
+## Deuxième diagnostic gratuit (23/10) : l'agent cherche trop peu
+- Une tâche demande **10 documents en médiane** (de 1 à 30). L'agent fait **2 recherches en médiane** (moyenne 3,2 ; 6 conversations sans aucune recherche), autant dans les réussites que dans les échecs. Gemma : 1 à 2.
+- Exemple, `task_010` (bonus de parrainage versé pour 2 amis sur 4) : 2 documents requis, 2 recherches, 1 document trouvé, note 0.
+- **Lecture** : il y a trois maillons, à mesurer séparément.
+  1. Le moteur de recherche : trouve-t-il les documents quand la requête est bonne ? (rappel à 10, mesurable hors ligne, sans GPU)
+  2. La façon de chercher de l'agent : combien de recherches, quelles requêtes (le prompt et le modèle).
+  3. Le raisonnement une fois les documents trouvés : 5 réussites sur 9 pour Mistral, un premier plafond.
+- **Conséquence** : changer seulement de moteur de recherche ne suffira pas si l'agent ne cherche que deux fois. Et changer seulement de modèle ne dit pas lequel des trois maillons on a réparé.
