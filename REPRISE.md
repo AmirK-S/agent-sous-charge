@@ -9,9 +9,12 @@
 - Réaliste pour un grand groupe européen : d'où la banque, l'hébergement souverain, et des modèles non chinois.
 
 ## État au 23/10/2026 (à réécrire à chaque fin de séance)
-- **Fait** : P1 (prototype complet : vLLM, τ³ par MCP à état, fidélité 0 écart, traces OpenTelemetry jusqu'à vLLM, abandons) ; D1 (image Docker publique `ghcr.io/amirk-s/agent-sous-charge-gpu`) ; G4, G5, G6 tranchés ; P0 partie 1 jouée la nuit du 22/10 ([rapport](mesures/P0-nuit-22-10.md)).
-- **Ticket en cours : [G11](tickets/G11-qualite-au-repos.md)**. Au repos, Mistral réussit 4,5 % et Gemma 6 %, donc la qualité sous charge ne mesure rien. Diagnostic gratuit : l'agent fait 2 recherches pour 10 documents requis ; quand il trouve 80 % des documents, il réussit 5 fois sur 9. Décision à prendre avec Amir.
-- **Rien ne tourne.** Aucune machine louée (SkyPilot : aucune). Dépense totale du GPU à ce jour : environ 10 $.
+- **Fait** : P1 (prototype complet) ; D1 (image Docker publique) ; G4, G5, G6 tranchés ; P0 partie 1 jouée la nuit du 22/10 ([rapport](mesures/P0-nuit-22-10.md)) ; G11 revérifié depuis les fichiers le 23/10.
+- **Ticket en cours : [G11](tickets/G11-qualite-au-repos.md)**, décision présentée, **en attente de la reformulation d'Amir**. Preuves : aucun modèle d'une carte publié sur banking_knowledge, Mistral Large y fait 6,4 % ; 5 de nos 7 réussites sont des transferts à un humain (le diagnostic « goulot = recherche » est retiré) ; le critère « −5 points » a 36 à 63 % de puissance à 10-25 % de repos. Recommandation : changer de banc en gardant la banque (TauIndianBankBench, NPCI, MIT), repli τ² retail ou telecom ; banking_knowledge en séquence descriptive.
+- **Rien ne tourne.** Aucune machine louée. Dépense totale du GPU à ce jour : environ 10 dollars. Séance du 23/10 : 0 dollar.
+
+## Prochaine action précise
+Obtenir la reformulation d'Amir sur G11. Si l'option 1 est actée : vérification gratuite de TauIndianBankBench (code, version du harnais τ², compatibilité avec notre serveur MCP, lecture de tâches). Rien ne se loue avant.
 
 ## Infrastructure (au 23/10)
 - **Location** : SkyPilot 0.14.1 multi-fournisseurs (Nebius, Lambda, RunPod, Shadeform, Vast) ; recettes dans `pod/*-skypilot.yaml`. Nebius demande une reconnexion d'Amir par navigateur quand son jeton expire.
@@ -19,9 +22,6 @@
 - **Clés** (hors dépôt) : `~/.config/openrouter/env`, `~/.lambda_cloud/`, `~/.runpod/config.toml`, `~/.shadeform/`, `~/.nebius/`. Le serveur MCP RunPod de Claude Code est hors service (clé révoquée) : passer par SkyPilot ou l'API REST.
 - **τ³ en local** : `~/.cache/agent-sous-charge/tau2-bench` (commit 96a3ef92), hors du Bureau.
 - **Client simulé** : `openrouter/openai/gpt-6-luna` (G5).
-
-## Prochaine action précise
-Trancher G11 avec Amir (format règle 2). Rien ne se loue avant.
 
 ## Comment travailler avec Amir sur ce projet
 - En français, court, une question à la fois avec une recommandation ; pas de tiret long.

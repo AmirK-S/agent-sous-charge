@@ -14,8 +14,8 @@ But derrière la destination : qu'Amir devienne réellement bon en montée en ch
 | Décision | Source |
 |---|---|
 | Question : « votre agent bancaire tourne chez vous, sur votre GPU : combien de clients avant de cesser d'être fiable, à quel coût par conversation réussie, à quelle distance d'un modèle de pointe ? » | Amir, 18/10 |
-| Cas d'usage : domaine banking_knowledge de τ³-bench (97 tâches, 698 documents), notation par état final de la base ; outils servis par MCP (fait) ; témoin retail supprimé (ADV3). **Recherche « BM25 seul » remise en cause le 23/10 ([G11](tickets/G11-qualite-au-repos.md))** | R1, R6, Amir 18/10 |
-| Modèles : Mistral Small 3.2 (européen) et Gemma 4 31B (américain) ; un modèle de pointe par API en repère de qualité, hors charge ; ni Qwen, ni DeepSeek, ni Llama 4. **Remis en cause le 23/10 : 4,5 et 6 % de réussite au repos ([G11](tickets/G11-qualite-au-repos.md))** | R5, R7, Amir 18/10 |
+| Cas d'usage : domaine banking_knowledge de τ³-bench (97 tâches, 698 documents), notation par état final de la base ; outils servis par MCP (fait) ; témoin retail supprimé (ADV3). **Banc remis en cause le 23/10 ([G11](tickets/G11-qualite-au-repos.md)) : hors de portée des modèles d'une carte ; le moteur BM25 n'est pas en cause** | R1, R6, Amir 18/10 |
+| Modèles : Mistral Small 3.2 (européen) et Gemma 4 31B (américain) ; un modèle de pointe par API en repère de qualité, hors charge ; ni Qwen, ni DeepSeek, ni Llama 4. **Remis en cause le 23/10 : 4,5 et 6 % au repos, au niveau de Mistral Large (6,4 %) sur ce banc ([G11](tickets/G11-qualite-au-repos.md))** | R5, R7, Amir 18/10 |
 | Un seul GPU, tout en réel, aucun simulateur | Amir, 18/10 |
 | Destination, hors périmètre et critère d'arrêt ([G1](tickets/G1-destination-et-hors-perimetre.md)) | Amir, 18/10 |
 | Règles du défi ([G9](tickets/G9-regles-du-defi.md)) | Amir, 18/10 |
@@ -51,7 +51,7 @@ Total estimé : environ 100 à 170 $ si la carte est une L40S, 180 à 300 $ si c
 | Ticket | Type | Objet | Bloque |
 |---|---|---|---|
 | ~~P1~~ | prototype | **Terminé le 21/10** : vLLM sur L40S, une tâche de bout en bout, taille des conversations, serveur MCP à état, fidélité 0 écart, traces jusqu'à vLLM, abandons | pilote |
-| [G11](tickets/G11-qualite-au-repos.md) | cuisine (avec Amir) | **Ouvert le 23/10.** Au repos, les agents réussissent 4,5 et 6 %. Que remet-on en cause : la recherche, la façon de chercher, le modèle ou le banc ? Diagnostic gratuit fait : l'agent fait 2 recherches pour 10 documents requis | G2, P0, G7 |
+| [G11](tickets/G11-qualite-au-repos.md) | cuisine (avec Amir) | **Décision présentée le 23/10, en attente de la reformulation d'Amir.** Preuves : aucun modèle d'une carte n'est publié sur ce banc, Mistral Large y fait 6,4 % ; 5 de nos 7 réussites sont des transferts à un humain ; critère à 36-63 % de puissance. Recommandation : changer de banc en gardant la banque (TauIndianBankBench), repli τ² retail ou telecom | G2, P0, G7 |
 | [G2](tickets/G2-gpu-impose.md) | cuisine | Le GPU imposé : L40S ou H100. **Bloqué par G11** : la recherche et le modèle changent la taille des conversations | T1 |
 | ~~[G4](tickets/G4-utilisateur.md)~~ | cuisine | **Tranché le 22/10** : temps de réflexion calculé (environ une minute), client pressé pour les réglages, escalier continu jusqu'à rupture d'un seuil | G6 |
 
@@ -59,6 +59,7 @@ Total estimé : environ 100 à 170 $ si la carte est une L40S, 180 à 300 $ si c
 
 | Ticket | Type | Objet | Attend |
 |---|---|---|---|
+| G12 | cuisine | Redimensionner le critère de qualité : à 3 conversations par tâche, puissance de 36 à 63 % pour 80 % visés (calcul dans [G11](tickets/G11-qualite-au-repos.md)) ; plus de répétitions ou plus de tâches, marge absolue ou relative, méthode validée par simulation | G11 |
 | [G6](tickets/G6-seuils.md) | cuisine | Seuils de latence **tranchés le 22/10** (2 s, 200 ms, 10 s, 30 s ; courbe capacité contre seuil en descriptif) ; restent erreurs, pass^k et test statistique | G4 |
 | G7 | cuisine | La progression des optimisations et leur ordre. Piste d'Amir (20/10) : une courbe qui part du bas, comme la vidéo du serveur à 12 $ : (1) Ollama ou serveur Python, une requête à la fois ; (2) vLLM et son regroupement continu ; (3) cache du préfixe commun ; (4) cache KV en FP8 ; (5) harness sobre (moins de résultats, garde-fou anti-boucle) ; (6) décodage spéculatif, découpage des longs prompts ; (7) seulement à la fin, « et si on achète une H100 ? ». Chute visée : le logiciel multiplie plus que le matériel, au même prix | P1 |
 | G8 | cuisine | Le scénario et le ton de la vidéo | G6, G7 |
@@ -85,6 +86,8 @@ Total estimé : environ 100 à 170 $ si la carte est une L40S, 180 à 300 $ si c
 | [R10](tickets/R10-methodo-charge-et-stats.md) | Méthodologie de charge et statistique | 18/10 |
 
 ## Journal de la carte
+
+- 23/10 (après-midi) : G11 revérifié depuis les fichiers. Le diagnostic « goulot = recherche » ne tient pas (les réussites à documents trouvés sont des tâches à 1 ou 2 documents, surtout des transferts à un humain) ; Mistral Large mesuré à 6,4 % sur ce banc (arXiv 2607.22157) ; puissance du critère 36 à 63 % à 10-25 % de repos. Décision présentée : changer de banc, garder la banque. 0 dollar.
 
 - 23/10 : garde-fou automatique du suivi (`outils/verifier_suivi.py`, lancé avant chaque commit) ; à son premier passage, il a trouvé 10 tickets absents de la carte et P1 marqué « en cours » : corrigé. Article τ-Knowledge lu pour G11.
 
