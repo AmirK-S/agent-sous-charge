@@ -1,6 +1,6 @@
 # P1 · prototype · Le système entier en tout petit
 
-**Statut :** en cours depuis le 18/10 (au titre de la préparation aux entretiens, décision d'Amir)
+**Statut :** terminé le 21/10 (sept tranches, portes fermées) 
 **Machine :** une L40S 48 Go louée chez RunPod (Secure Cloud), allumée seulement pendant les séances ; le Mac reste libre.
 **Budget :** moins de 10 $ ; arrêt du pod après chaque séance.
 

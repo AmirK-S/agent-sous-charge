@@ -68,3 +68,20 @@ Base : 40 tâches × 1 essai ; environ 230 000 tokens d'entrée cumulés par con
   2. La façon de chercher de l'agent : combien de recherches, quelles requêtes (le prompt et le modèle).
   3. Le raisonnement une fois les documents trouvés : 5 réussites sur 9 pour Mistral, un premier plafond.
 - **Conséquence** : changer seulement de moteur de recherche ne suffira pas si l'agent ne cherche que deux fois. Et changer seulement de modèle ne dit pas lequel des trois maillons on a réparé.
+
+## Ce que dit l'article de référence (τ-Knowledge, arXiv 2603.04370, lu le 23/10)
+Réussite au premier essai sur la partie bancaire, modèles de pointe :
+
+| Recherche | Moyenne de 6 modèles | GPT-5.2 avec raisonnement | GPT-5.2 sans raisonnement |
+|---|---|---|---|
+| Documents fournis (« or ») | 32,2 % | 32,7 % | 15,7 % |
+| BM25 | 17,0 % | 24,5 % | 9,5 % |
+| Embeddings (OpenAI, Qwen) | 16,9 à 17,1 % | 23,5 à 24,7 % | 8,3 à 12,4 % |
+| Terminal (grep) | 19,2 % | 25,5 % | 11,6 % |
+| Sans aucune recherche | environ 2 % | | |
+
+- **Le moteur de recherche compte peu** : BM25 vaut les embeddings ; reclassement, taille k et modèle d'embeddings : « pas d'amélioration significative, ou une dégradation ». Le terminal gagne un peu, surtout pour les modèles de pointe à raisonnement.
+- **Le raisonnement compte beaucoup** : GPT-5.2 passe de 9,5 % à 24,5 % avec BM25 rien qu'en activant le raisonnement.
+- **Plafond** : même avec les bons documents fournis, les modèles de pointe ne font que 32 à 40 %.
+- **Nombre de recherches** : 9 à 18 par tâche pour les modèles de pointe ; notre agent en fait 2.
+- **Conséquences** : (1) l'étape « recherche hybride » de l'option A est abandonnée ; BM25 reste, il est réaliste et à niveau ; (2) le levier à tester est le **raisonnement** (Gemma 4 avec réflexion, gpt-oss-120b, Mistral Small 4), qui coûte des tokens générés, donc de la capacité : c'est un vrai compromis pour la vidéo ; (3) même au mieux, la réussite au repos sera modeste (de l'ordre de 10 à 25 %) : le critère « pas plus de 5 points de baisse » est à revoir pour sa puissance statistique (ticket à ouvrir).

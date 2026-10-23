@@ -69,7 +69,24 @@ Total estimé : environ 100 à 170 $ si la carte est une L40S, 180 à 300 $ si c
 | R12 | recherche | Fine-tuning agentique (par exemple LoRA sur les trajectoires de développement) : levier très avancé ; risque d'apprendre le développement par cœur, et l'affirmation ne porterait plus sur « ce modèle » | G7 |
 | R11 | recherche | Coût du FP8 en qualité : BF16 contre FP8 au repos, sur les 40 tâches de développement, sur une carte de 80 Go | P1, devis |
 
+## Tickets fermés (index)
+
+| Ticket | Objet | Résolu |
+|---|---|---|
+| [P1](tickets/P1-prototype.md) | Le système entier en tout petit (vLLM, τ³ par MCP, traces, abandons) | 21/10 |
+| [R1](tickets/R1-tau-bench.md) | τ-bench ou τ²-bench | 18/10 |
+| [R2](tickets/R2-modeles-appels-outils.md) | Modèles ouverts et appels d'outils (scores généraux, pas ceux du banc bancaire : voir G11) | 18/10 |
+| [R3](tickets/R3-etat-de-l-art-charge-llm.md) | État de l'art des tests de charge d'agents | 18/10 |
+| [R5](tickets/R5-besoins-groupes-europeens.md) | Ce que les grands groupes européens veulent tester | 18/10 |
+| [R6](tickets/R6-tau-banking-knowledge.md) | Le domaine banking_knowledge (et R4 : τ³-bench) | 18/10 |
+| [R7](tickets/R7-modeles-non-chinois.md) | Modèles ouverts non chinois | 18/10 |
+| [R8](tickets/R8-fournisseurs-gpu.md) | Fournisseurs de GPU | 18/10 |
+| [R9](tickets/R9-code-tau3-evaluation.md) | Le code d'évaluation et le client simulé de τ³ | 18/10 |
+| [R10](tickets/R10-methodo-charge-et-stats.md) | Méthodologie de charge et statistique | 18/10 |
+
 ## Journal de la carte
+
+- 23/10 : garde-fou automatique du suivi (`outils/verifier_suivi.py`, lancé avant chaque commit) ; à son premier passage, il a trouvé 10 tickets absents de la carte et P1 marqué « en cours » : corrigé. Article τ-Knowledge lu pour G11.
 
 - 23/10 : remise en ordre du suivi (carte et reprise périmées depuis le 19/10, numéro G10 réutilisé, décisions du 18/10 contredites sans être rouvertes). G11 ouvert : diagnostic gratuit, le goulot est la recherche (l'agent fait 2 recherches pour 10 documents requis). Criblage de modèles proposé puis suspendu avant toute dépense : le classement officiel montrait déjà le résultat. 0 $.
 

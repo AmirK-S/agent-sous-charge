@@ -12,4 +12,5 @@ Règles : rien ne se loue sans l'accord d'Amir et une page de dépense ; GPU ét
 3. **Toute décision soumise à Amir** : la question en une phrase, un schéma tableau blanc de cinq lignes, deux ou trois options avec leur coût, une recommandation, les mots techniques définis. Amir la reformule avant qu'elle soit actée. Réversible : la recommandation s'applique en provisoire jusqu'au vendredi. Irréversible (dépense, gel, publication) : oui écrit d'Amir.
 4. **Une micro-leçon par séance**, liée au travail du jour, dix minutes au plus ; prédiction d'Amir avant, comparaison après ; la notion devient une carte dans `apprentissage/cartes.md`.
 5. **Briefing d'arrivée** de cinq lignes au plus quand Amir revient : fait, appris, micro-leçon, la seule décision qui l'attend, dépensé.
-6. **Mode bas régime** si Amir le dit : seulement du travail sans décision.
+6. **La preuve avant la recommandation, puis la fin de séance** (règles 8 et 9 de `METHODE.md`) : ce que d'autres ont mesuré et ce que nos données disent, écrits avant toute recommandation qui dépense ; ticket, carte, reprise à jour en fin de séance. Un garde-fou (`outils/verifier_suivi.py`, activé par `git config core.hooksPath .githooks`) bloque le commit sinon.
+7. **Mode bas régime** si Amir le dit : seulement du travail sans décision.
