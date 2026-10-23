@@ -1,6 +1,6 @@
 # G10 · décision · Les modèles réussissent trop peu au repos
 
-**Statut :** proposé le 23/10, en attente de la reformulation d'Amir · **Né de :** nuit du P0 (mesures/P0-nuit-22-10.md)
+**Statut :** tranché le 23/10 (option 1, plafond 15 dollars), criblage à lancer · **Né de :** nuit du P0 (mesures/P0-nuit-22-10.md)
 
 ## La question
 Au repos, sur les 40 tâches de développement, Mistral Small 3.2 réussit 4,5 % des conversations et Gemma 4 31B en réussit 6 %. Avec si peu de réussites, le critère « pas plus de 5 points de baisse sous charge » ne mesure presque rien. Que change-t-on ?
@@ -23,5 +23,23 @@ Au repos, sur les 40 tâches de développement, Mistral Small 3.2 réussit 4,5 %
 ## Recommandation
 Option 1, avec l'option 2 comme repli fixé à l'avance.
 
-## Résolution
-(à écrire après la reformulation d'Amir)
+## Résolution (23/10)
+- **Reformulation d'Amir** : « soit le modèle change, soit le benchmark change ». L'option 2 est écartée (« ça sert à rien »). Le repli devient donc l'option 3, changer de banc.
+- **Oui écrit d'Amir** : plafond de 15 dollars.
+- **Changement de plan** : les candidats existent sur OpenRouter, donc le criblage se fait par API, sans louer de GPU. Réserve : le fournisseur de l'API ne quantifie pas forcément comme notre vLLM en FP8. Le criblage sert à choisir ; la mesure qui compte se refera sur notre carte.
+- **Avant de retenir un modèle** : vérifier qu'il tient sur une seule carte. gpt-oss-120b tient sur une H100 (poids en 4 bits). Mistral Small 4 (119 milliards de paramètres) ne tient pas sur une H100 en FP8 : il faudrait du 4 bits, à tester.
+
+### Page de dépense (prix OpenRouter lus le 23/10)
+Base : 40 tâches × 1 essai ; environ 230 000 tokens d'entrée cumulés par conversation (mesuré sur Mistral), soit 9,3 millions par passe.
+
+| Passe | Prix d'entrée (par million de tokens) | Estimation |
+|---|---|---|
+| Repère : Claude Sonnet 5.5 | 2 dollars (0,10 en cache) | 5 à 6 dollars (18 dollars sans cache : surveiller) |
+| gpt-oss-120b | 0,15 dollar | 1,5 dollar |
+| Mistral Small 4 (2603) | 0,15 dollar | 1,5 dollar |
+| Gemma 4 31B, réflexion activée | 0,20 dollar | 2 dollars |
+| Client simulé (toutes les passes) | | moins de 1 dollar |
+| **Total** | | **environ 11 dollars, plafond 15** |
+
+- **Garde-fou** : relever la dépense OpenRouter après les 10 premières conversations du repère, et couper si la projection dépasse 8 dollars.
+- **Règle fixée à l'avance** : si le meilleur modèle ouvert reste sous environ 15 %, on passe à l'option 3.
