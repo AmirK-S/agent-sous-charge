@@ -1,6 +1,6 @@
 # G10 · décision · Les modèles réussissent trop peu au repos
 
-**Statut :** tranché le 23/10 (option 1, plafond 15 dollars), criblage à lancer · **Né de :** nuit du P0 (mesures/P0-nuit-22-10.md)
+**Statut :** rouvert le 23/10 : le criblage est suspendu, rien n'a été dépensé (voir « Diagnostic ») · **Né de :** nuit du P0 (mesures/P0-nuit-22-10.md)
 
 ## La question
 Au repos, sur les 40 tâches de développement, Mistral Small 3.2 réussit 4,5 % des conversations et Gemma 4 31B en réussit 6 %. Avec si peu de réussites, le critère « pas plus de 5 points de baisse sous charge » ne mesure presque rien. Que change-t-on ?
@@ -43,3 +43,17 @@ Base : 40 tâches × 1 essai ; environ 230 000 tokens d'entrée cumulés par con
 
 - **Garde-fou** : relever la dépense OpenRouter après les 10 premières conversations du repère, et couper si la projection dépasse 8 dollars.
 - **Règle fixée à l'avance** : si le meilleur modèle ouvert reste sous environ 15 %, on passe à l'option 3.
+
+## Diagnostic gratuit (23/10, après la remise en question d'Amir)
+- **Ce que d'autres ont mesuré** (taubench.com, partie bancaire) : gros modèles ouverts avec recherche par le sens : 9,8 % ; GPT-5.2 : 12,6 % avec la recherche par le sens seule, 32,2 % en « alltools » (mots-clés, sens et terminal ; réglage par défaut de τ³). Le criblage de petits modèles aurait donc très probablement confirmé ce qu'on savait déjà : il est suspendu.
+- **« alltools » par API contredit G9** (« tant que ça tourne sur la machine ») : écarté. Le terminal pose aussi une question de sécurité pour une banque.
+- **Mesure sur nos conversations de la nuit** : chaque tâche liste ses documents requis (`required_documents`, 10 en médiane). On compte ceux que l'agent a vus passer dans ses résultats de recherche.
+
+| Part des documents requis trouvée | Mistral (réussies / notées) | Gemma |
+|---|---|---|
+| 80 % ou plus | 5 / 9 | 0 / 1 |
+| 40 à 80 % | 2 / 56 | 0 / 18 |
+| moins de 40 % | 0 / 89 | 3 / 31 |
+
+- **Lecture pour Mistral** : quand l'agent trouve les documents, il réussit plus d'une fois sur deux ; sinon, presque jamais. Le goulot est la recherche avant le modèle. Réserves : c'est une corrélation (les tâches faciles demandent peut-être moins de documents), et c'est le modèle qui choisit ses requêtes. Gemma : trop peu de données, et 3 réussites avec peu de documents, à regarder.
+- **Piste conforme à G9** : une recherche hybride sur la machine (mots-clés et sens, petit modèle d'embeddings servi localement, reclassement éventuel). C'est ce que ferait une banque réelle. Le coût est en mémoire de la carte, ce qui intéresse l'étude.
